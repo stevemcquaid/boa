@@ -1,4 +1,14 @@
 Boa::Application.routes.draw do
+  resources :tools
+  resources :tasks
+  resources :shifts
+  resources :shift_participants
+  resources :participants
+  resources :organizations
+  resources :memberships
+  resources :checkouts
+  resources :charges
+
   authenticated :user do
     root :to => 'home#index'
   end
