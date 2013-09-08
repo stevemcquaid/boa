@@ -1,0 +1,2 @@
+class ShiftParticipantsController < ApplicationController
+end
