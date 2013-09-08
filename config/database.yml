@@ -6,13 +6,13 @@
 #
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
-test:
+test: &test
   adapter: sqlite3
   database: db/test.sqlite3
   pool: 5
   timeout: 5000
   
-stage:
+development:
     adapter: postgresql
     database: database_name
     host: stevemcquaid.com
@@ -30,3 +30,6 @@ production:
     pool: 5
     timeout: 5000
 
+cucumber:
+  <<: *test
+    
