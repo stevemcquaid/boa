@@ -9,10 +9,16 @@ Boa::Application.routes.draw do
   resources :checkouts
   resources :charges
 
+  match "faq" => "home#faq", :as => "faq"
+  match "phonenumbers" => "home#phone_numbers", :as => "phonenumbers"
+  match "contacts" => "home#contact_list", :as => "contacts"
+
   authenticated :user do
     root :to => 'home#index'
   end
+
   root :to => "home#index"
+
   devise_for :users
   resources :users
 end
