@@ -5,20 +5,16 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:question) %></th>
       <th><%= model_class.human_attribute_name(:answer) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @faqs.each do |faq| %>
       <tr>
-        <td><%= link_to faq.id, faq_path(faq) %></td>
-        <td><%= faq.question %></td>
+        <td><%= link_to faq.question, faq_path(faq) %></td>
         <td><%= faq.answer %></td>
-        <td><%=l faq.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_faq_path(faq), :class => 'btn btn-mini' %>

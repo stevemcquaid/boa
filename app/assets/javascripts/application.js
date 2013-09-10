@@ -20,9 +20,10 @@ $(document).ready(function(){
 	dynamicFaq();
 });
 
+// This is buggy - it does not hide the correct elements
 function dynamicFaq(){
-	$('dd').hide();
-	$('dt').bind('click', function(){
+	$('div.faq > dd').hide();
+	$('div.faq > dt').bind('click', function(){
 		$(this).toggleClass('open').next().slideToggle();;
 	});
 }

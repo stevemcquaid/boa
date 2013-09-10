@@ -13,7 +13,7 @@ Boa::Application.routes.draw do
   resources :charges
   resources :diagrams
 
-  match "faq" => "home#faq", :as => "faq"
+  match "old_faq" => "home#faq", :as => "old_faq"
   match "phonenumbers" => "home#phone_numbers", :as => "phonenumbers"
   match "contacts" => "home#contact_list", :as => "contacts"
   match "milestones" => "home#milestones", :as => "milestones"
