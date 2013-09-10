@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'
+    # authorize! :index, @user, :message => 'Not authorized as an administrator.'
     @users = User.all
   end
 
@@ -10,6 +10,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   
+  def new
+    @user = User.new
+  end
+
   def update
     authorize! :update, @user, :message => 'Not authorized as an administrator.'
     @user = User.find(params[:id])

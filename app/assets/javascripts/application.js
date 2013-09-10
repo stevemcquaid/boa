@@ -14,3 +14,15 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+
+
+$(document).ready(function(){
+	dynamicFaq();
+});
+
+function dynamicFaq(){
+	$('dd').hide();
+	$('dt').bind('click', function(){
+		$(this).toggleClass('open').next().slideToggle();;
+	});
+}
