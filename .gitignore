@@ -14,6 +14,8 @@
 /log/*.log
 /tmp
 
+*.DS_Store
+
 *.rbc
 *.sassc
 .sass-cache
