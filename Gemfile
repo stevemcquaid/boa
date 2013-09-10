@@ -11,6 +11,7 @@ end
 
 gem 'jquery-rails'
 gem 'bootstrap-sass'
+#gem "twitter-bootstrap-rails"
 gem 'cancan'
 gem 'devise'
 gem 'figaro'

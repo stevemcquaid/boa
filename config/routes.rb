@@ -1,4 +1,7 @@
 Boa::Application.routes.draw do
+  resources :faqs
+
+
   resources :tools
   resources :tasks
   resources :shifts
