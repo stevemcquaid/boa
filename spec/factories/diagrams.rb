@@ -2,5 +2,8 @@
 
 FactoryGirl.define do
   factory :diagram do
+    diagram_id 1
+    name "MyString"
+    image "MyString"
   end
 end

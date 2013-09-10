@@ -1,0 +1,7 @@
+<h3>List of All Diagrams</h3>
+<%= link_to("Upload a New Diagram", new_diagram_path) %>
+<ul>
+    <% @diagrams.each do |diagram| %>
+        <li><%= link_to(diagram.name, diagram_path(diagram)) %></li>
+    <% end %>   
+</ul>

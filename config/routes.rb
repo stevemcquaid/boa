@@ -1,7 +1,7 @@
 Boa::Application.routes.draw do
+  
   resources :faqs
-
-
+  
   resources :tools
   resources :tasks
   resources :shifts
@@ -11,6 +11,7 @@ Boa::Application.routes.draw do
   resources :memberships
   resources :checkouts
   resources :charges
+  resources :diagrams
 
   match "faq" => "home#faq", :as => "faq"
   match "phonenumbers" => "home#phone_numbers", :as => "phonenumbers"

@@ -1,0 +1,17 @@
+<%= form_for @diagram, :html => {:multipart => true} do |f| %>
+  <%= f.hidden_field :diagram_id %>
+
+    <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <% if(!(params[:action] == 'edit')) %>
+    <div class="field">
+      <%= f.label :image %><br />
+      <%= f.file_field :image %>
+    </div>
+  <% end %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
