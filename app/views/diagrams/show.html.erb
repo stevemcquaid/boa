@@ -1,0 +1,13 @@
+<p>
+  <b>Name:</b>
+  <%= @diagram.name %>
+</p>
+
+<p>
+  <b>Image:</b>
+  <%= image_tag(@diagram.image, :alt => @diagram.name)  %>
+</p>
+
+
+<%= link_to 'Edit', edit_diagram_path(@diagram) %> |
+<%= link_to 'Back', diagrams_path %>
