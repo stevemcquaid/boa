@@ -12,4 +12,7 @@ class HomeController < ApplicationController
   def phone_numbers
   end
   
+  def milestones
+  end
+  
 end
