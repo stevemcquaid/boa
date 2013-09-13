@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130910031601) do
+ActiveRecord::Schema.define(:version => 20130910223616) do
 
   create_table "charge_types", :force => true do |t|
     t.string   "name"
@@ -52,6 +52,13 @@ ActiveRecord::Schema.define(:version => 20130910031601) do
     t.integer  "diagram_id"
     t.string   "name"
     t.string   "image"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "faqs", :force => true do |t|
+    t.text     "question"
+    t.text     "answer"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

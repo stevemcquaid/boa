@@ -1,13 +1,17 @@
-<p>
-  <b>Name:</b>
-  <%= @diagram.name %>
-</p>
+<div class="page-header">
+  <h1><%= @diagram.name %></h1>
+</div>
 
-<p>
-  <b>Image:</b>
-  <%= image_tag(@diagram.image, :alt => @diagram.name)  %>
-</p>
+<%= image_tag(@diagram.image, :alt => @diagram.name, :style => 'max-width: 500px') %>
 
-
-<%= link_to 'Edit', edit_diagram_path(@diagram) %> |
-<%= link_to 'Back', diagrams_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              diagrams_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_diagram_path(@diagram), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              diagram_path(@diagram),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
