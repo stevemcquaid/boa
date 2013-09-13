@@ -9,6 +9,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'capistrano'
 gem 'jquery-rails'
 gem 'bootstrap-sass'
 #gem "twitter-bootstrap-rails"
