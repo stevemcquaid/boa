@@ -17,6 +17,7 @@ Boa::Application.routes.draw do
   match "phonenumbers" => "home#phone_numbers", :as => "phonenumbers"
   match "contacts" => "home#contact_list", :as => "contacts"
   match "milestones" => "home#milestones", :as => "milestones"
+  match "esp" => "home#esp", :as => "esp"
 
   authenticated :user do
     root :to => 'home#index'
