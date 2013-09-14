@@ -1,17 +1,20 @@
-<%= form_for @diagram, :html => {:multipart => true} do |f| %>
-  <%= f.hidden_field :diagram_id %>
-
-    <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+<%= simple_form_for @diagram, :html => {:multipart => true, :class => 'form-horizontal'} do |f| %>
+  <div class="field control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name %>
+    </div>
   </div>
   <% if(!(params[:action] == 'edit')) %>
-    <div class="field">
-      <%= f.label :image %><br />
-      <%= f.file_field :image %>
+    <div class="field control-group">
+      <%= f.label :image, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.file_field :image %>
+      </div>
     </div>
   <% end %>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), diagrams_path, :class => 'btn' %>
   </div>
 <% end %>

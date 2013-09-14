@@ -1,18 +1,19 @@
 class DiagramsController < ApplicationController
-  def edit
-    @diagram = Diagram.find(params[:id])
+
+  def index
+    @diagrams = Diagram.all
   end
 
   def show
     @diagram = Diagram.find(params[:id])
   end
 
-  def index
-    @diagrams = Diagram.all
-  end
-
   def new
     @diagram = Diagram.new
+  end
+
+  def edit
+    @diagram = Diagram.find(params[:id])
   end
 
 
@@ -20,7 +21,7 @@ class DiagramsController < ApplicationController
     @diagram = Diagram.new(params[:diagram])
 
     if @diagram.save
-      flash[:notice] = "#{@diagram.id} has been created."
+      flash[:notice] = "#{@diagram.name} has been created."
       redirect_to @diagram 
     else
       render :action => 'new'
@@ -31,7 +32,7 @@ class DiagramsController < ApplicationController
     @diagram = Diagram.find(params[:id])
 
     if @diagram.update_attributes(params[:diagram])
-      flash[:notice] = "#{@diagram.id} is updated."
+      flash[:notice] = "#{@diagram.name} was updated."
       redirect_to @diagram
     else
       render :action => 'edit'
@@ -42,7 +43,7 @@ class DiagramsController < ApplicationController
     @diagram = Diagram.find(params[:id])
     @diagram.destroy
 
-    flash[:notice] = "Successfully removed #{@diagram.id} from BOA."
-    redirect_to diagram_url
+    flash[:notice] = "Successfully removed #{@diagram.name} from BOA."
+    redirect_to diagrams_url
   end
 end
