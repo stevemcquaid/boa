@@ -22,8 +22,13 @@ gem 'simple_form'
 gem 'carrierwave' #attachments
 gem 'simplecov' #code coverage
 gem 'simplecov-rcov' #code coverage
+gem 'rest-client'
+gem 'net-ldap'
+gem 'activeldap', :require => 'active_ldap/railtie'
+
 
 group :development do
+  gem 'passenger'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'better_errors'
@@ -36,6 +41,7 @@ group :development do
 end
 
 group :production, :test do
+  gem 'passenger'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'ci_reporter', '1.6.3'
