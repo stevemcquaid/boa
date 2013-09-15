@@ -20,11 +20,28 @@ gem 'figaro'
 gem 'rolify'
 gem 'simple_form'
 gem 'carrierwave' #attachments
-gem 'simplecov' #code coverage
-gem 'simplecov-rcov' #code coverage
 gem 'rest-client'
 gem 'net-ldap'
 gem 'activeldap', :require => 'active_ldap/railtie'
+gem 'minitest'
+
+group :test do
+  gem 'capybara'
+  gem 'ci_reporter', '1.6.3'
+  gem 'cucumber-rails', :require=>false
+  gem 'database_cleaner', '1.0.1'
+  gem 'email_spec'
+  gem 'factory_girl_rails'
+  gem 'launchy'
+  gem 'mocha'
+  gem 'rspec-rails'
+  gem 'shoulda'
+	gem 'shoulda-matchers'
+  gem 'simplecov', :require => false #code coverage
+  gem 'simplecov-rcov', :require => false #code coverage
+  gem 'test-unit', '~> 2.0.0'
+  gem 'turn', :require => false # Pretty printed test output
+end
 
 group :development do
   gem 'passenger'
@@ -39,11 +56,11 @@ group :development do
   gem 'turn', :require => false
   #code coverage & Jenkins CI stuff
   
-  gem 'simplecov'
-  gem 'simplecov-rcov'
+  gem 'simplecov', :require => false #code coverage
+  gem 'simplecov-rcov', :require => false #code coverage
 end
 
-group :production, :test do
+group :production do
   gem 'passenger'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
@@ -51,15 +68,4 @@ group :production, :test do
   gem 'test-unit', '~> 2.0.0'
   # Pretty printed test output
   gem 'turn', :require => false
-end
-
-group :test do
-  gem 'capybara'
-  gem 'cucumber-rails', :require=>false
-  gem 'database_cleaner', '1.0.1'
-  gem 'email_spec'
-  gem 'launchy'
-  
-  gem 'simplecov'
-  gem 'simplecov-rcov'
 end
