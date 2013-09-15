@@ -26,7 +26,6 @@ gem 'rest-client'
 gem 'net-ldap'
 gem 'activeldap', :require => 'active_ldap/railtie'
 
-
 group :development do
   gem 'passenger'
   gem 'factory_girl_rails'
@@ -38,6 +37,10 @@ group :development do
   gem 'test-unit', '~> 2.0.0'
   # Pretty printed test output
   gem 'turn', :require => false
+  #code coverage & Jenkins CI stuff
+  
+  gem 'simplecov'
+  gem 'simplecov-rcov'
 end
 
 group :production, :test do
@@ -56,4 +59,7 @@ group :test do
   gem 'database_cleaner', '1.0.1'
   gem 'email_spec'
   gem 'launchy'
+  
+  gem 'simplecov'
+  gem 'simplecov-rcov'
 end
