@@ -260,7 +260,7 @@ DEPENDENCIES
   capistrano
   capybara
   carrierwave
-  ci_reporter (= 1.6.3)
+  ci_reporter
   coffee-rails (~> 3.2.1)
   cucumber-rails
   database_cleaner (= 1.0.1)
