@@ -23,6 +23,7 @@ gem 'carrierwave' #attachments
 gem 'rest-client'
 gem 'net-ldap'
 gem 'activeldap', :require => 'active_ldap/railtie'
+gem 'ruby-ldap'
 gem 'minitest'
 
 group :test do
