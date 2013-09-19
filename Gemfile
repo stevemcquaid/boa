@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 ruby '1.9.3'
 gem 'rails', '3.2.13'
 gem 'sqlite3'
@@ -22,8 +22,9 @@ gem 'simple_form'
 gem 'carrierwave' #attachments
 gem 'rest-client'
 gem 'net-ldap'
+gem "ruby-activeldap-debug", "~> 0.7.4"
 gem 'activeldap', :require => 'active_ldap/railtie'
-gem 'ruby-ldap'
+# gem 'ruby-ldap'
 gem 'minitest'
 
 group :test do

@@ -1,4 +1,10 @@
 require 'simplecov'
+SimpleCov.start do
+  add_group "Models", "app/models"
+  add_group "Controllers", "app/controllers"
+  add_group "Views", "app/views"
+end
+
 require 'simplecov-rcov'
 class SimpleCov::Formatter::MergedFormatter
   def format(result)
@@ -7,7 +13,6 @@ class SimpleCov::Formatter::MergedFormatter
   end
 end
 SimpleCov.formatter = SimpleCov::Formatter::MergedFormatter
-SimpleCov.start
 
 ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
