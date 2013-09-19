@@ -130,6 +130,7 @@ GEM
     launchy (2.3.0)
       addressable (~> 2.3)
     locale (2.0.8)
+    log4r (1.1.10)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -199,7 +200,8 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
-    ruby-ldap (0.9.16)
+    ruby-activeldap-debug (0.7.4)
+      log4r (>= 1.0.4)
     sass (3.2.10)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -280,7 +282,7 @@ DEPENDENCIES
   rest-client
   rolify
   rspec-rails
-  ruby-ldap
+  ruby-activeldap-debug (~> 0.7.4)
   sass-rails (~> 3.2.3)
   shoulda
   shoulda-matchers
