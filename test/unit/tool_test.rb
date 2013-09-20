@@ -9,6 +9,7 @@ class ToolTest < ActiveSupport::TestCase
   # Validations
   should validate_uniqueness_of(:barcode)
   should validate_uniqueness_of(:name)
+  
   # Scopes
 
   # Methods
