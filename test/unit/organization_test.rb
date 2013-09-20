@@ -4,8 +4,6 @@ class OrganizationTest < ActiveSupport::TestCase
   # Relationships
   should belong_to(:organization_category)
   should have_many(:memberships)
-
-  # 
   should have_many(:organization_aliases)
   should have_many(:participants).through(:memberships)
   should have_many(:charges)

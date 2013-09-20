@@ -7,7 +7,6 @@ class ChargeTest < ActiveSupport::TestCase
   should belong_to(:receiving_participant)
   should belong_to(:charge_type)
 
-
   # Validations
 
   # Scopes

@@ -1,9 +1,11 @@
 class Participant < ActiveRecord::Base
   attr_accessible :andrewid, :has_signed_waiver, :phone_number, :has_signed_hardhat_waiver, :card_number
   attr_reader :card_number
+
   validates :andrewid, :presence => true, :uniqueness => true
   validates :has_signed_waiver, :acceptance => {:accept => true}
   validates :phone_number, :length => { :minimum => 10, :maximum => 10}, :numericality => true, :allow_nil => true
+  
   has_many :organizations, :through => :memberships
   has_many :shifts, :through => :shift_participants
   has_many :organizations, :through => :memberships
