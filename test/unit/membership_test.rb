@@ -9,7 +9,9 @@ class MembershipTest < ActiveSupport::TestCase
   
 
   # Validations
-
+  should validate_presence_of(:participant_id)
+  should validate_presence_of(:organization_id)
+  
   # Scopes
 
   # Methods
