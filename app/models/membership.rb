@@ -5,7 +5,7 @@ class Membership < ActiveRecord::Base
 
   belongs_to :organization
   belongs_to :participant
-  has_many :checkouts
+  #has_many :checkouts
   has_many :tools, :through => :checkouts
 
   default_scope order('booth_chair_order ASC')
