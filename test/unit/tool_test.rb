@@ -7,8 +7,9 @@ class ToolTest < ActiveSupport::TestCase
   should have_many(:organizations).through(:checkouts)
 
   # Validations
-  validates_uniqueness_of(:barcode)
-  validates_uniqueness_of(:name)
+  should validate_uniqueness_of(:barcode)
+  should validate_uniqueness_of(:name)
+  
   # Scopes
 
   # Methods
