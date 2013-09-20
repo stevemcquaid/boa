@@ -46,6 +46,22 @@ class ActiveSupport::TestCase
     @trip_breaker = FactoryGirl.create(:charge_type, :default_amount => 200.00, :description => "Tripped a breaker", :name => "Breaker", :requires_booth_chair_approval => true)
   
 
+    # Create 4 participants
+    @rachel = FactoryGirl.create(:andrewid => "rcrown", :has_signed_waiver => true, :has_signed_hardhat_waiver => false, :phone_number => "123-456-7890", :organization => @scc)
+    @shannon = FactoryGirl.create(:andrewid => "shannon1", :organization => @sdc, :has_signed_waiver => false, :has_signed_hardhat_waiver => true, :phone_number => "412-412-4124")
+    @dylan = FactoryGirl.create(:andrewid => "dylanc", :has_signed_hardhat_waiver => true, :has_signed_waiver => true, :organization => @theta, :phone_number => "412-123-5555")
+    @alexis = FactoryGirl.create(:andrewid => "alexed", :organization => @theta, :has_signed_waiver => false, :has_signed_hardhat_waiver => false, :phone_number => "539-123-4124")
+
+    # Create 3 tasks
+    @assign_rides = FactoryGirl.create(:task, :name =>"Assign rides", :participant => @rachel, :task_status => @in_progress)
+    @buy_wood = FactoryGirl.create(:tasks, :name => "Buy wood", :participant => @shannon, :task_status => @complete)
+    @takeout_trash = FactoryGirl.create(:task, :name => "Take-out trask", :participant => @dylan, :task_status => @incomplete)
+
+    # Create 3 task statuses
+    @complete = FactoryGirl.create(:task_status, :name => "Complete")
+    @incomplete = FactoryGirl.create(:task_status, :name => "Incomplete")
+    @in_progress = FactoryGirl.create(:task_status, :name => "In Progress")
+
 
 
     # Create 3 shift types
@@ -104,6 +120,21 @@ class ActiveSupport::TestCase
     @miss_meeting.destroy
     @trip_breaker.destroy
 
+    # Destroy 4 participants
+    @rachel.destroy
+    @shannon.destroy
+    @dylan.destroy
+    @alexis.destroy
+
+    # Destroy 3 tasks
+    @assign_rides.destroy
+    @buy_wood.destroy
+    @takeout_trash.destroy
+
+    # Destroy task status
+    @complete.destroy
+    @incomplete.destroy
+    @in_progress.destroy
     # Destroy 3 shift types
     @watch_shift.destroy
     @security_shift.destroy
