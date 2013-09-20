@@ -59,10 +59,10 @@ class ActiveSupport::TestCase
     @shift3 = FactoryGirl.create(:shift, :ends_at => Date.new, :required_number_of_participants => 3, :starts_at => Date.new)
 
     # Create 4 tools
-    @hammer = FactoryGirl.create(:tool, :barcode => 123780890, :description => , :name => "Hammer")
-    @saw = FactoryGirl.create(:tool, :barcode => 123789043, :description => , :name => "Saw")
-    @ladder = FactoryGirl.create(:tool, :barcode => 123780120, :description => , :name => "Ladder")
-    @hard_hat = FactoryGirl.create(:tool, :barcode => 123780812, :description => , :name => "Hard Hat")
+    @hammer = FactoryGirl.create(:tool, :barcode => 123780890, :description => "HAMMER", :name => "Hammer")
+    @saw = FactoryGirl.create(:tool, :barcode => 123789043, :description => "SAW", :name => "Saw")
+    @ladder = FactoryGirl.create(:tool, :barcode => 123780120, :description => "LADDER", :name => "Ladder")
+    @hard_hat = FactoryGirl.create(:tool, :barcode => 123780812, :description => "HARD HAT", :name => "Hard Hat")
 
     # Create 4 checkouts
     @hammer_checkout1 = FactoryGirl.create(:checkout, :checked_in => Date.new, :checked_out => Date.new, :tool => @hammer)
