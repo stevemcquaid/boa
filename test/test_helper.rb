@@ -62,8 +62,6 @@ class ActiveSupport::TestCase
     @incomplete = FactoryGirl.create(:task_status, :name => "Incomplete")
     @in_progress = FactoryGirl.create(:task_status, :name => "In Progress")
 
-
-
     # Create 3 shift types
     @watch_shift = FactoryGirl.create(:shift_type, :name => "Watch Shift")
     @security_shift = FactoryGirl.create(:shift_type, :name => "Security Shift")
