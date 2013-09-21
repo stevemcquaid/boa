@@ -15,7 +15,7 @@ gem 'jquery-rails'
 gem 'bootstrap-sass'
 
 #enable for generating/bootstrapping newly generated models
-gem "twitter-bootstrap-rails"
+#gem "twitter-bootstrap-rails"
 
 gem 'cancan' #user auth
 gem 'devise' #user auth
