@@ -3,8 +3,6 @@ ruby '1.9.3'
 gem 'rails', '3.2.13'
 gem 'sqlite3'
 
-gem "mocha", require: false
-
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -19,6 +17,7 @@ gem 'bootstrap-sass'
 gem 'cancan' #user auth
 gem 'devise' #user auth
 gem 'figaro'
+gem 'mocha'
 gem 'rolify'
 gem 'simple_form'
 gem 'carrierwave' #attachments
@@ -37,7 +36,7 @@ group :test do
   gem 'email_spec'
   gem 'factory_girl_rails'
   gem 'launchy'
-  # gem 'mocha'
+  
   gem 'rspec-rails'
   gem 'shoulda'
 	gem 'shoulda-matchers'
