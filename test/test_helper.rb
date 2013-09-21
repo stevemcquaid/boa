@@ -133,6 +133,7 @@ class ActiveSupport::TestCase
     @complete.destroy
     @incomplete.destroy
     @in_progress.destroy
+    
     # Destroy 3 shift types
     @watch_shift.destroy
     @security_shift.destroy

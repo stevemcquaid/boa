@@ -47,6 +47,8 @@ end
 
 group :development do
   gem 'passenger'
+  gem 'populator3'
+  gem 'hirb'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   # gem 'better_errors'
