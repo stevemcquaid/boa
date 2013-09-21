@@ -39,7 +39,7 @@ group :test do
   
   gem 'rspec-rails'
   gem 'shoulda'
-	gem 'shoulda-matchers'
+  gem 'shoulda-matchers'
   gem 'simplecov', :require => false #code coverage
   gem 'simplecov-rcov', :require => false #code coverage
   # gem 'test-unit', '~> 2.0.0'
