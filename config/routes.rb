@@ -1,18 +1,21 @@
 Boa::Application.routes.draw do
   
-  resources :faqs
-  
-  resources :tools
-  resources :tasks
-  resources :shifts
-  resources :shift_participants
-  resources :participants
-  resources :organizations
-  resources :memberships
-  resources :checkouts
-  resources :charges
-  resources :diagrams
+  resources :contact_lists
 
+
+  resources :charges
+  resources :checkouts
+  resources :contact_lists
+  resources :diagrams
+  resources :faqs
+  resources :memberships
+  resources :organizations
+  resources :participants
+  resources :shift_participants
+  resources :shifts
+  resources :tasks
+  resources :tools
+  
   match "old_faq" => "home#faq", :as => "old_faq"
   match "phonenumbers" => "home#phone_numbers", :as => "phonenumbers"
   match "contacts" => "home#contact_list", :as => "contacts"

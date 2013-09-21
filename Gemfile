@@ -13,7 +13,10 @@ gem 'factory_girl_rails' #fixture testing
 gem 'capistrano' #auto deployment
 gem 'jquery-rails'
 gem 'bootstrap-sass'
-#gem "twitter-bootstrap-rails"
+
+#enable for generating/bootstrapping newly generated models
+gem "twitter-bootstrap-rails"
+
 gem 'cancan' #user auth
 gem 'devise' #user auth
 gem 'figaro'
@@ -24,8 +27,10 @@ gem 'carrierwave' #attachments
 gem 'rest-client'
 gem 'net-ldap'
 gem "ruby-activeldap-debug", "~> 0.7.4"
-gem 'activeldap', :require => 'active_ldap/railtie'
-# gem 'ruby-ldap'
+
+#gem 'activeldap', :require => 'active_ldap/railtie' #This is a problem gem
+
+gem 'ruby-ldap'
 gem 'minitest'
 
 group :test do
