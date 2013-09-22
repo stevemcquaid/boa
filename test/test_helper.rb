@@ -55,7 +55,7 @@ class ActiveSupport::TestCase
     # Create 3 tasks
     @assign_rides = FactoryGirl.create(:task, :name =>"Assign rides", :participant => @rachel, :task_status => @in_progress)
     @buy_wood = FactoryGirl.create(:tasks, :name => "Buy wood", :participant => @shannon, :task_status => @complete)
-    @takeout_trash = FactoryGirl.create(:task, :name => "Take-out trash", :participant => @dylan, :task_status => @incomplete)
+    @takeout_trash = FactoryGirl.create(:task, :name => "Take-out trask", :participant => @dylan, :task_status => @incomplete)
 
     # Create 3 task statuses
     @complete = FactoryGirl.create(:task_status, :name => "Complete")
