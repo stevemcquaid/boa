@@ -13,6 +13,7 @@ class Participant < ActiveRecord::Base
   has_many :tools, :through => :checkouts
   has_many :memberships
   has_many :shift_participants
+  has_one  :contact_list #this may need to be enabled?
 
   def ldap_reference
     @ldap_reference ||= CarnegieMellonPerson.find_by_andrewid( self.andrewid )

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class RoleTest < ActiveSupport::TestCase
   # Relationships
-  should have_many(:resource)
+  should belong_to(:resource)
 
   # Validations
 

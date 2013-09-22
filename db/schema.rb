@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130910223616) do
+ActiveRecord::Schema.define(:version => 20130921014557) do
 
   create_table "charge_types", :force => true do |t|
     t.string   "name"
@@ -47,6 +47,13 @@ ActiveRecord::Schema.define(:version => 20130910223616) do
   end
 
   add_index "checkouts", ["tool_id"], :name => "index_checkouts_on_tool_id"
+
+  create_table "contact_lists", :force => true do |t|
+    t.integer  "participant_id"
+    t.boolean  "display_contact"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
   create_table "diagrams", :force => true do |t|
     t.integer  "diagram_id"

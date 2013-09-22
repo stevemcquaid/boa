@@ -13,18 +13,24 @@ gem 'factory_girl_rails' #fixture testing
 gem 'capistrano' #auto deployment
 gem 'jquery-rails'
 gem 'bootstrap-sass'
+
+#enable for generating/bootstrapping newly generated models
 #gem "twitter-bootstrap-rails"
+
 gem 'cancan' #user auth
 gem 'devise' #user auth
 gem 'figaro'
+gem 'mocha'
 gem 'rolify'
 gem 'simple_form'
 gem 'carrierwave' #attachments
 gem 'rest-client'
 gem 'net-ldap'
 gem "ruby-activeldap-debug", "~> 0.7.4"
-gem 'activeldap', :require => 'active_ldap/railtie'
-# gem 'ruby-ldap'
+
+#gem 'activeldap', :require => 'active_ldap/railtie' #This is a problem gem
+
+gem 'ruby-ldap'
 gem 'minitest'
 
 group :test do
@@ -35,25 +41,32 @@ group :test do
   gem 'email_spec'
   gem 'factory_girl_rails'
   gem 'launchy'
-  gem 'mocha'
+  
   gem 'rspec-rails'
   gem 'shoulda'
-	gem 'shoulda-matchers'
+  gem 'shoulda-matchers'
   gem 'simplecov', :require => false #code coverage
   gem 'simplecov-rcov', :require => false #code coverage
-  gem 'test-unit', '~> 2.0.0'
+  # gem 'test-unit', '~> 2.0.0'
   gem 'turn', :require => false # Pretty printed test output
 end
 
 group :development do
   gem 'passenger'
-  gem 'factory_girl_rails'
+  gem 'populator3'
+  gem 'hirb'
+
   gem 'rspec-rails'
+
   # gem 'better_errors'
+
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
   gem 'quiet_assets'
   gem 'ci_reporter'
-  gem 'test-unit', '~> 2.0.0'
+
+  # Steve said this gem is DIRTY.
+  # gem 'test-unit', '~> 2.0.0'
+
   # Pretty printed test output
   gem 'turn', :require => false
   #code coverage & Jenkins CI stuff
@@ -64,10 +77,12 @@ end
 
 group :production do
   gem 'passenger'
-  gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'ci_reporter'
-  gem 'test-unit', '~> 2.0.0'
+
+  # Steve said this gem is DIRTY.
+  # gem 'test-unit', '~> 2.0.0'
+
   # Pretty printed test output
   gem 'turn', :require => false
 end
