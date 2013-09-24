@@ -9,9 +9,9 @@ rake db:populate
 # rake db:test:load
 
 #Jenkins CI Requirements
-rake ci:setup:minitest test
-rake ci:setup:rspec spec
-rake ci:setup:cucumber features
+rake ci:setup:minitest #test
+rake ci:setup:rspec #spec
+rake ci:setup:cucumber #features
 
 #Run All Tests
 rake test
