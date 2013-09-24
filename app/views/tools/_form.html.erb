@@ -1,0 +1,10 @@
+<%= simple_form_for @tool, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :name %>
+  <%= f.input :barcode %>
+  <%= f.input :description %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                tools_path, :class => 'btn' %>
+  </div>
+<% end %>
