@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe DiagramController do
+describe DiagramsController do
 
   describe "GET 'edit'" do
     it "returns http success" do
