@@ -11,11 +11,11 @@ rake db:populate
 
 
 #Run All Tests
-rake test
+#rake test
 
 #Jenkins CI Requirements
 rake ci:setup:minitest test
-rake ci:setup:rspec spec
+#rake ci:setup:rspec spec
 rake ci:setup:cucumber features
 
 # # Run all unit tests
