@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/nicksieger/ci_reporter.git
+  revision: cc6e557a43d099f3961908901f4603438cdceb28
+  specs:
+    ci_reporter (1.9.0)
+      builder (>= 2.1.2)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -63,8 +70,6 @@ GEM
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       json (>= 1.7)
-    ci_reporter (1.6.3)
-      builder (>= 2.1.2)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -238,10 +243,6 @@ GEM
       polyglot (>= 0.3.1)
     turn (0.9.6)
       ansi
-    twitter-bootstrap-rails (2.2.6)
-      actionpack (>= 3.1)
-      execjs
-      railties (>= 3.1)
     tzinfo (0.3.37)
     uglifier (2.2.1)
       execjs (>= 0.3.0)
@@ -263,7 +264,7 @@ DEPENDENCIES
   capistrano
   capybara
   carrierwave
-  ci_reporter
+  ci_reporter!
   coffee-rails (~> 3.2.1)
   cucumber-rails
   database_cleaner (= 1.0.1)
@@ -293,5 +294,4 @@ DEPENDENCIES
   simplecov-rcov
   sqlite3
   turn
-  twitter-bootstrap-rails
   uglifier (>= 1.0.3)

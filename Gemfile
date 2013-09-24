@@ -30,7 +30,7 @@ gem 'minitest', "~> 4.0"
 
 group :test do
   gem 'capybara'
-  gem 'ci_reporter'
+  gem 'ci_reporter', :git => 'git://github.com/nicksieger/ci_reporter.git'
   gem 'cucumber-rails', :require=>false
   gem 'database_cleaner', '1.0.1'
   gem 'email_spec'
@@ -57,7 +57,7 @@ group :development do
 
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
   gem 'quiet_assets'
-  gem 'ci_reporter'
+  gem 'ci_reporter', :git => 'git://github.com/nicksieger/ci_reporter.git'
 
   # Steve said this gem is DIRTY.
   # gem 'test-unit', '~> 2.0.0'
@@ -73,7 +73,7 @@ end
 group :production do
   gem 'passenger'
   gem 'rspec-rails'
-  gem 'ci_reporter'
+  gem 'ci_reporter', :git => 'git://github.com/nicksieger/ci_reporter.git'
 
   # Steve said this gem is DIRTY.
   # gem 'test-unit', '~> 2.0.0'
