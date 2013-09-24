@@ -31,12 +31,12 @@ class ActiveSupport::TestCase
     @frat = FactoryGirl.create(:organization_category, :name => "Fraternity")
     @sorority = FactoryGirl.create(:organization_category, :name => "Sorority")
 
-    # Create 2 organizations
+    # Create 3 organizations
     @theta = FactoryGirl.create(:organization, :name => "Kappa Alpha Theta", :organization_category => @sorority)
     @sdc = FactoryGirl.create(:organization, :name => "Student Dormitory Council", :organization_category => @independent)
     @scc = FactoryGirl.create(:organization, :name => "Spring Carnival Committee", :organization_category => @independent)
 
-    # Create 2 organization aliases
+    # Create 3 organization aliases
     @theta_alias = FactoryGirl.create(:organization_alias, :name => "Theta", :organization => @theta)
     @sdc_alias = FactoryGirl.create(:organization_alias, :name => "SDC", :organization => @sdc)
     @scc_alias = FactoryGirl.create(:organization_alias, :name => "SCC", :organization => @scc)
@@ -45,11 +45,10 @@ class ActiveSupport::TestCase
     @miss_meeting = FactoryGirl.create(:charge_type, :default_amount => 100.00, :description => "Missed a meeting", :name => "Meeting", :requires_booth_chair_approval => false)
     @trip_breaker = FactoryGirl.create(:charge_type, :default_amount => 200.00, :description => "Tripped a breaker", :name => "Breaker", :requires_booth_chair_approval => true)
   
-
     # Create 4 participants
     @rachel = FactoryGirl.create(:andrewid => "rcrown", :has_signed_waiver => true, :has_signed_hardhat_waiver => false, :phone_number => "123-456-7890", :organization => @scc)
     @shannon = FactoryGirl.create(:andrewid => "shannon1", :organization => @sdc, :has_signed_waiver => false, :has_signed_hardhat_waiver => true, :phone_number => "412-412-4124")
-    @dylan = FactoryGirl.create(:andrewid => "dylanc", :has_signed_hardhat_waiver => true, :has_signed_waiver => true, :organization => @theta, :phone_number => "412-123-5555")
+    @dylan = FactoryGirl.create(:andrewid => "dcorwin", :has_signed_hardhat_waiver => true, :has_signed_waiver => true, :organization => @theta, :phone_number => "412-123-5555")
     @alexis = FactoryGirl.create(:andrewid => "asteger", :organization => @theta, :has_signed_waiver => false, :has_signed_hardhat_waiver => false, :phone_number => "539-123-4124")
 
     # Create 3 tasks
@@ -83,10 +82,6 @@ class ActiveSupport::TestCase
     @hammer_checkout2 = FactoryGirl.create(:checkout, :checked_in => Date.new, :checked_out => Date.new, :tool => @hammer)
     @saw_checkout = FactoryGirl.create(:checkout, :checked_in => Date.new, :checked_out => Date.new, :tool => @saw)
     @hard_hat_checkout = FactoryGirl.create(:checkout, :checked_in => Date.new, :checked_out => Date.new, :tool => @hard_hat)
-
-    # Create three charge types
-    @miss_meeting = FactoryGirl.create(:charge_type, :default_amount => 50.00, :description => "Missed a meeting", :name => "Meeting", :requires_booth_chair_approval => false)
-    @trip_breaker = FactoryGirl.create(:charge_type, :default_amount => 25.00, :description => "Tripped a breaker", :name => "Breaker", :requires_booth_chair_approval => true)
   
     # Create 2 charges
     @meeting_fine = FactoryGirl.create(:charge, :charge_type => @miss_meeting, :issuing_participant => @rachel, :receiving_participant => nil, :organization => @theta, :amount => 50.00, :charged_at => Date.today, :description => "Missed 10/2 meeting")
