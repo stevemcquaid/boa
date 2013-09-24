@@ -8,10 +8,10 @@ rake db:populate
 # #Testing
 # rake db:test:load
 
-rake ci:setup:testunit test
-#rake ci:setup:rspec spec
-#rake ci:setup:cucumber features
-# 
+# rake ci:setup:cucumber features
+
+rake test
+
 # # Run all unit tests
 # rake test:units
 # # Run all functional tests
