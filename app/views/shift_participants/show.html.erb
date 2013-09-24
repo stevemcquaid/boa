@@ -1,2 +1,27 @@
-<h1>ShiftParticipants#show</h1>
-<p>Find me in app/views/shift_participants/show.html.erb</p>
+<%- model_class = ShiftParticipant -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:shift_id) %>:</strong></dt>
+  <dd><%= @shift_participant.shift_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:participant_id) %>:</strong></dt>
+  <dd><%= @shift_participant.participant_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:clocked_in_at) %>:</strong></dt>
+  <dd><%= @shift_participant.clocked_in_at %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:clocked_out_at) %>:</strong></dt>
+  <dd><%= @shift_participant.clocked_out_at %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              shift_participants_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_shift_participant_path(@shift_participant), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              shift_participant_path(@shift_participant),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

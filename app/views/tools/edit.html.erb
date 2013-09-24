@@ -1,2 +1,5 @@
-<h1>Tools#edit</h1>
-<p>Find me in app/views/tools/edit.html.erb</p>
+<%- model_class = Tool -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human %></h1>
+</div>
+<%= render :partial => 'form' %>

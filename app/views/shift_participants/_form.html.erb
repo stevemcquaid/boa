@@ -1,0 +1,11 @@
+<%= simple_form_for @shift_participant, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :shift_id %>
+  <%= f.input :participant_id %>
+  <%= f.input :clocked_in_at %>
+  <%= f.input :clocked_out_at %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                shift_participants_path, :class => 'btn' %>
+  </div>
+<% end %>
