@@ -50,7 +50,7 @@ class ActiveSupport::TestCase
     @rachel = FactoryGirl.create(:andrewid => "rcrown", :has_signed_waiver => true, :has_signed_hardhat_waiver => false, :phone_number => "123-456-7890", :organization => @scc)
     @shannon = FactoryGirl.create(:andrewid => "shannon1", :organization => @sdc, :has_signed_waiver => false, :has_signed_hardhat_waiver => true, :phone_number => "412-412-4124")
     @dylan = FactoryGirl.create(:andrewid => "dylanc", :has_signed_hardhat_waiver => true, :has_signed_waiver => true, :organization => @theta, :phone_number => "412-123-5555")
-    @alexis = FactoryGirl.create(:andrewid => "alexed", :organization => @theta, :has_signed_waiver => false, :has_signed_hardhat_waiver => false, :phone_number => "539-123-4124")
+    @alexis = FactoryGirl.create(:andrewid => "asteger", :organization => @theta, :has_signed_waiver => false, :has_signed_hardhat_waiver => false, :phone_number => "539-123-4124")
 
     # Create 3 tasks
     @assign_rides = FactoryGirl.create(:task, :name =>"Assign rides", :participant => @rachel, :task_status => @in_progress)
