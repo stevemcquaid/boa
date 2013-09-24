@@ -17,7 +17,7 @@ class MembershipTest < ActiveSupport::TestCase
   # Methods
   context "Testing memberships" do
     should "know booth chairs" do
-      assert_equal 1, Membership.booth_chairs.size
+      #assert_equal 1, Membership.booth_chairs.size
       assert_equal ["asteger"], Membership.booth_chairs.map{|e| e.participant.andrewid}
     end
         
