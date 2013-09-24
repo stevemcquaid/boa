@@ -10,7 +10,3 @@ require 'ci/reporter/rake/minitest'  # use this if you're using Ruby 1.9 or mini
 require File.expand_path('../config/application', __FILE__)
 
 Boa::Application.load_tasks
-
-rake ci:setup:minitest test
-rake ci:setup:rspec spec
-rake ci:setup:cucumber features
