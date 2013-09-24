@@ -8,13 +8,15 @@ rake db:populate
 # #Testing
 # rake db:test:load
 
-#Jenkins CI Requirements
-rake ci:setup:minitest #test
-rake ci:setup:rspec #spec
-rake ci:setup:cucumber #features
+
 
 #Run All Tests
 rake test
+
+#Jenkins CI Requirements
+rake ci:setup:minitest test
+rake ci:setup:rspec spec
+rake ci:setup:cucumber features
 
 # # Run all unit tests
 # rake test:units
