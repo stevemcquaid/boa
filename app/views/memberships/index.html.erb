@@ -6,12 +6,11 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:organization_id) %></th>
+      <th><%= model_class.human_attribute_name(:organization) %></th>
       <th><%= model_class.human_attribute_name(:participant_id) %></th>
       <th><%= model_class.human_attribute_name(:is_booth_chair) %></th>
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:booth_chair_order) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -19,12 +18,11 @@
     <% @memberships.each do |membership| %>
       <tr>
         <td><%= link_to membership.id, membership_path(membership) %></td>
-        <td><%= membership.organization_id %></td>
-        <td><%= membership.participant_id %></td>
+        <td><%= membership.organization.name %></td>
+        <td><%= membership.participant.andrewid %></td>
         <td><%= membership.is_booth_chair %></td>
         <td><%= membership.title %></td>
         <td><%= membership.booth_chair_order %></td>
-        <td><%=l membership.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_membership_path(membership), :class => 'btn btn-mini' %>

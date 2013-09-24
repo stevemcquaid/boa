@@ -10,9 +10,9 @@
   <dd><%= @shift.ends_at %></dd>
   <dt><strong><%= model_class.human_attribute_name(:required_number_of_participants) %>:</strong></dt>
   <dd><%= @shift.required_number_of_participants %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:organization_id) %>:</strong></dt>
-  <dd><%= @shift.organization_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:shift_type_id) %>:</strong></dt>
+  <dt><strong><%= model_class.human_attribute_name(:organization) %>:</strong></dt>
+  <dd><%= @shift.organization.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:shift_type) %>:</strong></dt>
   <dd><%= @shift.shift_type_id %></dd>
 </dl>
 

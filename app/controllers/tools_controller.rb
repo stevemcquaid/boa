@@ -93,6 +93,8 @@ class ToolsController < ApplicationController
         @checkout.participant = nil
         @checkout.organization = nil
         @checkout.save!
+
+        redirect_to @tool
     else
         flash[:notice] = "#{@tool.name} was not checked out because it has been previously checked out."
         redirect_to @tool
@@ -104,9 +106,13 @@ class ToolsController < ApplicationController
     @tool = Tool.find(params[:id])
 
     if(@tool.is_checked_out?)
-        @checkout = @tool.checkouts.current
+        @current = @tool.checkouts.current.pluck(:id)
+        @checkout = Checkout.find_by_id(@current)
+
         @checkout.checked_in_at = Date.today
         @checkout.save!
+
+        redirect_to @tool
     else
         flash[:notice] = "#{@tool.name} was not checked in because it was not checked out."
         redirect_to @tool

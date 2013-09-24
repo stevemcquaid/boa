@@ -9,9 +9,8 @@
       <th><%= model_class.human_attribute_name(:starts_at) %></th>
       <th><%= model_class.human_attribute_name(:ends_at) %></th>
       <th><%= model_class.human_attribute_name(:required_number_of_participants) %></th>
-      <th><%= model_class.human_attribute_name(:organization_id) %></th>
-      <th><%= model_class.human_attribute_name(:shift_type_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%= model_class.human_attribute_name(:organization) %></th>
+      <th><%= model_class.human_attribute_name(:shift_type) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -22,9 +21,8 @@
         <td><%= shift.starts_at %></td>
         <td><%= shift.ends_at %></td>
         <td><%= shift.required_number_of_participants %></td>
-        <td><%= shift.organization_id %></td>
-        <td><%= shift.shift_type_id %></td>
-        <td><%=l shift.created_at %></td>
+        <td><%= shift.organization.name %></td>
+        <td><%= shift.shift_type %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_shift_path(shift), :class => 'btn btn-mini' %>

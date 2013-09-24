@@ -6,11 +6,10 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:shift_id) %></th>
-      <th><%= model_class.human_attribute_name(:participant_id) %></th>
+      <th><%= model_class.human_attribute_name(:shift) %></th>
+      <th><%= model_class.human_attribute_name(:participant) %></th>
       <th><%= model_class.human_attribute_name(:clocked_in_at) %></th>
       <th><%= model_class.human_attribute_name(:clocked_out_at) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -18,11 +17,10 @@
     <% @shift_participants.each do |shift_participant| %>
       <tr>
         <td><%= link_to shift_participant.id, shift_participant_path(shift_participant) %></td>
-        <td><%= shift_participant.shift_id %></td>
-        <td><%= shift_participant.participant_id %></td>
+        <td><%= link_to shift_participant.shift.shift_type, shift_path(shift_participant.shift_id) %></td>
+        <td><%= link_to shift_participant.participant.andrewid, participant_path(shift_participant.participant_id) %></td>
         <td><%= shift_participant.clocked_in_at %></td>
         <td><%= shift_participant.clocked_out_at %></td>
-        <td><%=l shift_participant.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_shift_participant_path(shift_participant), :class => 'btn btn-mini' %>

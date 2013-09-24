@@ -6,12 +6,11 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:tool_id) %></th>
+      <th><%= model_class.human_attribute_name(:tool) %></th>
       <th><%= model_class.human_attribute_name(:checked_out_at) %></th>
       <th><%= model_class.human_attribute_name(:checked_in_at) %></th>
       <th><%= model_class.human_attribute_name(:participant_id) %></th>
       <th><%= model_class.human_attribute_name(:organization_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -19,12 +18,11 @@
     <% @checkouts.each do |checkout| %>
       <tr>
         <td><%= link_to checkout.id, checkout_path(checkout) %></td>
-        <td><%= checkout.tool_id %></td>
+        <td><%= checkout.tool.name %></td>
         <td><%= checkout.checked_out_at %></td>
         <td><%= checkout.checked_in_at %></td>
-        <td><%= checkout.participant_id %></td>
-        <td><%= checkout.organization_id %></td>
-        <td><%=l checkout.created_at %></td>
+        <td><%= checkout.participant %></td>
+        <td><%= checkout.organization %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_checkout_path(checkout), :class => 'btn btn-mini' %>

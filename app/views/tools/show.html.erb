@@ -10,13 +10,25 @@
   <dd><%= @tool.barcode %></dd>
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= @tool.description %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:is_checked_out) %>:</strong></dt>
+  <dd><%= @tool.is_checked_out? %></dd>
 </dl>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               tools_path, :class => 'btn'  %>
+
+  <% if(@tool.is_checked_out?) %>
+    <%= link_to t('.checkin', :default => t("helpers.links.checkin")),
+                      checkin_tool_path(@tool), :class => 'btn btn-mini' %>
+  <% else %>
+    <%= link_to t('.checkout', :default => t("helpers.links.checkout")),
+                      checkout_tool_path(@tool), :class => 'btn btn-mini' %>
+  <% end %>
+
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_tool_path(@tool), :class => 'btn' %>
+
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               tool_path(@tool),
               :method => 'delete',

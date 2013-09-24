@@ -13,7 +13,7 @@ gem 'factory_girl_rails' #fixture testing
 gem 'capistrano' #auto deployment
 gem 'jquery-rails'
 gem 'bootstrap-sass'
-gem "twitter-bootstrap-rails"
+# gem "twitter-bootstrap-rails"
 gem 'cancan' #user auth
 gem 'devise' #user auth
 gem 'figaro'

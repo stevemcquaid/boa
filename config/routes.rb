@@ -15,6 +15,9 @@ Boa::Application.routes.draw do
   resources :shifts
   resources :tasks
   resources :tools
+
+  match "checkout_tool/:id" => "tools#checkout", :as => :checkout_tool
+  match "checkin_tool/:id" => "tools#checkin", :as => :checkin_tool
   
   match "old_faq" => "home#faq", :as => "old_faq"
   match "phonenumbers" => "home#phone_numbers", :as => "phonenumbers"

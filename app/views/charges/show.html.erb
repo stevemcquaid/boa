@@ -4,18 +4,18 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:organization_id) %>:</strong></dt>
-  <dd><%= @charge.organization_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:charge_type_id) %>:</strong></dt>
-  <dd><%= @charge.charge_type_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:organization) %>:</strong></dt>
+  <dd><%= @charge.organization.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:charge_type) %>:</strong></dt>
+  <dd><%= @charge.charge_type.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:amount) %>:</strong></dt>
   <dd><%= @charge.amount %></dd>
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= @charge.description %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:issuing_participant_id) %>:</strong></dt>
-  <dd><%= @charge.issuing_participant_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:receiving_participant_id) %>:</strong></dt>
-  <dd><%= @charge.receiving_participant_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:issuing_participant) %>:</strong></dt>
+  <dd><%= @charge.issuing_participant.andrewid unless @charge.receiving_participant.nil? %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:receiving_participant) %>:</strong></dt>
+  <dd><%= @charge.receiving_participant.andrewid unless @charge.receiving_participant.nil? %></dd>
   <dt><strong><%= model_class.human_attribute_name(:charged_at) %>:</strong></dt>
   <dd><%= @charge.charged_at %></dd>
 </dl>

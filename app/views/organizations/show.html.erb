@@ -6,8 +6,8 @@
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @organization.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:organization_category_id) %>:</strong></dt>
-  <dd><%= @organization.organization_category_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:organization_category) %>:</strong></dt>
+  <dd><%= @organization.organization_category.name %></dd>
 </dl>
 
 <div class="form-actions">
