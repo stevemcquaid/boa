@@ -3,9 +3,8 @@
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
 #Jenkins CI Integration stuff
-require_relative 'ci/reporter/rake/rspec'     # use this if you're using RSpec
 require_relative 'ci/reporter/rake/cucumber'  # use this if you're using Cucumber
-require_relative 'ci/reporter/rake/minitest'  # use this if you're using Cucumber
+require_relative 'ci/reporter/rake/minitest'
 
 require File.expand_path('../config/application', __FILE__)
 
