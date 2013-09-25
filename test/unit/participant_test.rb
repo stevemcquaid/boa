@@ -12,8 +12,24 @@ class ParticipantTest < ActiveSupport::TestCase
 
   # Validations
 
-  # Scopes
 
-  # Methods
 
+  context "With a proper context, " do
+    setup do
+      create_context
+    end
+
+    teardown do
+      remove_context
+    end
+
+    should "show that all factories are properly created" do
+      assert_equal 4, Participant.all.size
+    end
+
+    # Scopes
+  
+    # Methods
+
+  end
 end

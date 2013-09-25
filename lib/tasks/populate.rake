@@ -89,7 +89,6 @@ namespace :db do
     # new_participant.has_signed_waiver = true
     # new_participant.has_signed_hardhat_waiver = false
     new_participant.phone_number = 1234567890
-    # new_participant.organization = Organization.find_by_name("Kappa Alpha Theta")
     new_participant.save!
 
     new_participant = Participant.new
@@ -97,7 +96,6 @@ namespace :db do
     # new_participant.has_signed_waiver = false
     # new_participant.has_signed_hardhat_waiver = true
     new_participant.phone_number = 4124124124
-    # new_participant.organization = Organization.find_by_name("Student Dormitory Council")
     new_participant.save!
 
     new_participant = Participant.new
@@ -105,7 +103,6 @@ namespace :db do
     # new_participant.has_signed_waiver = true
     # new_participant.has_signed_hardhat_waiver = true
     new_participant.phone_number = 4121235555
-    # new_participant.organization = Organization.find_by_name("Kappa Alpha Theta")
     new_participant.save!
 
     new_participant = Participant.new
@@ -113,7 +110,6 @@ namespace :db do
     # new_participant.has_signed_waiver = false
     # new_participant.has_signed_hardhat_waiver = false
     new_participant.phone_number = 5391234124
-    # new_participant.organization = Organization.find_by_name("Kappa Alpha Theta")
     new_participant.save!
 
     puts "TaskStatus"
@@ -190,28 +186,54 @@ namespace :db do
     new_shift.organization = Organization.find_by_name("Kappa Alpha Theta")
     new_shift.save!
 
+    puts "ShiftParticipant"
+
+    new_sp = ShiftParticipant.new
+    new_sp.shift = Shift.find_by_id(1)
+    new_sp.participant = Participant.find_by_id(1)
+    new_sp.clocked_in_at = Date.new
+    new_sp.save!
+
+    new_sp = ShiftParticipant.new
+    new_sp.shift = Shift.find_by_id(2)
+    new_sp.participant = Participant.find_by_id(3)
+    new_sp.clocked_in_at = Date.new
+    new_sp.save!
+
+    new_sp = ShiftParticipant.new
+    new_sp.shift = Shift.find_by_id(2)
+    new_sp.participant = Participant.find_by_id(2)
+    new_sp.clocked_in_at = Date.new
+    new_sp.save!
+
+    new_sp = ShiftParticipant.new
+    new_sp.shift = Shift.find_by_id(1)
+    new_sp.participant = Participant.find_by_id(4)
+    new_sp.clocked_in_at = Date.new
+    new_sp.save!
+
     puts "Tool"
     
     new_tool = Tool.new
-    new_tool.barcode = 123780890
+    new_tool.barcode = 12378083290
     new_tool.description = "HAMMER"
     new_tool.name = "Hammer"
     new_tool.save!
 
     new_tool = Tool.new
-    new_tool.barcode = 123789043
+    new_tool.barcode = 123789012343
     new_tool.description = "SAW"
     new_tool.name = "Saw"
     new_tool.save!
 
     new_tool = Tool.new
-    new_tool.barcode = 123780120
+    new_tool.barcode = 12378424330120
     new_tool.description = "LADDER"
     new_tool.name = "Ladder"
     new_tool.save!
 
     new_tool = Tool.new
-    new_tool.barcode = 123780812
+    new_tool.barcode = 123743280812
     new_tool.description = "HARD HAT"
     new_tool.name = "Hard Hat"
     new_tool.save!

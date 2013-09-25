@@ -13,8 +13,22 @@ class ShiftTest < ActiveSupport::TestCase
   should validate_presence_of(:ends_at)
   should validate_presence_of(:required_number_of_participants)
  
-  # Scopes
+  context "With a proper context, " do
+    setup do
+      create_context
+    end
 
-  # Methods
+    teardown do
+      remove_context
+    end
 
+    should "show that all factories are properly created" do
+      assert_equal 3, Shift.all.size
+    end
+
+    # Scopes
+
+    # Methods
+
+  end
 end
