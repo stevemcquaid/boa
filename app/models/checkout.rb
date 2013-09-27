@@ -12,6 +12,4 @@ class Checkout < ActiveRecord::Base
   scope :current, where('checked_in_at is null')
 
 
-
-  def 
 end

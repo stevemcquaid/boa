@@ -77,8 +77,8 @@ class ActiveSupport::TestCase
 
     # Create 3 task statuses
     @complete = FactoryGirl.create(:task_status, :name => "Complete")
-    @incomplete = FactoryGirl.create(:task_status, :name => "Incomplete")
-    @in_progress = FactoryGirl.create(:task_status, :name => "In Progress")
+    @incomplete = FactoryGirl.create(:task_status, :name => "Not Completed")
+    @in_progress = FactoryGirl.create(:task_status, :name => "Unable To Complete")
 
     # Create 3 tasks
     @assign_rides = FactoryGirl.create(:task, :completed_by => @rachel, :task_status => @incomplete)
