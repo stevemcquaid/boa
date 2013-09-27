@@ -10,6 +10,39 @@ class CheckoutsController < ApplicationController
     end
   end
 
+  # GET
+  def new_tool_checkout
+    @checkout = Checkout.new
+    respond_to do |format|
+          format.html # index.html.erb
+          format.json { render json: @checkouts }
+    end
+  end
+
+  # POST
+  def create_tool_checkout
+    @checkout = Checkout.new(params[:checkout])
+    @checkout.checked_out_at = Date.today
+
+    @tool = Tool.find_by_barcode(@checkout.tool_id)
+
+    if(@tool.nil?)
+      throw "BAD"
+    end
+
+    @checkout.tool_id = @tool.id
+
+    respond_to do |format|
+      if @checkout.save
+        format.html { redirect_to @checkout, notice: 'Checkout was successfully created.' }
+        format.json { render json: @checkout, status: :created, location: @checkout }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @checkout.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # GET /checkouts/1
   # GET /checkouts/1.json
   def show
