@@ -27,6 +27,15 @@ class ShiftTest < ActiveSupport::TestCase
     end
 
     # Scopes
+    should "have a scope 'current' that works" do
+       assert_equal 0, Shift.current.size
+    end
+    
+
+    should "have a scope 'upcoming' that works" do
+       assert_equal 0, Shift.upcoming.size
+    end
+    
 
     # Methods
 
