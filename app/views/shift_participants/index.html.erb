@@ -17,8 +17,8 @@
     <% @shift_participants.each do |shift_participant| %>
       <tr>
         <td><%= link_to shift_participant.id, shift_participant_path(shift_participant) %></td>
-        <td><%= link_to shift_participant.shift.shift_type, shift_path(shift_participant.shift_id) %></td>
-        <td><%= link_to shift_participant.participant.andrewid, participant_path(shift_participant.participant_id) %></td>
+        <td><%= link_to shift_participant.shift.shift_type.name << " @ " << shift_participant.clocked_in_at.strftime("%b %e at %l:%M %p") , shift_path(shift_participant.shift_id) %></td>
+        <td><%= link_to shift_participant.participant.andrewid, participant_path(shift_participant.participant_id) unless shift_participant.participant.nil?%></td>
         <td><%= shift_participant.clocked_in_at %></td>
         <td><%= shift_participant.clocked_out_at %></td>
         <td>

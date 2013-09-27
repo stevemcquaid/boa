@@ -1,5 +1,5 @@
 class Organization < ActiveRecord::Base
-  attr_accessible :name, :organization_category
+  attr_accessible :name, :organization_category_id
 
   belongs_to :organization_category
   has_many :memberships
