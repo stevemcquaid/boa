@@ -1,7 +1,11 @@
 class Checkout < ActiveRecord::Base
   attr_accessible :checked_in_at, :checked_out_at, :participant_id, :organization_id, :tool_id
 
-  validates :checked_out_at, :tool_id, :presence => true
+
+
+  validates :tool_id, :presence => true
+
+  before_save :checked_out_at, :presence => true
 
   belongs_to :participant
   belongs_to :organization

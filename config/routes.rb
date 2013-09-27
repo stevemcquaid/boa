@@ -18,6 +18,9 @@ Boa::Application.routes.draw do
 
   match "checkout_tool/:id" => "tools#checkout", :as => :checkout_tool
   match "checkin_tool/:id" => "tools#checkin", :as => :checkin_tool
+
+  match "new_tool_checkout" => "checkouts#new_tool_checkout", :as => :new_tool_checkout
+  match "create_tool_checkout" => "checkouts#create_tool_checkout", :as => :create_tool_checkout
   
   match "old_faq" => "home#faq", :as => "old_faq"
   match "phonenumbers" => "home#phone_numbers", :as => "phonenumbers"
