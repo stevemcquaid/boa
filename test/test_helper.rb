@@ -81,9 +81,9 @@ class ActiveSupport::TestCase
     @in_progress = FactoryGirl.create(:task_status, :name => "Unable To Complete")
 
     # Create 3 tasks
-    @assign_rides = FactoryGirl.create(:task, :completed_by => @rachel, :task_status => @incomplete)
-    @buy_wood = FactoryGirl.create(:task, :name => "Buy wood", :completed_by => @shannon, :task_status => @in_progress)
-    @takeout_trash = FactoryGirl.create(:task, :name => "Take-out trash", :completed_by => @dylan, :task_status => @complete)    
+    @assign_rides = FactoryGirl.create(:task, :completed_by => @rachel, :task_status => @incomplete, :due_at => Time.local(2000,1,1,12,3,0))
+    @buy_wood = FactoryGirl.create(:task, :name => "Buy wood", :completed_by => @shannon, :task_status => @in_progress, :due_at => Time.local(2000,1,1,15,0,0))
+    @takeout_trash = FactoryGirl.create(:task, :name => "Take-out trash", :completed_by => @dylan, :task_status => @complete, :due_at => Time.local(2020,1,1,15,0,0))    
 
     # Create 4 tools
     @hammer = FactoryGirl.create(:tool)

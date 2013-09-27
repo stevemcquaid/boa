@@ -46,7 +46,19 @@ class TaskTest < ActiveSupport::TestCase
        assert_equal 0, Task.upcoming.size
     end
 
+
+    should "show that the is_past_due method works" do
+      assert_equal true, @assign_rides.is_past_due
+      assert_equal true, @buy_wood.is_past_due
+      assert_equal false, @takeout_trash.is_past_due
+    end
  
+
+    should "show that the is_uncompleted method works" do
+      assert_equal true, @assign_rides.is_uncompleted
+      assert_equal false, @buy_wood.is_uncompleted
+      assert_equal false, @takeout_trash.is_uncompleted
+    end
     # Methods
 
   end
