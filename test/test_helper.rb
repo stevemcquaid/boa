@@ -47,9 +47,9 @@ class ActiveSupport::TestCase
     @ride_shift = FactoryGirl.create(:shift_type, :name => "Ride Shift")
 
     # Create 3 shifts
-    @shift1 = FactoryGirl.create(:shift, :ends_at => Date.new, :required_number_of_participants => 3, :starts_at => Date.new, :organization => @theta)
-    @shift2 = FactoryGirl.create(:shift, :ends_at => Date.new, :required_number_of_participants => 3, :starts_at => Date.new, :organization => @sdc)
-    @shift3 = FactoryGirl.create(:shift, :ends_at => Date.new, :required_number_of_participants => 3, :starts_at => Date.new, :organization => @theta)
+    @shift1 = FactoryGirl.create(:shift, :ends_at => Time.local(2000,1,1,15,0,0), :required_number_of_participants => 3, :starts_at => Time.local(2000,1,1,12,3,0), :organization => @theta)
+    @shift2 = FactoryGirl.create(:shift, :ends_at => Time.local(2000,1,1,15,0,0), :required_number_of_participants => 3, :starts_at => Time.local(2000,1,1,13,4,0), :organization => @sdc)
+    @shift3 = FactoryGirl.create(:shift, :ends_at => Time.local(2000,1,1,15,0,0), :required_number_of_participants => 3, :starts_at => Time.local(2000,1,1,14,10,0), :organization => @theta)
   
     # Create 4 participants
     @rachel = FactoryGirl.create(:participant)
@@ -57,6 +57,7 @@ class ActiveSupport::TestCase
     @dylan = FactoryGirl.create(:participant, :andrewid => "dcorwin", :phone_number => 4121235555)
     @alexis = FactoryGirl.create(:participant, :andrewid => "asteger", :phone_number => 5391234124)
 
+    # Create 4 Shift Parficipants
     @sp1 = FactoryGirl.create(:shift_participant, :participant => @rachel, :clocked_in_at => Date.new, :shift => @shift1)
     @sp2 = FactoryGirl.create(:shift_participant, :participant => @shannon, :clocked_in_at => Date.new, :shift => @shift2)
     @sp3 = FactoryGirl.create(:shift_participant, :participant => @alexis, :clocked_in_at => Date.new, :shift => @shift3)
@@ -76,8 +77,8 @@ class ActiveSupport::TestCase
 
     # Create 3 task statuses
     @complete = FactoryGirl.create(:task_status, :name => "Complete")
-    @incomplete = FactoryGirl.create(:task_status, :name => "Incomplete")
-    @in_progress = FactoryGirl.create(:task_status, :name => "In Progress")
+    @incomplete = FactoryGirl.create(:task_status, :name => "Not Completed")
+    @in_progress = FactoryGirl.create(:task_status, :name => "Unable To Complete")
 
     # Create 3 tasks
     @assign_rides = FactoryGirl.create(:task, :completed_by => @rachel, :task_status => @incomplete)

@@ -24,7 +24,10 @@ class ShiftParticipantTest < ActiveSupport::TestCase
     end
  
     # Scopes
-  
+    should "have a scope 'current' that works" do
+       assert_equal 0, ShiftParticipant.current.size
+    end
+    
     # Methods
 
   end

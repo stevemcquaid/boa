@@ -24,7 +24,29 @@ class TaskTest < ActiveSupport::TestCase
     end
    
     # Scopes
+    should "have a scope 'completed' that works" do
+       assert_equal 0, Task.completed.size
+    end
 
+
+    should "have a scope 'uncompleted' that works" do
+       assert_equal 0, Task.uncompleted.size
+    end
+
+    should "have a scope 'not_uncompleted' that works" do
+       assert_equal 0, Task.not_uncompleted.size
+    end
+
+    should "have a scope 'unable_to_complete' that works" do
+       assert_equal 0, Task.unable_to_complete.size
+    end
+
+
+    should "have a scope 'upcoming' that works" do
+       assert_equal 0, Task.upcoming.size
+    end
+
+ 
     # Methods
 
   end

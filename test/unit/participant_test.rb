@@ -27,9 +27,11 @@ class ParticipantTest < ActiveSupport::TestCase
       assert_equal 4, Participant.all.size
     end
 
-    # Scopes
-  
-    # Methods
+    context "Testing participants" do
+      should "know participants" do
+        assert_equal ["rcrown", "shannon1", "dcorwin", "asteger"], Participant.all.map{|e| e.andrewid}
+      end  
+    end
 
   end
 end

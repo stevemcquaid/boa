@@ -9,7 +9,7 @@ class ChargeTest < ActiveSupport::TestCase
 
   # Validations
 
-
+  # Methods
   context "With a proper context, " do
     setup do
       create_context
@@ -23,8 +23,12 @@ class ChargeTest < ActiveSupport::TestCase
       assert_equal 2, Charge.all.size
     end
 
-    # Scopes
-  
-    # Methods
+      
+
+      context "Testing charges" do
+        should "know charges" do
+          assert_equal ["Breaker trip", "Missed 10/2 meeting"], Charge.all.map{|e| e.description}
+        end  
+      end
   end
 end
