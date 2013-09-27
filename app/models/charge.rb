@@ -1,5 +1,5 @@
 class Charge < ActiveRecord::Base
-  attr_accessible :amount, :description, :issuing_participant, :receiving_participant, :organization, :charge_type, :charged_at
+  attr_accessible :amount, :description, :issuing_participant_id, :receiving_participant_id, :organization_id, :charge_type_id, :charged_at
 
   validates :charged_at, :issuing_participant_id, :organization_id, :charge_type_id, :presence => true
 
