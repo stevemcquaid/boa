@@ -13,4 +13,5 @@ class Checkout < ActiveRecord::Base
 
 
 
+  def 
 end

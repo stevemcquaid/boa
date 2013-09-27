@@ -57,6 +57,7 @@ class ActiveSupport::TestCase
     @dylan = FactoryGirl.create(:participant, :andrewid => "dcorwin", :phone_number => 4121235555)
     @alexis = FactoryGirl.create(:participant, :andrewid => "asteger", :phone_number => 5391234124)
 
+    # Create 4 Shift Parficipants
     @sp1 = FactoryGirl.create(:shift_participant, :participant => @rachel, :clocked_in_at => Date.new, :shift => @shift1)
     @sp2 = FactoryGirl.create(:shift_participant, :participant => @shannon, :clocked_in_at => Date.new, :shift => @shift2)
     @sp3 = FactoryGirl.create(:shift_participant, :participant => @alexis, :clocked_in_at => Date.new, :shift => @shift3)
