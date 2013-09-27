@@ -169,6 +169,7 @@ namespace :db do
     new_shift.ends_at = Date.new
     new_shift.required_number_of_participants = 3
     new_shift.starts_at = Date.new
+    new_shift.shift_type = ShiftType.find_by_id(1)
     new_shift.organization = Organization.find_by_name("Kappa Alpha Theta")
     new_shift.save!
 
@@ -176,6 +177,7 @@ namespace :db do
     new_shift.ends_at = Date.new
     new_shift.required_number_of_participants = 3
     new_shift.starts_at = Date.new
+    new_shift.shift_type = ShiftType.find_by_id(2)
     new_shift.organization = Organization.find_by_name("Student Dormitory Council")
     new_shift.save!
 
@@ -183,6 +185,7 @@ namespace :db do
     new_shift.ends_at = Date.new
     new_shift.required_number_of_participants = 3
     new_shift.starts_at = Date.new
+    new_shift.shift_type = ShiftType.find_by_id(3)
     new_shift.organization = Organization.find_by_name("Kappa Alpha Theta")
     new_shift.save!
 
@@ -195,13 +198,13 @@ namespace :db do
     new_sp.save!
 
     new_sp = ShiftParticipant.new
-    new_sp.shift = Shift.find_by_id(2)
+    new_sp.shift = Shift.find_by_id(1)
     new_sp.participant = Participant.find_by_id(3)
     new_sp.clocked_in_at = Date.new
     new_sp.save!
 
     new_sp = ShiftParticipant.new
-    new_sp.shift = Shift.find_by_id(2)
+    new_sp.shift = Shift.find_by_id(1)
     new_sp.participant = Participant.find_by_id(2)
     new_sp.clocked_in_at = Date.new
     new_sp.save!

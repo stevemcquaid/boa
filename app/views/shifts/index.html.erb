@@ -22,7 +22,7 @@
         <td><%= shift.ends_at %></td>
         <td><%= shift.required_number_of_participants %></td>
         <td><%= shift.organization.name %></td>
-        <td><%= shift.shift_type %></td>
+        <td><%= shift.shift_type.name %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_shift_path(shift), :class => 'btn btn-mini' %>

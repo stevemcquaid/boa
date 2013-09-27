@@ -1,7 +1,7 @@
 class Shift < ActiveRecord::Base
   belongs_to :organization
 
-  attr_accessible :ends_at, :starts_at, :required_number_of_participants, :organization, :shift_type
+  attr_accessible :ends_at, :starts_at, :required_number_of_participants, :organization_id, :shift_type_id
 
   has_many :participants, :through => :shift_participants
   has_many :shift_participants
