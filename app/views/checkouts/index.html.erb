@@ -21,8 +21,8 @@
         <td><%= checkout.tool.name %></td>
         <td><%= checkout.checked_out_at.strftime("%m/%d/%y %I:%M%p")  unless checkout.checked_out_at.nil? %></td>
         <td><%= checkout.checked_in_at.strftime("%m/%d/%y %I:%M%p")  unless checkout.checked_in_at.nil? %></td>
-        <td><%= checkout.participant.andrewid unless checkout.participant_id.nil? %></td>
-        <td><%= checkout.organization.name unless checkout.organization_id.nil?%></td>
+        <td><%= checkout.participant.andrewid unless checkout.participant.nil? %></td>
+        <td><%= checkout.organization.name unless checkout.organization.nil?%></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_checkout_path(checkout), :class => 'btn btn-mini' %>

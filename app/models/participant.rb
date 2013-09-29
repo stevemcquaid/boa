@@ -42,7 +42,7 @@ class Participant < ActiveRecord::Base
   end
 
   def card_number=( card_number )
-      @card_number = card_number
+    @card_number = card_number
   end
 
   def card_number

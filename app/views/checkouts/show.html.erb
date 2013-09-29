@@ -6,14 +6,14 @@
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:tool) %>:</strong></dt>
   <dd><%= @checkout.tool.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:participant_id) %>:</strong></dt>
+  <dd><%= @checkout.participant.andrewid unless @checkout.participant.nil? %></dd>
   <dt><strong><%= model_class.human_attribute_name(:checked_out_at) %>:</strong></dt>
   <dd><%= @checkout.checked_out_at.strftime("%m/%d/%y %I:%M%p") %></dd>
   <dt><strong><%= model_class.human_attribute_name(:checked_in_at) %>:</strong></dt>
   <dd><%= @checkout.checked_in_at.strftime("%m/%d/%y %I:%M%p") unless @checkout.checked_in_at.nil? %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:participant_id) %>:</strong></dt>
-  <dd><%= @checkout.participant.andrewid unless @checkout.participant_id.nil? %></dd>
   <dt><strong><%= model_class.human_attribute_name(:organization_id) %>:</strong></dt>
-  <dd><%= @checkout.organization.name unless @checkout.organization_id.nil? %></dd>
+  <dd><%= @checkout.organization.name unless @checkout.organization.nil? %></dd>
 </dl>
 
 <div class="form-actions">
