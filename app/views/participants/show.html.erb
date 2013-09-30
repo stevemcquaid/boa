@@ -1,18 +1,27 @@
 <%- model_class = Participant -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1><%=t '.title', :default => @participant.andrewid %></h1>
 </div>
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:andrewid) %>:</strong></dt>
   <dd><%= @participant.andrewid %></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:phone_number) %>:</strong></dt>
+  <dd><%= "(" + @participant.phone_number[0,3]+") "+@participant.phone_number[3,3]+"-"+@participant.phone_number[6,4] %></dd>
+  
+  <dt><strong><%= model_class.human_attribute_name(:memberships) %>:</strong></dt>
+  <dd><% @memberships.each do |membership| %><li><%= link_to membership.organization.name, membership.organization %></li><% end %></dd>
+
+
   <dt><strong><%= model_class.human_attribute_name(:has_signed_waiver) %>:</strong></dt>
   <dd><%= @participant.has_signed_waiver %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:phone_number) %>:</strong></dt>
-  <dd><%= @participant.phone_number %></dd>
+
+
   <dt><strong><%= model_class.human_attribute_name(:has_signed_hardhat_waiver) %>:</strong></dt>
   <dd><%= @participant.has_signed_hardhat_waiver %></dd>
 </dl>
+
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),

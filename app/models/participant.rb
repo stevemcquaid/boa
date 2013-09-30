@@ -1,4 +1,6 @@
 class Participant < ActiveRecord::Base
+  before_save :reformat_phone
+
   attr_accessible :andrewid, :has_signed_waiver, :phone_number, :has_signed_hardhat_waiver, :card_number
   attr_reader :card_number
 
@@ -53,5 +55,13 @@ class Participant < ActiveRecord::Base
     andrewid = CarnegieMellonIDCard.search card_number
     self.find_by_andrewid andrewid unless andrewid.nil?
   end
+
+
+  private
+   def reformat_phone
+     phone_number = self.phone_number.to_s 
+     phone_number.gsub!(/[^0-9]/,"")
+     self.phone_number = phone_number 
+   end
 
 end

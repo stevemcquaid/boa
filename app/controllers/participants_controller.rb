@@ -40,7 +40,7 @@ class ParticipantsController < ApplicationController
   # GET /participants/1.json
   def show
     @participant = Participant.find(params[:id])
-
+    @memberships = @participant.memberships.all
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @participant }
