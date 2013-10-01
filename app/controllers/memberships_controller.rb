@@ -1,4 +1,6 @@
 class MembershipsController < ApplicationController
+  load_and_authorize_resource
+  
   # GET /memberships
   # GET /memberships.json
   def index

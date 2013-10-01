@@ -1,4 +1,6 @@
 class ShiftsController < ApplicationController
+  load_and_authorize_resource
+  
   # GET /shifts
   # GET /shifts.json
   def index

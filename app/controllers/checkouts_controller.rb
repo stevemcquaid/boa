@@ -1,4 +1,6 @@
 class CheckoutsController < ApplicationController
+  load_and_authorize_resource
+  
   # GET /checkouts
   # GET /checkouts.json
   def index

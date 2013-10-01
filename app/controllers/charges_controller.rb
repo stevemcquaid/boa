@@ -1,4 +1,6 @@
 class ChargesController < ApplicationController
+  load_and_authorize_resource
+
   # GET /charges
   # GET /charges.json
   def index

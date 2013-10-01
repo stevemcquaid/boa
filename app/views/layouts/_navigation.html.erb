@@ -3,42 +3,44 @@
     <div class="container">
 
       <%= link_to "Boa", root_path, :class => 'brand' %>
+      <% if user_signed_in? %>
 
-      <ul class="nav navbar-nav">
-        <!-- Normal Navbar LI's -->
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Models<b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><%= link_to "Charges", charges_path %></li>
-            <li><%= link_to "Checkouts", checkouts_path %></li>
-            <li><%= link_to "Diagrams", diagrams_path %></li>
-            <li><%= link_to "Memberships", memberships_path %></li>
-            <li><%= link_to "Organizations", organizations_path %></li>
-            <li><%= link_to "Participants", participants_path %></li>
-            <li><%= link_to "Shift-Participants", shift_participants_path %></li>
-            <li><%= link_to "Shifts", shifts_path %></li>
-            <li><%= link_to "Tasks", tasks_path %></li>
-            <li><%= link_to "Tools", tools_path %></li>
-            <li><%= link_to "Users", users_path %></li>
-          </ul>
-        </li>
-      </ul>
-
-      <ul class="nav navbar-nav">
-        <!-- Normal Navbar LI's -->
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Links<b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><%= link_to "New FAQs", faqs_path %></li>
-            <li><%= link_to "Old FAQs", old_faq_path %></li>
-            <li><%= link_to "New Contact List", contact_lists_path %></li>
-            <li><%= link_to "Old Contact List", contacts_path %></li>
-            <li><%= link_to "Phone Numbers", phonenumbers_path %></li>
-            <li><%= link_to "ESP", esp_path %></li>
-			      <li><%= link_to "Milestones", milestones_path %></li>
-          </ul>
-        </li>
-      </ul>
+        <ul class="nav navbar-nav">
+          <!-- Normal Navbar LI's -->
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Models<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Charges", charges_path %></li>
+              <li><%= link_to "Checkouts", checkouts_path %></li>
+              <li><%= link_to "Diagrams", diagrams_path %></li>
+              <li><%= link_to "Memberships", memberships_path %></li>
+              <li><%= link_to "Organizations", organizations_path %></li>
+              <li><%= link_to "Participants", participants_path %></li>
+              <li><%= link_to "Shift-Participants", shift_participants_path %></li>
+              <li><%= link_to "Shifts", shifts_path %></li>
+              <li><%= link_to "Tasks", tasks_path %></li>
+              <li><%= link_to "Tools", tools_path %></li>
+              <li><%= link_to "Users", users_path %></li>
+            </ul>
+          </li>
+        </ul>
+  
+        <ul class="nav navbar-nav">
+          <!-- Normal Navbar LI's -->
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Links<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "New FAQs", faqs_path %></li>
+              <li><%= link_to "Old FAQs", old_faq_path %></li>
+              <li><%= link_to "New Contact List", contact_lists_path %></li>
+              <li><%= link_to "Old Contact List", contacts_path %></li>
+              <li><%= link_to "Phone Numbers", phonenumbers_path %></li>
+              <li><%= link_to "ESP", esp_path %></li>
+			       <li><%= link_to "Milestones", milestones_path %></li>
+            </ul>
+          </li>
+        </ul>
+      <% end %>
 
       <!-- Right Navbar -->
       <ul class="nav navbar-right pull-right">

@@ -1,4 +1,6 @@
 class ParticipantsController < ApplicationController
+  load_and_authorize_resource
+  
   # GET /participants
   # GET /participants.json
   def index

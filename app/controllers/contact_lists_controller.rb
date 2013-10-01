@@ -1,4 +1,6 @@
 class ContactListsController < ApplicationController
+  load_and_authorize_resource
+  
   # GET /contact_lists
   # GET /contact_lists.json
   def index

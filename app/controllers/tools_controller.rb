@@ -1,4 +1,6 @@
 class ToolsController < ApplicationController
+  load_and_authorize_resource
+  
   # GET /tools
   # GET /tools.json
   def index

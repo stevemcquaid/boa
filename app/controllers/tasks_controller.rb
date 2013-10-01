@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  load_and_authorize_resource
+  
   # GET /tasks
   # GET /tasks.json
   def index

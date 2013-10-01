@@ -1,4 +1,6 @@
 class FaqsController < ApplicationController
+  load_and_authorize_resource
+  
   # GET /faqs
   # GET /faqs.json
   def index

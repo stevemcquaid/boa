@@ -1,4 +1,6 @@
 class ShiftParticipantsController < ApplicationController
+  load_and_authorize_resource
+  
   # GET /shift_participants
   # GET /shift_participants.json
   def index

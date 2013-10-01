@@ -1,4 +1,6 @@
 class DiagramsController < ApplicationController
+  load_and_authorize_resource
+  
 
   def index
     @diagrams = Diagram.all
