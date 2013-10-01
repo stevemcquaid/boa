@@ -6,6 +6,7 @@
   <div class="form-actions">
     <%= link_to t('.back', :default => t("helpers.links.back")),
               diagrams_path, :class => 'btn' %>
+              
     <% if can?(:edit, :diagram) %>
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_diagram_path(@diagram), :class => 'btn' %>
