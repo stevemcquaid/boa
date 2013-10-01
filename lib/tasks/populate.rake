@@ -13,13 +13,13 @@ namespace :db do
     Rake::Task['db:drop'].invoke
     Rake::Task['db:create'].invoke
     Rake::Task['db:migrate'].invoke
-    
+
     # Docs at: http://populator.rubyforge.org/
     require 'populator'
 
     # clear out old data in the database and reset the id sequences to 1 on each run of the populator
     [Charge, ChargeType, Checkout, Diagram, Faq, Membership, Organization, OrganizationAlias, OrganizationCategory, Participant, Role, Shift, ShiftParticipant, ShiftType, Task, TaskStatus, Tool].each(&:delete_all)
-    
+
     puts "adding new data to database..."
     puts
     puts "OrganizationCategory"
@@ -39,13 +39,13 @@ namespace :db do
     new_org.organization_category = OrganizationCategory.find_by_name("Sorority")
     new_org.save!
 
-    new_org = Organization.new 
-    new_org.name = "Student Dormitory Council" 
+    new_org = Organization.new
+    new_org.name = "Student Dormitory Council"
     new_org.organization_category = OrganizationCategory.find_by_name("Independent")
     new_org.save!
 
-    new_org = Organization.new 
-    new_org.name = "Spring Carnival Committee" 
+    new_org = Organization.new
+    new_org.name = "Spring Carnival Committee"
     new_org.organization_category = OrganizationCategory.find_by_name("Independent")
     new_org.save!
 
@@ -216,7 +216,7 @@ namespace :db do
     new_sp.save!
 
     puts "Tool"
-    
+
     new_tool = Tool.new
     new_tool.barcode = 12378083290
     new_tool.description = "HAMMER"
@@ -276,7 +276,7 @@ namespace :db do
     new_charge.organization = Organization.find_by_name("Kappa Alpha Theta")
     new_charge.amount = 50.00
     new_charge.charged_at = Date.today
-    new_charge.description = "Missed 10/2 meeting" 
+    new_charge.description = "Missed 10/2 meeting"
     new_charge.save!
 
     new_charge = Charge.new
@@ -311,9 +311,9 @@ namespace :db do
     roles = ["admin", "scc", "booth chair", "member"]
 
     roles.each do |role|
-        new_role = Role.new
-        new_role.name = role
-        new_role.save!
+      new_role = Role.new
+      new_role.name = role
+      new_role.save!
     end
 
     puts "User"
