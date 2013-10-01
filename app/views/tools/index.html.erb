@@ -1,48 +1,60 @@
-<%- model_class = Tool -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
-</div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:barcode) %></th>
-      <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:is_checked_out) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @tools.each do |tool| %>
+<% if can?(:read, :tool) %>
+  <%- model_class = Tool -%>
+  <div class="page-header">
+    <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  </div>
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= link_to tool.id, tool_path(tool) %></td>
-        <td><%= tool.name %></td>
-        <td><%= tool.barcode %></td>
-        <td><%= tool.description %></td>
-        <td><%= tool.is_checked_out? %></td>
-        <td>
-          <% if(tool.is_checked_out?) %>
-            <%= link_to t('.checkin', :default => t("helpers.links.checkin")),
+        <th><%= model_class.human_attribute_name(:id) %></th>
+        <th><%= model_class.human_attribute_name(:name) %></th>
+        <th><%= model_class.human_attribute_name(:barcode) %></th>
+        <th><%= model_class.human_attribute_name(:description) %></th>
+        <th><%= model_class.human_attribute_name(:is_checked_out) %></th>
+        <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tools.each do |tool| %>
+        <tr>
+          <td><%= link_to tool.id, tool_path(tool) %></td>
+          <td><%= tool.name %></td>
+          <td><%= tool.barcode %></td>
+          <td><%= tool.description %></td>
+          <td><%= tool.is_checked_out? %></td>
+          <td>
+            <% if(tool.is_checked_out?) %>
+              <%= link_to t('.checkin', :default => t("helpers.links.checkin")),
                               checkin_tool_path(tool), :class => 'btn btn-mini' %>
-          <% else %>
-            <%= link_to t('.checkout', :default => t("helpers.links.checkout")),
-                              checkout_tool_path(tool), :class => 'btn btn-mini' %>
-          <% end %>
 
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+            <% else %>
+              <%= link_to t('.checkout', :default => t("helpers.links.checkout")),
+                              checkout_tool_path(tool), :class => 'btn btn-mini' %>
+            <% end %>
+            
+            <% if can?(:update, :tool) %>
+              <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_tool_path(tool), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+            <% end %>
+
+            <% if can?(:destroy, :tool) %>
+              <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       tool_path(tool),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% if can?(:create, :tool) %>
+    <%= link_to t('.new', :default => t("helpers.links.new")),
             new_tool_path,
             :class => 'btn btn-primary' %>
+  <% end %>
+
+<% else %>
+  <h3>Not Authorized!</h3>
+<% end %>
