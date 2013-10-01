@@ -5,22 +5,22 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
+      <!-- <th><%= model_class.human_attribute_name(:id) %></th> -->
       <th><%= model_class.human_attribute_name(:andrewid) %></th>
-      <th><%= model_class.human_attribute_name(:has_signed_waiver) %></th>
       <th><%= model_class.human_attribute_name(:phone_number) %></th>
-      <th><%= model_class.human_attribute_name(:has_signed_hardhat_waiver) %></th>
+      <th><%= "Signed Waiver?" %></th>
+      <th><%= "Signed Hard Hat Waiver?" %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @participants.each do |participant| %>
       <tr>
-        <td><%= link_to participant.id, participant_path(participant) %></td>
-        <td><%= participant.andrewid %></td>
-        <td><%= participant.has_signed_waiver %></td>
-        <td><%= participant.phone_number %></td>
-        <td><%= participant.has_signed_hardhat_waiver %></td>
+<!--    <td><%= link_to participant.id, participant_path(participant) %></td>-->        
+        <td><%= link_to participant.andrewid, participant_path(participant) %></td>
+        <td><%= "(" + participant.phone_number[0,3]+") "+participant.phone_number[3,3]+"-"+participant.phone_number[6,4] %></td>
+        <td><%= "#{(participant.has_signed_waiver)? "Yes" : "No"}" %></td>
+        <td><%= "#{(participant.has_signed_hardhat_waiver)? "Yes" : "No"}" %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_participant_path(participant), :class => 'btn btn-mini' %>
