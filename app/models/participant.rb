@@ -7,7 +7,7 @@ class Participant < ActiveRecord::Base
   validates :andrewid, :presence => true, :uniqueness => true
   validates :has_signed_waiver, :acceptance => {:accept => true}
   validates :phone_number, :length => { :minimum => 10, :maximum => 10}, :numericality => true, :allow_nil => true
-  validates :checkout_id, :length => { :minimum => 9, :maximum => 9}, :presence => true
+  #validates :checkout_id, :length => { :minimum => 9, :maximum => 9}
   
   has_many :organizations, :through => :memberships
   has_many :shifts, :through => :shift_participants
