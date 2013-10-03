@@ -390,7 +390,7 @@ namespace :db do
     user_role.save!
 
     new_user = User.new
-    new_user.email = "bc@boa.com"
+    new_user.email = "booth_chair@boa.com"
     new_user.password = "testtest"
     new_user.password_confirmation = "testtest"
     new_user.name = "Test Booth Chair"

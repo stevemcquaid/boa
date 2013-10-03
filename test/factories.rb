@@ -26,12 +26,12 @@ FactoryGirl.define do
 
     association :tool
   end
-  
+
   # membership
   factory :membership do
     booth_chair_order nil
     is_booth_chair false
-    title "Head of Booth"    
+    title "Head of Booth"
 
     association :organization
     association :participant
@@ -62,6 +62,11 @@ FactoryGirl.define do
     has_signed_hardhat_waiver true
     has_signed_waiver true
     phone_number 1234567890
+  end
+
+  # role
+  factory :role do
+    name "member"
   end
 
   # shift
@@ -105,5 +110,19 @@ FactoryGirl.define do
     barcode 123780890
     description "HAMMER"
     name "Hammer"
+  end
+
+  # user
+  factory :user do
+    name "Test Member"
+    email "member@boa.com"
+    password "testtest"
+    password_confirmation "testtest"
+  end
+
+  # user_role
+  factory :users_role do
+    association :user
+    association :role
   end
 end

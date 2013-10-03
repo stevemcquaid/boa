@@ -96,7 +96,24 @@ class ActiveSupport::TestCase
     @hammer_checkout2 = FactoryGirl.create(:checkout, :tool => @hammer)
     @saw_checkout = FactoryGirl.create(:checkout, :tool => @saw)
     @hard_hat_checkout = FactoryGirl.create(:checkout, :tool => @hard_hat)
-      
+
+    # Create 4 users
+    @member_user = FactoryGirl.create(:user)
+    @booth_chair_user = FactoryGirl.create(:user, :name => "Booth Chair User", :email => "booth_chair@boa.com")
+    @scc_user = FactoryGirl.create(:user, :name => "SCC User", :email => "scc@boa.com")
+    @admin_user = FactoryGirl.create(:user, :name => "Admin User", :email => "admin@boa.com")
+
+    # Create 4 roles
+    @member_role = FactoryGirl.create(:role)
+    @booth_chair_role = FactoryGirl.create(:role, :name => "booth chair")
+    @scc_role = FactoryGirl.create(:role, :name => "scc")
+    @admin_role = FactoryGirl.create(:role, :name => "admin")
+
+    # Create 4 user_roles
+    @member_user_role = FactoryGirl.create(:users_role, :user => @member_user, :role => @member_role)
+    @booth_chair_user_role = FactoryGirl.create(:users_role, :user => @booth_chair_user, :role => @booth_chair_role)
+    @scc_user_role = FactoryGirl.create(:users_role, :user => @scc_user, :role => @scc_role)
+    @admin_user_role = FactoryGirl.create(:users_role, :user => @admin_user, :role => @admin_role)
   end
   
   def remove_context
@@ -171,5 +188,23 @@ class ActiveSupport::TestCase
     # Destroy 2 memberships
     @member_rachel.destroy
     @member_alexis.destroy
+
+    # Destroy 4 users
+    @member_user.destroy
+    @booth_chair_user.destroy
+    @scc_user.destroy
+    @admin_user.destroy
+
+    # Destroy 4 roles
+    @member_role.destroy
+    @booth_chair_role.destroy
+    @scc_role.destroy
+    @admin_role.destroy
+
+    # Destroy 4 user_roles
+    @member_user_role.delete
+    @booth_chair_user_role.destroy
+    @scc_user_role.destroy
+    @admin_user_role.destroy
   end
 end
