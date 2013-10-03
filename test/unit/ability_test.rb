@@ -11,8 +11,19 @@ class AbilityTest < ActiveSupport::TestCase
       remove_context
     end
 
+    # admin tests
     should "admin can manage everything" do
-
+      assert @admin_user.can?(:manage, :all)
     end
+
+    # scc tests
+
+    # booth_chair tests
+
+    # member tests
+
+    # user tests
+
+
   end
 end
