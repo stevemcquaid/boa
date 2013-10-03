@@ -7,15 +7,30 @@ class Ability
       can :manage, :all
 
     elsif user.has_role? :scc
-        can :read, :all
+        can :manage, :all
+        cannot :destroy, :user
 
     elsif user.has_role? :booth_chair
-        can :read, :all
+        can :read, [:charge_type, :checkout, :contact_list, :diagram, :faq, :membership, :organization, :organization_alias,
+          :organization_category, :participant, :role, :shift_participant, :shift_type, :tool]
+        can :read, :charge, :organization_id => user.participant.organization.id
+        can :read, :shift, :organization_id => user.participant.organization.id
+        can :read, :user, :user_id => user.id
+        cannot :update, [:user, :users_role]
+        cannot :delete, [:user, :users_role]
         
     elsif user.has_role? :member
-        can :read, :all
-        cannot :manage, :user
+        can :read, [:checkout, :contact_list, :diagram, :faq, :membership, :organization, :organization_alias,
+          :organization_category, :participant, :role, :shift_participant, :shift_type, :tool]
+        can :read, :shift, :organization_id => user.participant.organization.id
+        can :read, :user, :user_id => user.id
+        cannot :update, [:user, :users_role]
+        cannot :delete, [:user, :users_role]
     end
+    
+    
+    # create, read, update, destroy, manage
+    
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
