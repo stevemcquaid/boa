@@ -11,21 +11,21 @@ class Ability
         cannot :destroy, :user
 
     elsif user.has_role? :booth_chair
+        cannot :manage, :all
+
         can :read, [:charge_type, :checkout, :contact_list, :diagram, :faq, :membership, :organization, :organization_alias,
           :organization_category, :participant, :role, :shift_participant, :shift_type, :tool]
         can :read, :charge, :organization_id => user.participant.organization.id
         can :read, :shift, :organization_id => user.participant.organization.id
         can :read, :user, :user_id => user.id
-        cannot :update, [:user, :users_role]
-        cannot :delete, [:user, :users_role]
         
     elsif user.has_role? :member
+        cannot :manage, :all
+
         can :read, [:checkout, :contact_list, :diagram, :faq, :membership, :organization, :organization_alias,
           :organization_category, :participant, :role, :shift_participant, :shift_type, :tool]
         can :read, :shift, :organization_id => user.participant.organization.id
         can :read, :user, :user_id => user.id
-        cannot :update, [:user, :users_role]
-        cannot :delete, [:user, :users_role]
     end
     
     
