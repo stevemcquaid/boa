@@ -13,7 +13,8 @@ class AbilityTest < ActiveSupport::TestCase
 
     # admin tests
     should "admin can manage everything" do
-      assert @admin_user.can?(:manage, :all)
+      ability = Ability.new(@admin_user)
+      assert ability.can?(:manage, :all)
     end
 
     # scc tests
