@@ -43,6 +43,7 @@ class ChargesController < ApplicationController
   # POST /charges.json
   def create
     @charge = Charge.new(params[:charge])
+    @charge.charged_at = Date.today
 
     respond_to do |format|
       if @charge.save

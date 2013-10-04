@@ -9,6 +9,7 @@ class ChargeTest < ActiveSupport::TestCase
 
   # Validations
 
+
   # Methods
   context "With a proper context, " do
     setup do
@@ -29,6 +30,12 @@ class ChargeTest < ActiveSupport::TestCase
         should "know charges" do
           assert_equal ["Breaker trip", "Missed 10/2 meeting"], Charge.all.map{|e| e.description}
         end  
+      
+        should "not let charge with string for amount value be created" do
+          charge1 = FactoryGirl.build(:charge, :charge_type => @miss_meeting, :issuing_participant => @rachel, :receiving_participant => nil, :organization => @theta, :amount => "a", :charged_at => Date.today, :description => "Missed 10/2 meeting")
+          deny charge1.valid? 
+        end
+                
       end
   end
 end
