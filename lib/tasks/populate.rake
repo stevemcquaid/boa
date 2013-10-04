@@ -236,6 +236,7 @@ namespace :db do
     # new_participant.has_signed_waiver = false
     # new_participant.has_signed_hardhat_waiver = false
     new_participant.phone_number = 5391234124
+    new_participant.user = User.find_by_name("Test Booth Chair")
     new_participant.save!
 
     puts "TaskStatus"
