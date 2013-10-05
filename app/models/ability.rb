@@ -11,47 +11,21 @@ class Ability
         cannot :destroy, :user
 
     elsif user.has_role? :booth_chair
-        can :read, [:charge_type, :checkout, :contact_list, :diagram, :faq, :membership, :organization, :organization_alias,
-          :organization_category, :participant, :role, :shift_participant, :shift_type, :tool]
-        can :read, :charge, :organization_id => user.participant.organization.id
-        can :read, :shift, :organization_id => user.participant.organization.id
-        can :read, :user, :user_id => user.id
-        cannot :update, [:user, :users_role]
-        cannot :delete, [:user, :users_role]
+        can :read, [ChargeType, Checkout, ContactList, Diagram, Faq, Membership, Organization, OrganizationAlias,
+          OrganizationCategory, Participant, Role, ShiftParticipant, ShiftType, Tool]
+        can :read, Charge, :organization_id => user.participant.organizations.first.id
+        can :read, Shift, :organization_id => user.participant.organizations.first.id
+        can :read, User, :user_id => user.id
+        cannot :update, User
+        cannot :delete, User
         
     elsif user.has_role? :member
-        can :read, [:checkout, :contact_list, :diagram, :faq, :membership, :organization, :organization_alias,
-          :organization_category, :participant, :role, :shift_participant, :shift_type, :tool]
-        can :read, :shift, :organization_id => user.participant.organization.id
-        can :read, :user, :user_id => user.id
-        cannot :update, [:user, :users_role]
-        cannot :delete, [:user, :users_role]
+        can :read, [Checkout, ContactList, Diagram, Faq, Membership, Organization, OrganizationAlias,
+          OrganizationCategory, Participant, Role, ShiftParticipant, ShiftType, Tool]
+        can :read, Shift, :organization_id => user.participant.organization.id
+        can :read, User, :user_id => user.id
+        cannot :update, User
+        cannot :delete, User
     end
-    
-    
-    # create, read, update, destroy, manage
-    
-    # Define abilities for the passed in user here. For example:
-    #
-    #   user ||= User.new # guest user (not logged in)
-    #   if user.admin?
-    #     can :manage, :all
-    #   else
-    #     can :read, :all
-    #   end
-    #
-    # The first argument to `can` is the action you are giving the user permission to do.
-    # If you pass :manage it will apply to every action. Other common actions here are
-    # :read, :create, :update and :destroy.
-    #
-    # The second argument is the resource the user can perform the action on. If you pass
-    # :all it will apply to every resource. Otherwise pass a Ruby class of the resource.
-    #
-    # The third argument is an optional hash of conditions to further filter the objects.
-    # For example, here the user can only update published articles.
-    #
-    #   can :update, Article, :published => true
-    #
-    # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
   end
 end

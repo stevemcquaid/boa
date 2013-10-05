@@ -11,7 +11,7 @@ class Participant < ActiveRecord::Base
   
   has_many :organizations, :through => :memberships
   has_many :shifts, :through => :shift_participants
-  has_many :organizations, :through => :memberships
+  # has_many :organizations, :through => :memberships
   has_many :checkouts
   has_many :tools, :through => :checkouts
   has_many :memberships
