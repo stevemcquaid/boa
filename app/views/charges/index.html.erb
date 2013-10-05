@@ -28,7 +28,7 @@
             <td><%= charge.description %></td>
             <td><%= charge.issuing_participant.andrewid unless charge.receiving_participant.nil? %></td>
             <td><%= charge.receiving_participant.andrewid unless charge.receiving_participant.nil? %></td>
-            <td><%= charge.charged_at %></td>
+            <td><%= date_and_time(charge.charged_at) %></td>
             <td>
               <% if can?(:update, charge) %>
                 <%= link_to t('.edit', :default => t("helpers.links.edit")),

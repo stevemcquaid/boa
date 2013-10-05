@@ -9,5 +9,5 @@ class Charge < ActiveRecord::Base
   belongs_to :issuing_participant, :class_name => "Participant"
   belongs_to :receiving_participant, :class_name => "Participant"
   
-  default_scope order('charged_at ASC')
+  default_scope order('charged_at DESC')
 end
