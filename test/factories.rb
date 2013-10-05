@@ -64,11 +64,6 @@ FactoryGirl.define do
     phone_number 1234567890
   end
 
-  # role
-  factory :role do
-    name "member"
-  end
-
   # shift
   factory :shift do
     ends_at Date.new
@@ -118,11 +113,5 @@ FactoryGirl.define do
     email "member@boa.com"
     password "testtest"
     password_confirmation "testtest"
-  end
-
-  # user_role
-  factory :users_role do
-    association :user
-    association :role
   end
 end
