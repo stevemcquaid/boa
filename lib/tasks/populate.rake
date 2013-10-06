@@ -82,6 +82,71 @@ namespace :db do
     new_charge_type.requires_booth_chair_approval = true
     new_charge_type.save!
 
+    puts "User"
+    new_user = User.new
+    new_user.email = "dcorwin@andrew.cmu.edu"
+    new_user.password = "testtest"
+    new_user.password_confirmation = "testtest"
+    new_user.name = "Dylan Corwin"
+    new_user.add_role :admin
+    new_user.save!
+
+    new_user = User.new
+    new_user.email = "smcquaid@andrew.cmu.edu"
+    new_user.password = "testtest"
+    new_user.password_confirmation = "testtest"
+    new_user.name = "Steve McQuaid"
+    new_user.add_role :admin
+    new_user.save!
+
+    new_user = User.new
+    new_user.email = "rcrown@andrew.cmu.edu"
+    new_user.password = "testtest"
+    new_user.password_confirmation = "testtest"
+    new_user.name = "Rachel Crown"
+    new_user.add_role :admin
+    new_user.save!
+
+    new_user = User.new
+    new_user.email = "shannon1@andrew.cmu.edu"
+    new_user.password = "testtest"
+    new_user.password_confirmation = "testtest"
+    new_user.name = "Shannon Chen"
+    new_user.add_role :admin
+    new_user.save!
+
+    new_user = User.new
+    new_user.email = "jonathanc@cmu.edu"
+    new_user.password = "testtest"
+    new_user.password_confirmation = "testtest"
+    new_user.name = "Jonathan Chung"
+    new_user.add_role :admin
+    new_user.save!
+
+    new_user = User.new
+    new_user.email = "scc@boa.com"
+    new_user.password = "testtest"
+    new_user.password_confirmation = "testtest"
+    new_user.name = "Test SCC"
+    new_user.add_role :scc
+    new_user.save!
+
+    new_user = User.new
+    new_user.email = "booth_chair@boa.com"
+    new_user.password = "testtest"
+    new_user.password_confirmation = "testtest"
+    new_user.name = "Test Booth Chair"
+    new_user.add_role :booth_chair
+    new_user.save!
+
+    new_user = User.new
+    new_user.email = "member@boa.com"
+    new_user.password = "testtest"
+    new_user.password_confirmation = "testtest"
+    new_user.name = "Test Member"
+    new_user.add_role :member
+    new_user.save!
+
     puts "Participant"
 
     new_participant = Participant.new
@@ -89,6 +154,7 @@ namespace :db do
     # new_participant.has_signed_waiver = true
     # new_participant.has_signed_hardhat_waiver = false
     new_participant.phone_number = 1234567890
+    new_participant.user = User.find_by_name("Rachel Crown")
     new_participant.save!
 
     new_participant = Participant.new
@@ -96,6 +162,7 @@ namespace :db do
     # new_participant.has_signed_waiver = false
     # new_participant.has_signed_hardhat_waiver = true
     new_participant.phone_number = 4124124124
+    new_participant.user = User.find_by_name("Shannon Chen")
     new_participant.save!
 
     new_participant = Participant.new
@@ -103,13 +170,32 @@ namespace :db do
     # new_participant.has_signed_waiver = true
     # new_participant.has_signed_hardhat_waiver = true
     new_participant.phone_number = 4121235555
+    new_participant.user = User.find_by_name("Dylan Corwin")
     new_participant.save!
+
+    new_participant = Participant.new
+    new_participant.andrewid = "jonathanc"
+    # new_participant.has_signed_waiver = false
+    # new_participant.has_signed_hardhat_waiver = true
+    new_participant.phone_number = 4124124142
+    new_participant.user = User.find_by_name("Jonathan Chung")
+    new_participant.save!
+
+    new_participant = Participant.new
+    new_participant.andrewid = "smcquaid"
+    # new_participant.has_signed_waiver = true
+    # new_participant.has_signed_hardhat_waiver = true
+    new_participant.phone_number = 4121235551
+    new_participant.user = User.find_by_name("Steve McQuaid")
+    new_participant.save!
+
 
     new_participant = Participant.new
     new_participant.andrewid = "asteger"
     # new_participant.has_signed_waiver = false
     # new_participant.has_signed_hardhat_waiver = false
     new_participant.phone_number = 5391234124
+    new_participant.user = User.find_by_name("Test Booth Chair")
     new_participant.save!
 
     puts "TaskStatus"
@@ -306,112 +392,6 @@ namespace :db do
     new_membership.is_booth_chair = true
     new_membership.title = nil
     new_membership.save!
-
-    puts "Role"
-    roles = ["admin", "scc", "booth chair", "member"]
-
-    roles.each do |role|
-      new_role = Role.new
-      new_role.name = role
-      new_role.save!
-    end
-
-    puts "User"
-    new_user = User.new
-    new_user.email = "dcorwin@andrew.cmu.edu"
-    new_user.password = "testtest"
-    new_user.password_confirmation = "testtest"
-    new_user.name = "Dylan Corwin"
-    new_user.save!
-
-    user_role = UsersRole.new
-    user_role.role = Role.find_by_name("admin")
-    user_role.user = new_user
-    user_role.save!
-
-    new_user = User.new
-    new_user.email = "smcquaid@andrew.cmu.edu"
-    new_user.password = "testtest"
-    new_user.password_confirmation = "testtest"
-    new_user.name = "Steve McQuaid"
-    new_user.save!
-
-    user_role = UsersRole.new
-    user_role.role = Role.find_by_name("admin")
-    user_role.user = new_user
-    user_role.save!
-
-    new_user = User.new
-    new_user.email = "rcrown@andrew.cmu.edu"
-    new_user.password = "testtest"
-    new_user.password_confirmation = "testtest"
-    new_user.name = "Rachel Crown"
-    new_user.save!
-
-    user_role = UsersRole.new
-    user_role.role = Role.find_by_name("admin")
-    user_role.user = new_user
-    user_role.save!
-
-    new_user = User.new
-    new_user.email = "shannon1@andrew.cmu.edu"
-    new_user.password = "testtest"
-    new_user.password_confirmation = "testtest"
-    new_user.name = "Shannon Chen"
-    new_user.save!
-
-    user_role = UsersRole.new
-    user_role.role = Role.find_by_name("admin")
-    user_role.user = new_user
-    user_role.save!
-
-    new_user = User.new
-    new_user.email = "jonathanc@cmu.edu"
-    new_user.password = "testtest"
-    new_user.password_confirmation = "testtest"
-    new_user.name = "Jonathan Chung"
-    new_user.save!
-
-    user_role = UsersRole.new
-    user_role.role = Role.find_by_name("admin")
-    user_role.user = new_user
-    user_role.save!
-
-    new_user = User.new
-    new_user.email = "scc@boa.com"
-    new_user.password = "testtest"
-    new_user.password_confirmation = "testtest"
-    new_user.name = "Test SCC"
-    new_user.save!
-
-    user_role = UsersRole.new
-    user_role.role = Role.find_by_name("scc")
-    user_role.user = new_user
-    user_role.save!
-
-    new_user = User.new
-    new_user.email = "booth_chair@boa.com"
-    new_user.password = "testtest"
-    new_user.password_confirmation = "testtest"
-    new_user.name = "Test Booth Chair"
-    new_user.save!
-
-    user_role = UsersRole.new
-    user_role.role = Role.find_by_name("booth chair")
-    user_role.user = new_user
-    user_role.save!
-
-    new_user = User.new
-    new_user.email = "member@boa.com"
-    new_user.password = "testtest"
-    new_user.password_confirmation = "testtest"
-    new_user.name = "Test Member"
-    new_user.save!
-
-    user_role = UsersRole.new
-    user_role.role = Role.find_by_name("member")
-    user_role.user = new_user
-    user_role.save!
 
     puts
     puts "db populated!"

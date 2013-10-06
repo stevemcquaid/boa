@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130921014557) do
+ActiveRecord::Schema.define(:version => 20131003184152) do
 
   create_table "charge_types", :force => true do |t|
     t.string   "name"
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(:version => 20130921014557) do
     t.boolean  "has_signed_waiver"
     t.string   "phone_number"
     t.boolean  "has_signed_hardhat_waiver"
+    t.integer  "user_id"
   end
 
   create_table "roles", :force => true do |t|
@@ -206,7 +207,7 @@ ActiveRecord::Schema.define(:version => 20130921014557) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
-  create_table "users_roles", :force => true do |t|
+  create_table "users_roles", :id => false, :force => true do |t|
     t.integer "user_id"
     t.integer "role_id"
   end

@@ -21,6 +21,10 @@ Boa::Application.routes.draw do
 
   match "new_tool_checkout" => "checkouts#new_tool_checkout", :as => :new_tool_checkout
   match "create_tool_checkout" => "checkouts#create_tool_checkout", :as => :create_tool_checkout
+
+  match "new_participant_membership" => "memberships#new_participant_membership", :as => :new_participant_membership
+  match "create_participant_membership" => "memberships#create_participant_membership", :as => :create_participant_membership
+
   
   match "old_faq" => "home#faq", :as => "old_faq"
   match "phonenumbers" => "home#phone_numbers", :as => "phonenumbers"

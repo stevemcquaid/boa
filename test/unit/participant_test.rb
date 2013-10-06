@@ -9,6 +9,7 @@ class ParticipantTest < ActiveSupport::TestCase
   should have_many(:tools).through(:checkouts)
   should have_many(:memberships)
   should have_many(:shift_participants)
+  should belong_to(:user)
 
   # Validations
 

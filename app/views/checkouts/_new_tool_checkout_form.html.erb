@@ -1,4 +1,4 @@
-<% if can?(:create, :checkout) %>
+<% if can?(:create, @checkout) %>
   <%= simple_form_for @checkout, :html => { :class => 'form-horizontal' }, :url => create_tool_checkout_path do |f| %>
     <%= f.input :tool_id, label: 'Tool Barcode' %>
     <%= f.input :participant_id, label: 'Participant ID Card Code' %>

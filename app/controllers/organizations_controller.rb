@@ -16,7 +16,10 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1.json
   def show
     @organization = Organization.find(params[:id])
-
+    @charges = @organization.charges.all
+    @booth_chairs = @organization.memberships.booth_chairs.all
+    @tools = Tool.checked_out_by_organization(@organization).just_tools.all
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @organization }

@@ -12,6 +12,40 @@ class MembershipsController < ApplicationController
     end
   end
 
+  # GET
+  def new_participant_membership
+    @membership = Membership.new
+    
+    respond_to do |format|
+          format.html # index.html.erb
+          format.json { render json: @checkouts }
+    end
+  end
+
+  # POST
+  def create_participant_membership
+    @membership = Membership.new(params[:membership])
+    
+    @participant = Participant.find_by_card(@membership.participant_id) #this creates a CMU directory request to get the andrew id associated with the card number. Then finds the local DB mapping to get the participant id.
+
+
+    if(@participant.nil?)
+      throw "No Participant"
+    end
+
+    respond_to do |format|
+      if @membership.save
+        format.html { redirect_to @membership, notice: 'Membership was successfully created.' }
+        format.json { render json: @membership, status: :created, location: @membership }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @membership.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
+
   # GET /memberships/1
   # GET /memberships/1.json
   def show
