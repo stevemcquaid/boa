@@ -57,7 +57,7 @@ class AbilityTest < ActiveSupport::TestCase
       assert ability.cannot?(:create, :charge)
       assert ability.cannot?(:update, :charge)
       assert ability.cannot?(:destroy, :charge)
-      # assert ability.can?(:read, Charge.new(:organization_id => @booth_chair_user.participant.organization.id))
+      assert ability.can?(:read, Charge.new(:organization_id => @booth_chair_user.participant.organization.id))
 
       assert ability.cannot?(:create, :charge_type)
       assert ability.cannot?(:update, :charge_type)
@@ -117,7 +117,7 @@ class AbilityTest < ActiveSupport::TestCase
       assert ability.cannot?(:create, :shift)
       assert ability.cannot?(:update, :shift)
       assert ability.cannot?(:destroy, :shift)
-      # assert ability.can?(:read, Shift.new(:organization_id => @booth_chair_user.participant.organization.id))
+      assert ability.can?(:read, Shift.new(:organization_id => @booth_chair_user.participant.organization.id))
 
       assert ability.cannot?(:create, :shift_participant)
       assert ability.cannot?(:update, :shift_participant)
@@ -203,7 +203,7 @@ class AbilityTest < ActiveSupport::TestCase
       assert ability.cannot?(:create, :shift)
       assert ability.cannot?(:update, :shift)
       assert ability.cannot?(:destroy, :shift)
-      # assert ability.can?(:read, Shift.new(:organization_id => @member_user.participant.organization.id))
+      assert ability.can?(:read, Shift.new(:organization_id => @member_user.participant.organization.id))
 
       assert ability.cannot?(:create, :shift_participant)
       assert ability.cannot?(:update, :shift_participant)
