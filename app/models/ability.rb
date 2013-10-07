@@ -7,25 +7,29 @@ class Ability
       can :manage, :all
 
     elsif user.has_role? :scc
-        can :manage, :all
-        cannot :destroy, :user
+      can :manage, :all
+      cannot :destroy, :user
 
     elsif user.has_role? :booth_chair
-        cannot :manage, :all
+      cannot :manage, :all
 
-        can :read, [:charge_type, :checkout, :contact_list, :diagram, :faq, :membership, :organization, :organization_alias,
-          :organization_category, :participant, :role, :shift_participant, :shift_type, :tool]
-        can :read, :charge, :organization_id => user.participant.organization.id
-        can :read, :shift, :organization_id => user.participant.organization.id
-        can :read, :user, :user_id => user.id
-        
+      can :read, [ChargeType, Checkout, ContactList, Diagram, Faq, Membership, Organization, OrganizationAlias,
+                  OrganizationCategory, Participant, Role, ShiftParticipant, ShiftType, Tool]
+      can :read, Charge, :organization_id => user.participant.organizations.first.id
+      can :read, Shift, :organization_id => user.participant.organizations.first.id
+      can :read, User, :user_id => user.id
+      cannot :update, User
+      cannot :delete, User
+
     elsif user.has_role? :member
-        cannot :manage, :all
+      cannot :manage, :all
 
-        can :read, [:checkout, :contact_list, :diagram, :faq, :membership, :organization, :organization_alias,
-          :organization_category, :participant, :role, :shift_participant, :shift_type, :tool]
-        can :read, :shift, :organization_id => user.participant.organization.id
-        can :read, :user, :user_id => user.id
+      can :read, [Checkout, ContactList, Diagram, Faq, Membership, Organization, OrganizationAlias,
+                  OrganizationCategory, Participant, Role, ShiftParticipant, ShiftType, Tool]
+      can :read, Shift, :organization_id => user.participant.organizations.first.id
+      can :read, User, :user_id => user.id
+      cannot :update, User
+      cannot :delete, User
 
     end
   end

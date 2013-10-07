@@ -57,7 +57,7 @@ class AbilityTest < ActiveSupport::TestCase
       assert ability.cannot?(:create, :charge)
       assert ability.cannot?(:update, :charge)
       assert ability.cannot?(:destroy, :charge)
-      assert ability.can?(:read, Charge.new(:organization_id => @booth_chair_user.participant.organization.id))
+      assert ability.can?(:read, Charge.new(:organization_id => @booth_chair_user.participant.organizations.first.id))
 
       assert ability.cannot?(:create, :charge_type)
       assert ability.cannot?(:update, :charge_type)
@@ -144,7 +144,7 @@ class AbilityTest < ActiveSupport::TestCase
     # member tests
     should "member can do some things but not other things" do
       ability = Ability.new(@member_user)
-      
+
       assert ability.cannot?(:manage, :carnegie_mellon_id_card)
       assert ability.cannot?(:manage, :carnegie_mellon_person)
       assert ability.cannot?(:manage, :charge)
@@ -226,9 +226,5 @@ class AbilityTest < ActiveSupport::TestCase
       assert ability.can?(:read, User.new(:user_id => @booth_chair_user.id))
       assert ability.cannot?(:manage, :users_role)
     end
-
-    # user tests
-
-
   end
 end

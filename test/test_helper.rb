@@ -8,8 +8,8 @@ end
 require 'simplecov-rcov'
 class SimpleCov::Formatter::MergedFormatter
   def format(result)
-     SimpleCov::Formatter::HTMLFormatter.new.format(result)
-     SimpleCov::Formatter::RcovFormatter.new.format(result)
+    SimpleCov::Formatter::HTMLFormatter.new.format(result)
+    SimpleCov::Formatter::RcovFormatter.new.format(result)
   end
 end
 SimpleCov.formatter = SimpleCov::Formatter::MergedFormatter
@@ -23,7 +23,7 @@ class ActiveSupport::TestCase
   def deny(condition)
     assert !condition
   end
-  
+
   def create_context
     # Create 4 organization categories
     @blitz = FactoryGirl.create(:organization_category, :name => "Blitz")
@@ -50,22 +50,37 @@ class ActiveSupport::TestCase
     @shift1 = FactoryGirl.create(:shift, :ends_at => Time.local(2000,1,1,15,0,0), :required_number_of_participants => 3, :starts_at => Time.local(2000,1,1,12,3,0), :organization => @theta)
     @shift2 = FactoryGirl.create(:shift, :ends_at => Time.local(2000,1,1,15,0,0), :required_number_of_participants => 3, :starts_at => Time.local(2000,1,1,13,4,0), :organization => @sdc)
     @shift3 = FactoryGirl.create(:shift, :ends_at => Time.local(2000,1,1,15,0,0), :required_number_of_participants => 3, :starts_at => Time.local(2000,1,1,14,10,0), :organization => @theta)
-  
+
+    # Create 4 users
+    @member_user = FactoryGirl.create(:user)
+    @member_user.add_role(:member)
+
+    @booth_chair_user = FactoryGirl.create(:user, :name => "Booth Chair User", :email => "booth_chair@boa.com")
+    @booth_chair_user.add_role(:booth_chair)
+
+    @scc_user = FactoryGirl.create(:user, :name => "SCC User", :email => "scc@boa.com")
+    @scc_user.add_role(:scc)
+
+    @admin_user = FactoryGirl.create(:user, :name => "Admin User", :email => "admin@boa.com")
+    @admin_user.add_role(:admin)
+
     # Create 4 participants
     @rachel = FactoryGirl.create(:participant)
     @shannon = FactoryGirl.create(:participant, :andrewid => "shannon1", :phone_number => 4124124124)
     @dylan = FactoryGirl.create(:participant, :andrewid => "dcorwin", :phone_number => 4121235555)
-    @alexis = FactoryGirl.create(:participant, :andrewid => "asteger", :phone_number => 5391234124)
+    @alexis = FactoryGirl.create(:participant, :andrewid => "asteger", :phone_number => 5391234124, :user => @booth_chair_user)
+    @member = FactoryGirl.create(:participant, :andrewid => "member", :user => @member_user)
 
-    # Create 4 Shift Parficipants
+    # Create 4 Shift Participants
     @sp1 = FactoryGirl.create(:shift_participant, :participant => @rachel, :clocked_in_at => Date.new, :shift => @shift1)
     @sp2 = FactoryGirl.create(:shift_participant, :participant => @shannon, :clocked_in_at => Date.new, :shift => @shift2)
     @sp3 = FactoryGirl.create(:shift_participant, :participant => @alexis, :clocked_in_at => Date.new, :shift => @shift3)
     @sp4 = FactoryGirl.create(:shift_participant, :participant => @dylan, :clocked_in_at => Date.new, :shift => @shift3)
-    
+
     # Create 2 memberships
     @member_rachel = FactoryGirl.create(:membership, :participant => @rachel, :organization => @scc)
     @member_alexis = FactoryGirl.create(:membership, :participant => @alexis, :organization => @theta, :booth_chair_order => 1, :is_booth_chair => true, :title => nil)
+    @member_member = FactoryGirl.create(:membership, :participant => @member, :organization => @sdc)
 
     # Create 2 charge types
     @miss_meeting = FactoryGirl.create(:charge_type, :default_amount => 100.00, :description => "Missed a meeting", :name => "Meeting", :requires_booth_chair_approval => false)
@@ -83,7 +98,7 @@ class ActiveSupport::TestCase
     # Create 3 tasks
     @assign_rides = FactoryGirl.create(:task, :completed_by => @rachel, :task_status => @incomplete, :due_at => Time.local(2000,1,1,12,3,0))
     @buy_wood = FactoryGirl.create(:task, :name => "Buy wood", :completed_by => @shannon, :task_status => @in_progress, :due_at => Time.local(2000,1,1,15,0,0))
-    @takeout_trash = FactoryGirl.create(:task, :name => "Take-out trash", :completed_by => @dylan, :task_status => @complete, :due_at => Time.local(2020,1,1,15,0,0))    
+    @takeout_trash = FactoryGirl.create(:task, :name => "Take-out trash", :completed_by => @dylan, :task_status => @complete, :due_at => Time.local(2020,1,1,15,0,0))
 
     # Create 4 tools
     @hammer = FactoryGirl.create(:tool)
@@ -96,21 +111,8 @@ class ActiveSupport::TestCase
     @hammer_checkout2 = FactoryGirl.create(:checkout, :tool => @hammer)
     @saw_checkout = FactoryGirl.create(:checkout, :tool => @saw)
     @hard_hat_checkout = FactoryGirl.create(:checkout, :tool => @hard_hat)
-
-    # Create 4 users
-    @member_user = FactoryGirl.create(:user)
-    @member_user.add_role(:member)
-
-    @booth_chair_user = FactoryGirl.create(:user, :name => "Booth Chair User", :email => "booth_chair@boa.com")
-    @booth_chair_user.add_role(:booth_chair)
-
-    @scc_user = FactoryGirl.create(:user, :name => "SCC User", :email => "scc@boa.com")
-    @scc_user.add_role(:scc)
-
-    @admin_user = FactoryGirl.create(:user, :name => "Admin User", :email => "admin@boa.com")
-    @admin_user.add_role(:admin)
   end
-  
+
   def remove_context
     # Destroy 4 organization categories
     @blitz.destroy
@@ -146,8 +148,8 @@ class ActiveSupport::TestCase
     # Destroy 3 tasks
     @assign_rides.destroy
     @buy_wood.destroy
-    @takeout_trash.destroy    
-    
+    @takeout_trash.destroy
+
     # Destroy 3 shift types
     @watch_shift.destroy
     @security_shift.destroy
@@ -175,11 +177,11 @@ class ActiveSupport::TestCase
     @hammer_checkout2.destroy
     @saw_checkout.destroy
     @hard_hat_checkout.destroy
-    
+
     # Destroy 2 charges
     @meeting_fine.destroy
     @breaker_fine.destroy
-    
+
     # Destroy 2 memberships
     @member_rachel.destroy
     @member_alexis.destroy
