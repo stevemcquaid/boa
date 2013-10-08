@@ -33,7 +33,7 @@ gem 'minitest', "~> 4.0"
 group :test do
   gem 'capybara'
   gem 'ci_reporter'
-  gem 'cucumber-rails', :require=>false
+  gem 'cucumber-rails'#, :require=>false
   gem 'database_cleaner', '1.0.1'
   gem 'email_spec'
   gem 'factory_girl_rails'

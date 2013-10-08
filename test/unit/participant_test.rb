@@ -25,12 +25,12 @@ class ParticipantTest < ActiveSupport::TestCase
     end
 
     should "show that all factories are properly created" do
-      assert_equal 4, Participant.all.size
+      assert_equal 5, Participant.all.size
     end
 
     context "Testing participants" do
       should "know participants" do
-        assert_equal ["rcrown", "shannon1", "dcorwin", "asteger"], Participant.all.map{|e| e.andrewid}
+        assert_equal ["rcrown", "shannon1", "dcorwin", "asteger", "member"], Participant.all.map{|e| e.andrewid}
       end  
     end
 
