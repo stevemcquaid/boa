@@ -61,6 +61,7 @@ GEM
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       json (>= 1.7)
+    choice (0.1.6)
     ci_reporter (1.9.0)
       builder (>= 2.1.2)
     coffee-rails (3.2.2)
@@ -174,6 +175,11 @@ GEM
       activesupport (= 3.2.13)
       bundler (~> 1.0)
       railties (= 3.2.13)
+    rails-erd (1.1.0)
+      activerecord (>= 3.0)
+      activesupport (>= 3.0)
+      choice (~> 0.1.6)
+      ruby-graphviz (~> 1.0.4)
     railties (3.2.13)
       actionpack (= 3.2.13)
       activesupport (= 3.2.13)
@@ -200,6 +206,7 @@ GEM
       rspec-mocks (~> 2.14.0)
     ruby-activeldap-debug (0.7.4)
       log4r (>= 1.0.4)
+    ruby-graphviz (1.0.8)
     sass (3.2.11)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -276,6 +283,7 @@ DEPENDENCIES
   populator3
   quiet_assets
   rails (= 3.2.13)
+  rails-erd
   rest-client
   rolify
   rspec-rails

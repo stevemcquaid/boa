@@ -30,6 +30,8 @@ gem 'activeldap', :require => 'active_ldap/railtie'
 # gem 'ruby-ldap'
 gem 'minitest', "~> 4.0"
 
+gem 'rails-erd'
+
 group :test do
   gem 'capybara'
   gem 'ci_reporter'
