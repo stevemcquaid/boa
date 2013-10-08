@@ -33,18 +33,11 @@ class CheckoutsController < ApplicationController
     @checkout = Checkout.new(params[:checkout])
     @checkout.checked_out_at = Date.today
     
-    
-    logger.debug "************************"
-    logger.debug params[:checkout][:tool_id]
-    logger.debug "************************"
-    
     @tool = Tool.find_by_barcode(params[:checkout][:tool_id])
-    
     raise ToolDoesNotExist unless !@tool.nil?
     
     #do app logic validation here where the participant id field can map to different organizations.
     #this could be cool for having a student id number represent an organization and instead of participant_id we will change it to an organization_id
-
     @participant = Participant.find_by_card(params[:checkout][:participant_id].to_s) #this creates a CMU directory request to get the andrew id associated with the card number. Then finds the local DB mapping to get the participant id.
     raise ParticipantDoesNotExist unless !@participant.nil?
 
