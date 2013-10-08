@@ -17,7 +17,7 @@ gem 'jquery-rails'
 gem 'cancan' #user auth
 gem 'devise' #user auth
 gem 'figaro'
-gem 'mocha'
+gem 'mocha', :require => 'mocha/api'
 gem 'rolify'
 gem 'simple_form'
 gem 'carrierwave' #attachments
