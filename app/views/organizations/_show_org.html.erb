@@ -13,10 +13,10 @@
   <%= render :partial => "tools/organization_tool_list", :object => @tools %>
 </div>
 
-<!--<h2>Members - <%= link_to_function "Toggle", "$('#members').toggle(); $('#organization_participant_list').dataTable();" %></h2>
+<h2>Members - <%= link_to_function "Toggle", "$('#members').toggle(); $('#organization_participant_list').dataTable();" %></h2>
 <div id="members" style="display: none;">
-  <= render :partial => 'participants/participant_list', :object => @members %>
-</div> -->
+  <%r= render :partial => 'participants/participant_list', :object => @members %>
+</div>
 
 <h2>Charges - <%= link_to_function "Toggle", "$('#charges').toggle()" %></h2>
 <div id="charges" style="display: none;">
