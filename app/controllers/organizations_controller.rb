@@ -19,6 +19,7 @@ class OrganizationsController < ApplicationController
     @charges = @organization.charges.all
     @booth_chairs = @organization.memberships.booth_chairs.all
     @tools = Tool.checked_out_by_organization(@organization).just_tools.all
+    @members = @organization.participants.all
     
     respond_to do |format|
       format.html # show.html.erb
