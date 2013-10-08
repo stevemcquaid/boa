@@ -64,7 +64,7 @@ class ToolTest < ActiveSupport::TestCase
     end
 
     should "show that the 'self.checked_out_by_organization(organization)' method works" do
-      assert_equal "Kappa Alpha Theta", Tool.checked_out_by_organization(@theta).name
+      assert_equal [@saw, @hard_hat], Tool.checked_out_by_organization(@theta)
     end
 
 
