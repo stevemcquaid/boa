@@ -26,5 +26,12 @@ class CheckoutTest < ActiveSupport::TestCase
   
     # Methods
 
+    should "show that a checkout has participant or organization" do
+      assert_equal false, @hammer_checkout1.hasParticipantOrOrganization
+      assert_equal true, @hammer_checkout2.hasParticipantOrOrganization
+      assert_equal true, @saw_checkout.hasParticipantOrOrganization
+      assert_equal true, @hard_hat_checkout.hasParticipantOrOrganization
+    end
+
   end
 end
