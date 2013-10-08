@@ -22,7 +22,7 @@ class MembershipTest < ActiveSupport::TestCase
     end
 
     should "show that all factories are properly created" do
-      assert_equal 2, Membership.all.size
+      assert_equal 3, Membership.all.size
     end
   
     # Scopes

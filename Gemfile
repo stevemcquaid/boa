@@ -17,7 +17,7 @@ gem 'jquery-rails'
 gem 'cancan' #user auth
 gem 'devise' #user auth
 gem 'figaro'
-gem 'mocha'
+gem 'mocha', :require => 'mocha/api'
 gem 'rolify'
 gem 'simple_form'
 gem 'carrierwave' #attachments
@@ -33,7 +33,7 @@ gem 'minitest', "~> 4.0"
 group :test do
   gem 'capybara'
   gem 'ci_reporter'
-  gem 'cucumber-rails', :require=>false
+  gem 'cucumber-rails'#, :require=>false
   gem 'database_cleaner', '1.0.1'
   gem 'email_spec'
   gem 'factory_girl_rails'
