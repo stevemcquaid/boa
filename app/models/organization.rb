@@ -14,5 +14,7 @@ class Organization < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => true
 
   default_scope order('name asc')
+  scope :alphabetical, order('name')
+
   
 end

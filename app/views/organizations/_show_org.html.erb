@@ -1,9 +1,7 @@
-<h1><%= @organization.name %></h1>
+
 
 <!-- THIS NEEDS TO BE FIXED WHEN LDAP IS WORKING! -->
-
-
-<h2>Booth Chairs</h2>
+<h3>Booth Chairs</h3>
 <div id="chairs">
   <%= render :partial => 'participants/organization_booth_chair_list', :object => @booth_chairs %>
 </div>

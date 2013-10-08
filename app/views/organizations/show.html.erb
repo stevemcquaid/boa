@@ -1,14 +1,18 @@
 <% if can?(:read, :organization) %>
   <%- model_class = Organization -%>
   <div class="page-header">
-    <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+    <!-- <h1><%=t '.title', :default => model_class.model_name.human %></h1> -->
+  <h1><%= @organization.name %></h1>
   </div>
   <dl class="dl-horizontal">
-    <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+    <dt><strong>Name: </strong></dt>
     <dd><%= @organization.name %></dd>
-    <dt><strong><%= model_class.human_attribute_name(:organization_category) %>:</strong></dt>
+    <dt><strong>Category:</strong></dt>
     <dd><%= @organization.organization_category.name %></dd>
   </dl>
+
+<%= render partial: 'show_org' %>
+
   <div class="form-actions">
     <%= link_to t('.back', :default => t("helpers.links.back")),
               organizations_path, :class => 'btn' %>
@@ -26,7 +30,6 @@
               :class => 'btn btn-danger' %>
     <% end %>
   </div>
-<%= render partial: 'show_org' %>
 
 <% else %>
   <h3>Not Authorized!</h3>
