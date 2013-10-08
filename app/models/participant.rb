@@ -57,8 +57,8 @@ class Participant < ActiveRecord::Base
   class NotRegistered < Exception
   end
 
-  def self.find_by_card card_number
-    andrewid = CarnegieMellonIDCard.search card_number
+  def self.find_by_card(card_number)
+    andrewid = CarnegieMellonIDCard.search(card_number)
     
     if !andrewid.nil?
       andrewID = self.find_by_andrewid andrewid

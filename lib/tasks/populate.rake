@@ -190,7 +190,7 @@ namespace :db do
     new_participant.save!
 
     new_participant = Participant.new
-    new_participant.andrewid = "jonathanc"
+    new_participant.andrewid = "juc"
     # new_participant.has_signed_waiver = false
     # new_participant.has_signed_hardhat_waiver = true
     new_participant.phone_number = 4124124142
