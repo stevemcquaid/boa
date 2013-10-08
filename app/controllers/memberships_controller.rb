@@ -18,20 +18,27 @@ class MembershipsController < ApplicationController
     
     respond_to do |format|
           format.html # index.html.erb
-          format.json { render json: @checkouts }
+          format.json { render json: @memberships }
     end
   end
+  
+  #declare error classes
+  class OrganizationNotExist < Exception
+  end
+  class ParticipantNotExist < Exception
+  end
+
 
   # POST
   def create_participant_membership
     @membership = Membership.new(params[:membership])
+    # @organization = Organization.find(params[:id])
+    # raise OrganizationDoesNotExist unless !@organization.nil?
     
     @participant = Participant.find_by_card(@membership.participant_id) #this creates a CMU directory request to get the andrew id associated with the card number. Then finds the local DB mapping to get the participant id.
+    raise ParticipantDoesNotExist unless @participant.nil?
 
-
-    if(@participant.nil?)
-      throw "No Participant"
-    end
+    @membership.participant_id = @participant.id
 
     respond_to do |format|
       if @membership.save
