@@ -6,7 +6,6 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th><%= model_class.human_attribute_name(:id) %></th>
         <th><%= model_class.human_attribute_name(:name) %></th>
         <th><%= model_class.human_attribute_name(:organization_category) %></th>
         <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -15,8 +14,7 @@
     <tbody>
       <% @organizations.each do |organization| %>
         <tr>
-          <td><%= link_to organization.id, organization_path(organization) %></td>
-          <td><%= organization.name %></td>
+          <td><%= link_to organization.name, organization_path(organization) %></td>
           <td><%= organization.organization_category.name %></td>
           <td>
             <% if can?(:update, :organization) %>
