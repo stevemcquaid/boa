@@ -116,10 +116,26 @@ namespace :db do
     new_user.save!
 
     new_user = User.new
-    new_user.email = "jonathanc@cmu.edu"
+    new_user.email = "juc@andrew.cmu.edu"
     new_user.password = "testtest"
     new_user.password_confirmation = "testtest"
     new_user.name = "Jonathan Chung"
+    new_user.add_role :admin
+    new_user.save!
+
+    new_user = User.new
+    new_user.email = "jgallagh@andrew.cmu.edu"
+    new_user.password = "testtest"
+    new_user.password_confirmation = "testtest"
+    new_user.name = "Jackson Gallagher"
+    new_user.add_role :admin
+    new_user.save!
+
+    new_user = User.new
+    new_user.email = "ehrin@andrew.cmu.edu"
+    new_user.password = "testtest"
+    new_user.password_confirmation = "testtest"
+    new_user.name = "Emily Hrin"
     new_user.add_role :admin
     new_user.save!
 
