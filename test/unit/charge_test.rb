@@ -28,7 +28,7 @@ class ChargeTest < ActiveSupport::TestCase
 
       context "Testing charges" do
         should "know charges" do
-          assert_equal ["Breaker trip", "Missed 10/2 meeting"], Charge.all.map{|e| e.description}
+          assert_equal ["Missed 10/2 meeting", "Breaker trip"], Charge.all.map{|e| e.description}
         end  
       
         should "not let charge with string for amount value be created" do
