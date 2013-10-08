@@ -149,7 +149,7 @@ when 'development'
   chase_in_dtd = Membership.create({ participant: chase, organization: dtd_org, is_booth_chair: true })
   chase_in_scc = Membership.create({ participant: chase, organization: scc_org, title: 'Logistics', is_booth_chair: true, booth_chair_order: 2 })
   
-  tool = Tool.create({ name: 'Hammer', barcode: 7, description: 'it\'s a fucking hammer' })
+  tool = Tool.create({ name: 'Hammer', barcode: 7, description: 'it\'s a hammer' })
   Tool.create([
     {name: 'Hardhat', barcode: 111, description: 'Org Hardhat (White)'},
     {name: 'SCC Hardhat', barcode: 112, description: 'SCC Hardhat (Blue)'},
