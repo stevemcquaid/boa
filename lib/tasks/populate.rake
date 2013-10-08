@@ -214,6 +214,22 @@ namespace :db do
     new_participant.user = User.find_by_name("Test Booth Chair")
     new_participant.save!
 
+    new_participant = Participant.new
+    new_participant.andrewid = "ehrin"
+    # new_participant.has_signed_waiver = false
+    # new_participant.has_signed_hardhat_waiver = false
+    new_participant.phone_number = 1234567888
+    new_participant.user = User.find_by_name("Emily Hrin")
+    new_participant.save!
+
+    new_participant = Participant.new
+    new_participant.andrewid = "jgallagh"
+    # new_participant.has_signed_waiver = false
+    # new_participant.has_signed_hardhat_waiver = false
+    new_participant.phone_number = 1234567887
+    new_participant.user = User.find_by_name("Jackson Gallagher")
+    new_participant.save!
+
     puts "TaskStatus"
 
     new_task_status = TaskStatus.new
