@@ -60,12 +60,14 @@ class Participant < ActiveRecord::Base
     andrewid = CarnegieMellonIDCard.search card_number
     
     if !andrewid.nil?
-      andrewID = self.find_by_andrewid andrewid
+      theUser = self.find_by_andrewid(andrewid)
     end
     
-    raise NotRegistered unless !andrewID.nil?
-    
-    return andrewID
+    raise NotRegistered unless !theUser.nil?
+    logger.debug "************************"
+    logger.debug theUser.id
+        
+    return theUser
   end
 
   private
