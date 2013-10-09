@@ -8,7 +8,7 @@ class Ability
 
     elsif user.has_role? :scc
       can :manage, :all
-      cannot :destroy, :user
+      cannot :destroy, User
 
     elsif user.has_role? :booth_chair
       cannot :manage, :all
@@ -19,7 +19,7 @@ class Ability
       can :read, Shift, :organization_id => user.participant.organizations.first.id
       can :read, User, :user_id => user.id
       cannot :update, User
-      cannot :delete, User
+      cannot :destroy, User
 
     elsif user.has_role? :member
       cannot :manage, :all
@@ -29,7 +29,7 @@ class Ability
       can :read, Shift, :organization_id => user.participant.organizations.first.id
       can :read, User, :user_id => user.id
       cannot :update, User
-      cannot :delete, User
+      cannot :destroy, User
 
     end
   end

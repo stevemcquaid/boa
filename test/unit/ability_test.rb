@@ -136,7 +136,7 @@ class AbilityTest < ActiveSupport::TestCase
       assert ability.cannot?(:destroy, Tool)
       assert ability.can?(:read, Tool)
 
-      assert ability.can?(:read, User.new(:user_id => @booth_chair_user.id))
+      assert ability.can?(:read, User)
     end
 
     # member tests
@@ -201,7 +201,7 @@ class AbilityTest < ActiveSupport::TestCase
       assert ability.cannot?(:create, Shift)
       assert ability.cannot?(:update, Shift)
       assert ability.cannot?(:destroy, Shift)
-      assert ability.can?(:read, Shift.new(:organization_id => @member_user.participant.organization.id))
+      assert ability.can?(:read, Shift.new(:organization_id => @member_user.participant.organizations.first.id))
 
       assert ability.cannot?(:create, ShiftParticipant)
       assert ability.cannot?(:update, ShiftParticipant)
@@ -221,7 +221,7 @@ class AbilityTest < ActiveSupport::TestCase
       assert ability.cannot?(:destroy, Tool)
       assert ability.can?(:read, Tool)
 
-      assert ability.can?(:read, User.new(:user_id => @booth_chair_user.id))
+      assert ability.can?(:read, User)
     end
   end
 end

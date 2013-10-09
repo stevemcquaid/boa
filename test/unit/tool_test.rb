@@ -44,15 +44,15 @@ class ToolTest < ActiveSupport::TestCase
 
     should "show that the 'current_participant' method works" do
       assert_equal nil, @hammer.current_participant
-      assert_equal nil, @saw.current_participant
+      assert_equal @shannon, @saw.current_participant
       assert_equal nil, @hard_hat.current_participant
       assert_equal nil, @ladder.current_participant
     end
 
     should "show that the 'current_organization' method works" do
-      assert_equal nil, @hammer.current_organization
-      assert_equal nil, @saw.current_organization
-      assert_equal nil, @hard_hat.current_organization
+      assert_equal @sdc, @hammer.current_organization
+      assert_equal @theta, @saw.current_organization
+      assert_equal @theta, @hard_hat.current_organization
       assert_equal nil, @ladder.current_organization
     end
  
@@ -63,8 +63,9 @@ class ToolTest < ActiveSupport::TestCase
       deny @ladder.is_checked_out?
     end
 
-    # should "show that the 'self.checked_out_by_organization(organization)' method works" do
-    # end
+    should "show that the 'self.checked_out_by_organization(organization)' method works" do
+      assert_equal [@saw, @hard_hat], Tool.checked_out_by_organization(@theta)
+    end
 
 
   

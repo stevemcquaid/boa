@@ -108,9 +108,9 @@ class ActiveSupport::TestCase
 
     # Create 4 checkouts
     @hammer_checkout1 = FactoryGirl.create(:checkout, :checked_in_at => Date.new, :tool => @hammer)
-    @hammer_checkout2 = FactoryGirl.create(:checkout, :tool => @hammer)
-    @saw_checkout = FactoryGirl.create(:checkout, :tool => @saw)
-    @hard_hat_checkout = FactoryGirl.create(:checkout, :tool => @hard_hat)
+    @hammer_checkout2 = FactoryGirl.create(:checkout, :tool => @hammer, :organization => @sdc)
+    @saw_checkout = FactoryGirl.create(:checkout, :tool => @saw, :organization => @theta, :participant => @shannon)
+    @hard_hat_checkout = FactoryGirl.create(:checkout, :tool => @hard_hat, :organization => @theta)
   end
 
   def remove_context
