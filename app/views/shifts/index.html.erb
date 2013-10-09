@@ -19,8 +19,8 @@
       <% @shifts.each do |shift| %>
         <tr>
           <td><%= link_to shift.id, shift_path(shift) %></td>
-          <td><%= shift.starts_at %></td>
-          <td><%= shift.ends_at %></td>
+          <td><%= shift.starts_at.strftime("%m/%d/%y %I:%M%p") %></td>
+          <td><%= shift.ends_at.strftime("%m/%d/%y %I:%M%p") %></td>
           <td><%= shift.required_number_of_participants %></td>
           <td><%= shift.organization.name %></td>
           <td><%= shift.shift_type.name %></td>
