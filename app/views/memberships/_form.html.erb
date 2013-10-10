@@ -1,4 +1,4 @@
-<% if can?(:update, :membership) %>
+<% if can?(:update, @membership) %>
   <%= simple_form_for @membership, :html => { :class => 'form-horizontal' } do |f| %>
     <%= f.input :organization_id, :as => :select, :label => "Organization", :collection => Organization.all.map{|o| [o.name, o.id] } %>
     <%= f.input :participant_id, :as => :select, :label => "Participant", :collection => Participant.all.map{|p| [p.andrewid, p.id] } %>

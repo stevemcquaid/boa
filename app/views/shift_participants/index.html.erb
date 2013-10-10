@@ -1,4 +1,4 @@
-<% if can?(:read, :shift_participant) %>
+<% if can?(:read, ShiftParticipant) %>
   <%- model_class = ShiftParticipant -%>
   <div class="page-header">
     <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
@@ -23,12 +23,12 @@
           <td><%= shift_participant.clocked_in_at %></td>
           <td><%= shift_participant.clocked_out_at %></td>
           <td>
-            <% if can?(:update, :shift_participant) %>
+            <% if can?(:update, shift_participant) %>
               <%= link_to t('.edit', :default => t("helpers.links.edit")),
                           edit_shift_participant_path(shift_participant), :class => 'btn btn-mini' %>
             <% end %>
 
-            <% if can?(:destroy, :shift_participant) %>
+            <% if can?(:destroy, shift_participant) %>
               <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                         shift_participant_path(shift_participant),
                         :method => :delete,
@@ -41,9 +41,12 @@
     </tbody>
   </table>
 
-  <%= link_to t('.new', :default => t("helpers.links.new")),
+  <% if can?(:create, ShiftParticipant) %>
+
+    <%= link_to t('.new', :default => t("helpers.links.new")),
               new_shift_participant_path,
               :class => 'btn btn-primary' %>
+  <% end %>
 
 <% else %>
   <h3>Not Authorized!</h3>

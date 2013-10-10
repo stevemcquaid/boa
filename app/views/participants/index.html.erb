@@ -1,4 +1,4 @@
-<% if can?(:read, :participant) %>
+<% if can?(:read, Participant) %>
   <%- model_class = Participant -%>
   <div class="page-header">
     <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
@@ -25,12 +25,12 @@
           <td><%= "#{(participant.has_signed_hardhat_waiver)? "Yes" : "No"}" %></td>
           <td><%= participant.name %></td>
           <td>
-            <% if can?(:update, :participant) %>
+            <% if can?(:update, participant) %>
               <%= link_to t('.edit', :default => t("helpers.links.edit")),
                           edit_participant_path(participant), :class => 'btn btn-mini' %>
             <% end %>
             
-            <% if can?(:destroy, :participant) %>
+            <% if can?(:destroy, participant) %>
               <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                           participant_path(participant),
                           :method => :delete,
@@ -42,9 +42,14 @@
       <% end %>
     </tbody>
   </table>
-  <%= link_to t('.new', :default => t("helpers.links.new")),
+
+  <% if can?(:create, Participant) %>
+
+    <%= link_to t('.new', :default => t("helpers.links.new")),
               new_participant_path,
               :class => 'btn btn-primary' %>
+
+  <% end %>
 
 <% else %>
   <h3>Not Authorized!</h3>

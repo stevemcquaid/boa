@@ -1,4 +1,4 @@
-<% if can?(:read, :membership) %>
+<% if can?(:read, Membership) %>
   <%- model_class = Membership -%>
   <div class="page-header">
     <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
@@ -25,12 +25,12 @@
           <td><%= membership.title %></td>
           <td><%= membership.booth_chair_order %></td>
           <td>
-            <% if can?(:update, :membership) %>
+            <% if can?(:update, membership) %>
               <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_membership_path(membership), :class => 'btn btn-mini' %>
             <% end %>
 
-            <% if can?(:destroy, :membership) %>
+            <% if can?(:destroy, membership) %>
               <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       membership_path(membership),
                       :method => :delete,
@@ -42,7 +42,7 @@
       <% end %>
     </tbody>
   </table>
-  <% if can?(:create, :membership) %>
+  <% if can?(:create, Membership) %>
     <%= link_to t('.new', :default => t("helpers.links.new")),
             new_membership_path,
             :class => 'btn btn-primary' %>

@@ -1,4 +1,4 @@
-<% if can?(:read, :diagram) %>
+<% if can?(:read, @diagram) %>
   <div class="page-header">
     <h1><%= @diagram.name %></h1>
   </div>
@@ -7,12 +7,12 @@
     <%= link_to t('.back', :default => t("helpers.links.back")),
               diagrams_path, :class => 'btn' %>
               
-    <% if can?(:edit, :diagram) %>
+    <% if can?(:edit, @diagram) %>
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_diagram_path(@diagram), :class => 'btn' %>
     <% end %>
     
-    <% if can?(:destroy, :diagram) %>
+    <% if can?(:destroy, @diagram) %>
       <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               diagram_path(@diagram),
               :method => 'delete',

@@ -1,4 +1,4 @@
-<% if can?(:read, :faq) %>
+<% if can?(:read, Faq) %>
   <%- model_class = Faq -%>
   <div class="page-header">
     <h1>FAQs</h1>
@@ -17,12 +17,12 @@
           <td><%= link_to faq.question, faq_path(faq) %></td>
           <td><%= faq.answer %></td>
           <td>
-            <% if can?(:update, :faq) %>
+            <% if can?(:update, faq) %>
               <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_faq_path(faq), :class => 'btn btn-mini' %>
             <% end %>
 
-            <% if can?(:destroy, :faq) %>
+            <% if can?(:destroy, faq) %>
               <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       faq_path(faq),
                       :method => :delete,
@@ -34,7 +34,7 @@
       <% end %>
     </tbody>
   </table>
-  <% if can?(:create, :faq) %>
+  <% if can?(:create, Faq) %>
     <%= link_to t('.new', :default => t("helpers.links.new")),
             new_faq_path,
             :class => 'btn btn-primary' %>
