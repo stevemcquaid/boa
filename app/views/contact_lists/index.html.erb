@@ -1,4 +1,4 @@
-<% if can?(:read, :contact_list) %>
+<% if can?(:read, ContactList) %>
   <%- model_class = ContactList -%>
   <div class="page-header">
     <h1>Contact List</h1>
@@ -17,12 +17,12 @@
           <td><%= link_to contact_list.participant.name, participant_path(contact_list.participant_id)  unless contact_list.participant.nil? %></td>
           <td><%= link_to contact_list.display_contact, contact_list_path(contact_list) %></td>
           <td>
-            <% if can?(:update, :contact_list) %>
+            <% if can?(:update, contact_list) %>
               <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_contact_list_path(contact_list), :class => 'btn btn-mini' %>
             <% end %>
 
-            <% if can?(:destroy, :contact_list) %>
+            <% if can?(:destroy, contact_list) %>
               <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       contact_list_path(contact_list),
                       :method => :delete,
@@ -34,7 +34,7 @@
       <% end %>
     </tbody>
   </table>
-  <% if can?(:create, :contact_list) %>
+  <% if can?(:create, ContactList) %>
     <%= link_to t('.new', :default => t("helpers.links.new")),
             new_contact_list_path,
             :class => 'btn btn-primary' %>
