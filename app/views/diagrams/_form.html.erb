@@ -1,4 +1,4 @@
-<% if can?(:update, :diagram) %>
+<% if can?(:update, @diagram) %>
   <%= simple_form_for @diagram, :html => {:multipart => true, :class => 'form-horizontal'} do |f| %>
     <div class="field control-group">
       <%= f.label :name, :class => 'control-label' %>

@@ -1,4 +1,4 @@
-<% if can?(:read, :shift) %>
+<% if can?(:read, @shift) %>
   <%- model_class = Shift -%>
   <div class="page-header">
     <h1><%=t '.title', :default => model_class.model_name.human %></h1>
@@ -19,12 +19,12 @@
     <%= link_to t('.back', :default => t("helpers.links.back")),
               shifts_path, :class => 'btn' %>
 
-    <% if can?(:update, :shift) %>
+    <% if can?(:update, @shift) %>
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_shift_path(@shift), :class => 'btn' %>
     <% end %>
 
-    <% if can?(:destroy, :shift) %>
+    <% if can?(:destroy, @shift) %>
       <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               shift_path(@shift),
               :method => 'delete',

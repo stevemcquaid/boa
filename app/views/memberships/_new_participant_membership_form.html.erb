@@ -1,4 +1,4 @@
-<% if can?(:create, :membership) %>
+<% if can?(:create, @membership) %>
   <%= simple_form_for @membership, :html => { :class => 'form-horizontal' }, :url => create_participant_membership_path do |f| %>
     <%= f.input :participant_id, label: 'Participant ID Card Code' %>
     <%= f.input :organization_id, :as => :select, :label => "Organization", :collection => Organization.all.map{|o| [o.name, o.id] } %>

@@ -1,4 +1,4 @@
-<% if can?(:read, :participant) %>
+<% if can?(:read, @participant) %>
 
   <%- model_class = Participant -%>
   <div class="page-header">
@@ -29,12 +29,12 @@
     <%= link_to t('.back', :default => t("helpers.links.back")),
                 participants_path, :class => 'btn'  %>
     
-    <% if can?(:update, :participant) %>
+    <% if can?(:update, @participant) %>
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
                 edit_participant_path(@participant), :class => 'btn' %>
     <% end %>
 
-    <% if can?(:destroy, :participant) %>
+    <% if can?(:destroy, @participant) %>
       <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                 participant_path(@participant),
                 :method => 'delete',

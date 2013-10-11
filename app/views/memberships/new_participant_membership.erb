@@ -1,4 +1,4 @@
-<% if can?(:create, :membership) %>
+<% if can?(:create, @membership) %>
     <%= render :partial => 'new_participant_membership_form' %>
 <% else %>
   <h3>Not Authorized!</h3>

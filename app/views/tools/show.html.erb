@@ -1,4 +1,4 @@
-<% if can?(:read, :tool) %>
+<% if can?(:read, @tool) %>
   <%- model_class = Tool -%>
   <div class="page-header">
     <h1><%=t '.title', :default => model_class.model_name.human %></h1>
@@ -25,12 +25,12 @@
                       checkout_tool_path(@tool), :class => 'btn btn-mini' %>
     <% end %>
 
-    <% if can?(:update, :tool) %>
+    <% if can?(:update, @tool) %>
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_tool_path(@tool), :class => 'btn' %>
     <% end %>
 
-    <% if can?(:destroy, :tool) %>
+    <% if can?(:destroy, @tool) %>
       <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               tool_path(@tool),
               :method => 'delete',

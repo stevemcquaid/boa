@@ -19,12 +19,12 @@
     <%= link_to t('.back', :default => t("helpers.links.back")),
               checkouts_path, :class => 'btn' %>
 
-    <% if can?(:edit, :checkout) %>
+    <% if can?(:edit, @checkout) %>
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_checkout_path(@checkout), :class => 'btn' %>
     <% end %>
 
-    <% if can?(:destroy, :checkout) %>
+    <% if can?(:destroy, @checkout) %>
       <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               checkout_path(@checkout),
               :method => 'delete',

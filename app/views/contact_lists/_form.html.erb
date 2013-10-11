@@ -1,4 +1,4 @@
-<% if can?(:update, :contact_list) %>
+<% if can?(:update, @contact_list) %>
   <%= simple_form_for @contact_list, :html => { :class => 'form-horizontal' } do |f| %>
     <%= f.input :participant_id %>
     <%= f.input :display_contact %>
