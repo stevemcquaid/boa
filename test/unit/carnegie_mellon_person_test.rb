@@ -9,4 +9,16 @@ class CarnegieMellonPersonTest < ActiveSupport::TestCase
 
   # Methods
 
+  # why did I put these here? Are these necessary? I don't think so,
+  # given the assertions below are self-contained
+  setup do
+  end
+
+  teardown do
+  end
+
+  should "correctly pull student information given andrew id" do
+  	assert_equal "Senior", CarnegieMellonPerson.find_by_andrewid('juc').cmuStudentClass
+	end
+
 end

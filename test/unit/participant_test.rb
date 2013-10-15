@@ -25,13 +25,18 @@ class ParticipantTest < ActiveSupport::TestCase
     end
 
     should "show that all factories are properly created" do
-      assert_equal 5, Participant.all.size
+      assert_equal 6, Participant.all.size
     end
 
     context "Testing participants" do
       should "know participants" do
-        assert_equal ["rcrown", "shannon1", "dcorwin", "asteger", "member"], Participant.all.map{|e| e.andrewid}
-      end  
+        assert_equal ["rcrown", "shannon1", "dcorwin", "asteger", "member", "juc"], Participant.all.map{|e| e.andrewid}
+      end
+    end
+
+    should "do something relating to loading the student's information from cmu servers" do
+      @jonathan.ldap_reference
+      assert_equal @jonathan_user, Participant.find_by_card(811825505)
     end
 
   end
