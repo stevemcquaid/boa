@@ -36,7 +36,11 @@ class ParticipantTest < ActiveSupport::TestCase
 
     should "do something relating to loading the student's information from cmu servers" do
       @jonathan.ldap_reference
-      assert_equal @jonathan_user, Participant.find_by_card(811825505)
+      assert_equal @jonathan, Participant.find_by_card(811825505)
+    end
+
+    should "return name from directory" do
+      assert_equal "Jonathan U Chung", @jonathan.name
     end
 
   end
