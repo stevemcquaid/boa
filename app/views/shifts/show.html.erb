@@ -5,25 +5,48 @@
   </div>
   <dl class="dl-horizontal">
     <dt><strong><%= model_class.human_attribute_name(:starts_at) %>:</strong></dt>
-    <dd><%= @shift.starts_at.strftime("%m/%d/%y %I:%M%p") %></dd>
+    <dd><%= date_and_time(@shift.starts_at) %></dd>
     <dt><strong><%= model_class.human_attribute_name(:ends_at) %>:</strong></dt>
-    <dd><%= @shift.ends_at.strftime("%m/%d/%y %I:%M%p") %></dd>
+    <dd><%= date_and_time(@shift.ends_at) %></dd>
     <dt><strong><%= model_class.human_attribute_name(:required_number_of_participants) %>:</strong></dt>
     <dd><%= @shift.required_number_of_participants %></dd>
     <dt><strong><%= model_class.human_attribute_name(:organization) %>:</strong></dt>
     <dd><%= @shift.organization.name %></dd>
     <dt><strong><%= model_class.human_attribute_name(:shift_type) %>:</strong></dt>
     <dd><%= @shift.shift_type.name %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:shift_participants) %>:</strong></dt>
+    <dd><ul>
+        <% @shift_participants.each do |shift_participant| %>
+          <li><%= shift_participant.participant.name %>
+            (Clocked in at:
+            <%= date_and_time(shift_participant.clocked_in_at) %>
+            <% if !shift_participant.clocked_out_at.nil? %>
+              Clocked out at:
+              <%= date_and_time(shift_participant.clocked_out_at) %>
+            <% end %>
+            )
+            <% if shift_participant.clocked_out_at.nil? %>
+              <%= link_to t('.clock_out_shift', :default => t("helpers.links.clock_out_shift")),
+                              clock_out_shift_path(shift_participant), :class => 'btn btn-mini' %>
+            <% end %>
+          </li>
+        <% end %>
+        <% @number_spots_left.times do %>
+          <li>Person Not Checked In:
+            <%= link_to t('.new', :default => t("helpers.links.new")),
+              new_shift_participant_path(:shift => {:shift_id => @shift.id}),
+              :class => 'btn btn-primary' %></li>
+        <% end %>
+      </ul>
+    </dd>
   </dl>
   <div class="form-actions">
     <%= link_to t('.back', :default => t("helpers.links.back")),
               shifts_path, :class => 'btn' %>
-
     <% if can?(:update, @shift) %>
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_shift_path(@shift), :class => 'btn' %>
     <% end %>
-
     <% if can?(:destroy, @shift) %>
       <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               shift_path(@shift),
@@ -32,7 +55,6 @@
               :class => 'btn btn-danger' %>
     <% end %>
   </div>
-  
 <% else %>
   <h3>Not Authorized!</h3>
 <% end %>

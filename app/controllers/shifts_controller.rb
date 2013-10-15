@@ -16,6 +16,10 @@ class ShiftsController < ApplicationController
   # GET /shifts/1.json
   def show
     @shift = Shift.find(params[:id])
+    @shift_participants = ShiftParticipant.find_all_by_shift_id(@shift.id)
+    @shift_participants_count = @shift_participants.size
+
+    @number_spots_left = @shift.required_number_of_participants - @shift_participants_count
 
     respond_to do |format|
       format.html # show.html.erb

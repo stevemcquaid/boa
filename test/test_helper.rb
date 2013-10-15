@@ -51,7 +51,7 @@ class ActiveSupport::TestCase
     @shift2 = FactoryGirl.create(:shift, :ends_at => Time.local(2000,1,1,15,0,0), :required_number_of_participants => 3, :starts_at => Time.local(2000,1,1,13,4,0), :organization => @sdc)
     @shift3 = FactoryGirl.create(:shift, :ends_at => Time.local(2000,1,1,15,0,0), :required_number_of_participants => 3, :starts_at => Time.local(2000,1,1,14,10,0), :organization => @theta)
 
-    # Create 4 users
+    # Create 5 users
     @member_user = FactoryGirl.create(:user)
     @member_user.add_role(:member)
 
@@ -64,12 +64,16 @@ class ActiveSupport::TestCase
     @admin_user = FactoryGirl.create(:user, :name => "Admin User", :email => "admin@boa.com")
     @admin_user.add_role(:admin)
 
-    # Create 4 participants
+    @jonathan_user = FactoryGirl.create(:user, :name => "Jonathan User", :email => "jc@boa.com")
+    @jonathan_user.add_role(:member)
+
+    # Create 6 participants
     @rachel = FactoryGirl.create(:participant)
     @shannon = FactoryGirl.create(:participant, :andrewid => "shannon1", :phone_number => 4124124124)
     @dylan = FactoryGirl.create(:participant, :andrewid => "dcorwin", :phone_number => 4121235555)
     @alexis = FactoryGirl.create(:participant, :andrewid => "asteger", :phone_number => 5391234124, :user => @booth_chair_user)
     @member = FactoryGirl.create(:participant, :andrewid => "member", :user => @member_user)
+    @jonathan = FactoryGirl.create(:participant, :andrewid => "juc", :phone_number => 4128675309, :user => @jonathan_user)
 
     # Create 4 Shift Participants
     @sp1 = FactoryGirl.create(:shift_participant, :participant => @rachel, :clocked_in_at => Date.new, :shift => @shift1)
@@ -139,6 +143,8 @@ class ActiveSupport::TestCase
     @shannon.destroy
     @dylan.destroy
     @alexis.destroy
+    @member.destroy
+    @jonathan.destroy
 
     # Destroy task status
     @complete.destroy
@@ -186,10 +192,11 @@ class ActiveSupport::TestCase
     @member_rachel.destroy
     @member_alexis.destroy
 
-    # Destroy 4 users
+    # Destroy 5 users
     @member_user.destroy
     @booth_chair_user.destroy
     @scc_user.destroy
     @admin_user.destroy
+    @jonathan_user.destroy
   end
 end
