@@ -43,5 +43,28 @@ class ParticipantTest < ActiveSupport::TestCase
       assert_equal "Jonathan U Chung", @jonathan.name
     end
 
+    should "return surname from directory" do
+      assert_equal "Chung", @jonathan.surname
+    end
+
+    should "return email from directory" do
+      assert_equal "jonathanc@cmu.edu", @jonathan.email
+    end
+
+    should "return department from directory" do
+      assert_equal "Dietrich College Interdisciplinary", @jonathan.department
+    end
+
+    should "return student class from directory" do
+      assert_equal "Senior", @jonathan.student_class
+    end
+
+    should "properly set and return card number from directory" do
+      @jonathan.card_number=811825505
+      assert_equal 811825505, @jonathan.card_number
+      @jonathan.card_number=123456789
+      assert_equal 123456789, @jonathan.card_number
+    end
+
   end
 end
