@@ -4,10 +4,13 @@ Feature: Manage charges
 	I want to be able to manage charge information
 	So I can make money
 
-	Scenario: Create a new charge
-		Given I am on the charges page
-		I should see "Organization"
-		I should see "Charge Type"
-		I should see "Amount"
-		I should see "Description"
-		I should see "Charged At"
+	Background:
+		Given an initial charge
+
+	Scenario: View charges
+		When I go to the charges page
+		Then I should see "Organization"
+		And I should see "Charge Type"
+		And I should see "Amount"
+		And I should see "Description"
+		And I should see "Charged At"
