@@ -26,7 +26,7 @@ class ShiftParticipantsController < ApplicationController
   # GET /shift_participants/new
   # GET /shift_participants/new.json
   def new
-    @shift_participant = ShiftParticipant.new
+    @shift_participant = ShiftParticipant.new(params[:shift])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -80,6 +80,21 @@ class ShiftParticipantsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to shift_participants_url }
       format.json { head :no_content }
+    end
+  end
+
+
+  def clock_out
+    @shift_participant = ShiftParticipant.find(params[:id])
+
+    if(!@shift_participant.nil? && @shift_participant.clocked_out_at.nil?)
+        @shift_participant.clocked_out_at = Date.today
+        @shift_participant.save!
+
+        redirect_to @shift_participant.shift
+    else
+        flash[:notice] = "#{@shift_participant.participant.name} was not clocked out."
+        redirect_to @shift_participant.shift
     end
   end
 end
