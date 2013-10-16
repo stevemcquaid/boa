@@ -1,5 +1,8 @@
 Boa::Application.routes.draw do
 
+  resources :task_categories
+
+
   resources :contact_lists
 
 
