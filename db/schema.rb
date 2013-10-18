@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131003184152) do
+ActiveRecord::Schema.define(:version => 20131015231409) do
 
   create_table "charge_types", :force => true do |t|
     t.string   "name"
@@ -174,6 +174,9 @@ ActiveRecord::Schema.define(:version => 20131003184152) do
     t.integer  "task_status_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.integer  "created_by"
+    t.integer  "assigned_person"
+    t.integer  "task_category"
   end
 
   add_index "tasks", ["task_status_id"], :name => "index_tasks_on_task_status_id"

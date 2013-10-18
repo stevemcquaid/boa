@@ -17,26 +17,24 @@ development:
   database: db/development.sqlite3
   pool: 5
   timeout: 5000
-  # adapter: postgresql
-  # database: database_name
-  # host: stevemcquaid.com
-  # username: nitelit1_boaStage
-  # password: Kn~XeEv3O6pO
-  # pool: 5
-  # timeout: 5000
 
-production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+stage: 
+  adapter: postgresql
+  database: boaStage1
+  host: localhost
+  username: boaUser
+  password: Prof_H_No_Sn00p1ng
   pool: 5
   timeout: 5000
-  # adapter: postgresql
-  # database: nitelit1_boaProd
-  # host: stevemcquaid.com
-  # username: nitelit1_boaProd
-  # password: TqnP1rTfkwo+
-  # pool: 5
-  # timeout: 5000
+
+production:
+  adapter: postgresql
+  database: boaProd1
+  host: localhost
+  username: boaUser
+  password: Prof_H_No_Sn00p1ng
+  pool: 5
+  timeout: 5000
 
 cucumber:
   <<: *test

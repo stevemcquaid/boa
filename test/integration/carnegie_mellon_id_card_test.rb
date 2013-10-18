@@ -19,7 +19,7 @@ class CarnegieMellonIDCardTest < ActiveSupport::TestCase
 
   should "identify student based on card id" do
   	assert_equal "juc", CarnegieMellonIDCard.search(811825505)
-  	assert_equal "juc", CarnegieMellonIDCard.search("%811825505")
+  	assert_equal "juc", CarnegieMellonIDCard.search('%811825505')
   end
 
 end
