@@ -16,6 +16,8 @@
     <dd><%= @task.description %></dd>
     <dt><strong><%= model_class.human_attribute_name(:task_status) %>:</strong></dt>
     <dd><%= @task.task_status.name %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:task_category) %>:</strong></dt>
+    <dd><%= @task.task_category.name %></dd>
   </dl>
   <div class="form-actions">
     <%= link_to t('.back', :default => t("helpers.links.back")),

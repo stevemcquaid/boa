@@ -1,7 +1,7 @@
 class TaskCategory < ActiveRecord::Base
   attr_accessible :name
 
-  validates :name, :presence => true
-  
   has_many :tasks
+
+  validates :name, :presence => true
 end

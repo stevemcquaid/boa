@@ -191,6 +191,17 @@ namespace :db do
     new_participant.save!
 
 
+    puts "Task Category"
+
+    new_task_category = TaskCategory.new
+    new_task_category.name = "Busy Work"
+    new_task_category.save!
+
+    new_task_category = TaskCategory.new
+    new_task_category.name = "Maintinance"
+    new_task_category.save!
+    
+
     puts "Task"
 
     new_task = Task.new
@@ -204,6 +215,7 @@ namespace :db do
     new_task.name = "Buy wood"
     # new_task.participant = Participant.find_by_andrewid("shannon1")
     new_task.task_status = TaskStatus.find_by_name("Complete")
+    new_task.task_category = TaskCategory.find_by_name("Busy Work")
     new_task.due_at = Date.today
     new_task.save!
 
@@ -211,8 +223,12 @@ namespace :db do
     new_task.name = "Take-out trash"
     # new_task.participant = Participant.find_by_andrewid("dcorwin")
     new_task.task_status = TaskStatus.find_by_name("Incomplete")
+    new_task.task_category = TaskCategory.find_by_name("Maintinance")
     new_task.due_at = Date.today
     new_task.save!
+    
+    
+    
 
 
     puts "Shift"

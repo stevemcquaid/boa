@@ -99,11 +99,15 @@ class ActiveSupport::TestCase
     @incomplete = FactoryGirl.create(:task_status, :name => "Not Completed")
     @in_progress = FactoryGirl.create(:task_status, :name => "Unable To Complete")
 
+    #Create 2 task categories
+    @busy_work = FactoryGirl.create(:task_category, :name => "Busy Work")
+    @maintinance = FactoryGirl.create(:task_category, :name => "Maintinance")
+    
     # Create 3 tasks
     @assign_rides = FactoryGirl.create(:task, :completed_by => @rachel, :task_status => @incomplete, :due_at => Time.local(2000,1,1,12,3,0))
-    @buy_wood = FactoryGirl.create(:task, :name => "Buy wood", :completed_by => @shannon, :task_status => @in_progress, :due_at => Time.local(2000,1,1,15,0,0))
-    @takeout_trash = FactoryGirl.create(:task, :name => "Take-out trash", :completed_by => @dylan, :task_status => @complete, :due_at => Time.local(2020,1,1,15,0,0))
-
+    @buy_wood = FactoryGirl.create(:task, :name => "Buy wood", :task_category => @busy_work, :completed_by => @shannon, :task_status => @in_progress, :due_at => Time.local(2000,1,1,15,0,0))
+    @takeout_trash = FactoryGirl.create(:task, :name => "Take-out trash", :task_category => @maintinance, :completed_by => @dylan, :task_status => @complete, :due_at => Time.local(2020,1,1,15,0,0))
+        
     # Create 4 tools
     @hammer = FactoryGirl.create(:tool)
     @saw = FactoryGirl.create(:tool, :barcode => 1239043, :description => "SAW", :name => "Saw")
@@ -150,6 +154,10 @@ class ActiveSupport::TestCase
     @complete.destroy
     @incomplete.destroy
     @in_progress.destroy
+    
+    # Destroy Task Category
+    @busy_work.destroy
+    @maintinance.destroy
 
     # Destroy 3 tasks
     @assign_rides.destroy

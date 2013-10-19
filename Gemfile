@@ -3,6 +3,12 @@ ruby '1.9.3'
 gem 'rails', '3.2.13'
 gem 'sqlite3'
 
+
+#Flip the two gems below this when trying to generate...
+#gem "twitter-bootstrap-rails"
+gem 'activeldap', :require => 'active_ldap/railtie'
+
+
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'sass-rails',   '~> 3.2.3'
@@ -13,7 +19,6 @@ gem 'bootstrap-sass'
 gem 'capistrano' #auto deployment
 gem 'factory_girl_rails' #fixture testing
 gem 'jquery-rails'
-# gem "twitter-bootstrap-rails"
 gem 'cancan' #user auth
 gem 'devise' #user auth
 gem 'figaro'
@@ -25,7 +30,6 @@ gem 'rest-client'
 
 gem 'net-ldap'
 gem "ruby-activeldap-debug", "~> 0.7.4"
-gem 'activeldap', :require => 'active_ldap/railtie'
 
 # gem 'ruby-ldap'
 gem 'minitest', "~> 4.0"

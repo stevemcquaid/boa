@@ -100,6 +100,7 @@ FactoryGirl.define do
     name "Incomplete"
   end
 
+
   # tool
   factory :tool do
     barcode 123780890

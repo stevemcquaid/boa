@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :task_category do
-    name "MyString"
+    name "Default Task Category"
   end
 end

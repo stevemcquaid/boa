@@ -3,6 +3,7 @@ require 'test_helper'
 class TaskTest < ActiveSupport::TestCase
   # Relationships
   should belong_to(:task_status)
+  should belong_to(:task_category)
   should belong_to(:completed_by) #need something about Participants here? See model...
 
   # Validations
