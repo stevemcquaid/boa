@@ -79,6 +79,7 @@ group :development do
 end
 
 group :stageServ do
+  gem 'pg'
   gem 'ci_reporter'
   gem 'rspec-rails'
   
@@ -106,6 +107,7 @@ end
 
 
 group :production do
+  gem 'pg'
   gem 'ci_reporter'
   gem 'passenger'
   gem 'rspec-rails'
