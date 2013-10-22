@@ -1,14 +1,17 @@
 <div class="navbar navbar-fixed-top">
   <nav class="navbar-inner">
     <div class="container">
-      <%= link_to "Boa", root_path, :class => 'brand' %>
+      <a class="brand" style="
+    padding-top: 0px;
+    padding-bottom: 0px;
+"> <img src="boaicon.png" width="45px"></a>
       <% if user_signed_in? %>
         <ul class="nav navbar-nav">
           <!-- Normal Navbar LI's -->
-          <li><%= link_to "Memberships", memberships_path %></li>
           <li><%= link_to "Organizations", organizations_path %></li>
           <li><%= link_to "Participants", participants_path %></li>
-          <li><%= link_to "Checkouts", checkouts_path %></li>
+          <li><%= link_to "Tools", tools_path %></li>
+          <li><%= link_to "Diagrams", diagrams_path %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Models<b class="caret"></b></a>
             <ul class="dropdown-menu">
