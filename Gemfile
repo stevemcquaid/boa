@@ -78,7 +78,7 @@ group :development do
   gem 'simplecov-rcov', :require => false #code coverage
 end
 
-group :stageServ do
+group :staging do
   gem 'pg'
   gem 'ci_reporter'
   gem 'rspec-rails'

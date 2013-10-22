@@ -6,8 +6,8 @@
 set :application, "trailer"
 
 # Multistage configuration
-set :stages, %w(stageServ production)
-set :default_stage, "stageServ"
+set :stages, %w(staging production)
+set :default_stage, "staging"
 require 'capistrano/ext/multistage'
 
 # Remote machine options
