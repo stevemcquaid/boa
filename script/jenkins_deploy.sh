@@ -30,6 +30,6 @@ rake ci:setup:minitest test
 # # Run all integration tests
 # rake test:integration
 
-cap development deploy
+cap stage deploy
 
 echo 'Hello World It works! Successful build, test, and deploy!'
