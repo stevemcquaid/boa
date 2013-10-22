@@ -156,6 +156,7 @@ GEM
       daemon_controller (>= 1.1.0)
       rack
       rake (>= 0.8.1)
+    pg (0.14.1)
     polyglot (0.3.3)
     populator3 (0.2.7)
     quiet_assets (1.0.2)
@@ -280,6 +281,7 @@ DEPENDENCIES
   mocha
   net-ldap
   passenger
+  pg
   populator3
   quiet_assets
   rails (= 3.2.13)
