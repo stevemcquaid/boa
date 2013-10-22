@@ -1,9 +1,19 @@
+#check if rvm exists
+#rvm use 1.9.3
+#sudo gem install ruby-graphviz
+#sudo apt-get install nodejs
+
 #this may error if any configs are changed
 bundle install
 ls
 
+
+
 #this task will drop old data, create new db, run migratiosn and seed it
-rake db:populate 
+rake db:popInit
+
+#if env = stage 
+#rake db:popSimulate 
 
 # #Testing
 # rake db:test:load
