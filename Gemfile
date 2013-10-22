@@ -79,6 +79,8 @@ group :development do
 end
 
 group :stage do
+  gem 'ci_reporter'
+  gem 'rspec-rails'
   
   gem 'hirb' # pretty formatting for rails console
   gem 'populator3'
@@ -91,7 +93,7 @@ group :stage do
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
   gem 'quiet_assets'
   
-  gem 'rspec-rails'
+  
   gem 'shoulda'
   gem 'shoulda-matchers'
 
