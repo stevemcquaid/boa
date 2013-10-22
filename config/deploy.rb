@@ -73,7 +73,7 @@ on :after, "deploy:copy_local_configs", "db:create", :only => "deploy:cold"
 
 on :before, "deploy:restart", "deploy:fix_log_permissions", :only => "deploy:cold"
 
-after "deploy:update_code", "deploy:copy_local_configs", "deploy:migrate --trace"
+after "deploy:update_code", "deploy:copy_local_configs", "deploy:migrate"
 
 # Cleanup old releases on deploy
 after "deploy:restart", "deploy:cleanup"
@@ -84,7 +84,7 @@ namespace :db do
 
   desc "Create database associated with deployment environment"
   task :create, :except => { :no_release => true }, :roles => :db do
-    run "cd #{current_path} && bundle exec rake RAILS_ENV=#{rails_env} db:create"
+    run "cd #{current_path} && bundle exec rake RAILS_ENV=#{rails_env} db:create --trace"
   end
 
 end
