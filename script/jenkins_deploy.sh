@@ -12,7 +12,7 @@ ls
 #this task will drop old data, create new db, run migratiosn and seed it
 rake db:popInit
 
-#if env = stage 
+#if env = stageServ 
 #rake db:popSimulate 
 
 # #Testing
@@ -30,6 +30,6 @@ rake ci:setup:minitest test
 # # Run all integration tests
 # rake test:integration
 
-cap stage deploy
+cap stageServ deploy
 
 echo 'Hello World It works! Successful build, test, and deploy!'

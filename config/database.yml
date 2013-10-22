@@ -18,7 +18,7 @@ development:
   pool: 5
   timeout: 5000
 
-stage: 
+stageServ: 
   adapter: postgresql
   database: boaStage1
   host: localhost

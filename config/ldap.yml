@@ -8,7 +8,7 @@ test:
   port: 389
   base: dc=cmu,dc=edu
   
-stage:
+stageServ:
   host: ldap.andrew.cmu.edu
   port: 389
   base: dc=cmu,dc=edu
