@@ -78,6 +78,25 @@ group :development do
   gem 'simplecov-rcov', :require => false #code coverage
 end
 
+group :stage do
+  
+  gem 'hirb' # pretty formatting for rails console
+  gem 'populator3'
+  
+  gem 'passenger'
+  gem 'rspec-rails'
+  
+  gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
+  gem 'quiet_assets'
+
+  # Steve said this gem is DIRTY.
+  # gem 'test-unit', '~> 2.0.0'
+
+  # Pretty printed test output
+  gem 'turn', :require => false
+end
+
+
 group :production do
   gem 'ci_reporter'
   gem 'passenger'
