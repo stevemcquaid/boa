@@ -73,7 +73,7 @@ on :after, "deploy:copy_local_configs", "db:create", :only => "deploy:cold"
 
 on :before, "deploy:restart", "deploy:fix_log_permissions", :only => "deploy:cold"
 
-after "deploy:update_code", "deploy:copy_local_configs", "deploy:migrate"
+after "deploy:update_code", "deploy:copy_local_configs", "deploy:migrate --trace"
 
 # Cleanup old releases on deploy
 after "deploy:restart", "deploy:cleanup"
