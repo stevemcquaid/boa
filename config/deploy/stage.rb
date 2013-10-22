@@ -1,5 +1,5 @@
 set :bundle_without, [:development, :test, :production]
-set :rails_env, 'production'
+set :rails_env, 'stage'
 set :branch, :stage
 server 'trailer-d02.springcarnival.org', :app, :web, :db, :primary => true
 
