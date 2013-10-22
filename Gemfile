@@ -55,7 +55,8 @@ group :test do
 end
 
 group :development do
-  gem 'sqlite3'
+  #gem 'sqlite3'
+  gem 'pg'
   gem 'hirb' # pretty formatting for rails console
   gem 'passenger'
   gem 'populator3'
@@ -80,8 +81,8 @@ group :development do
 end
 
 group :staging do
-  #gem 'pg'# , :require => true
-  gem 'sqlite3'
+  gem 'pg'# , :require => true
+  #gem 'sqlite3'
   gem 'ci_reporter'
   gem 'rspec-rails'
   
