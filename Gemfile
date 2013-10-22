@@ -85,9 +85,15 @@ group :stage do
   
   gem 'passenger'
   gem 'rspec-rails'
+  gem 'email_spec'
+  gem 'launchy'
   
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
   gem 'quiet_assets'
+  
+  gem 'rspec-rails'
+  gem 'shoulda'
+  gem 'shoulda-matchers'
 
   # Steve said this gem is DIRTY.
   # gem 'test-unit', '~> 2.0.0'
