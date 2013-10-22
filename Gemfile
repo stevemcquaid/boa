@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 ruby '1.9.3'
 gem 'rails', '3.2.13'
-gem 'sqlite3'
 
 
 #Flip the two gems below this when trying to generate...
@@ -37,6 +36,7 @@ gem 'minitest', "~> 4.0"
 gem 'rails-erd'
 
 group :test do
+  gem 'sqlite3'
   gem 'capybara'
   gem 'ci_reporter'
   gem 'cucumber-rails', :require=>false
@@ -55,6 +55,7 @@ group :test do
 end
 
 group :development do
+  gem 'sqlite3'
   gem 'hirb' # pretty formatting for rails console
   gem 'passenger'
   gem 'populator3'
@@ -79,7 +80,7 @@ group :development do
 end
 
 group :staging do
-  gem 'pg'
+  gem 'pg'# , :require => true
   gem 'ci_reporter'
   gem 'rspec-rails'
   
