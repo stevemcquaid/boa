@@ -19,17 +19,17 @@ development:
   timeout: 5000
 
 staging: 
-#     adapter: sqlite3
-#     database: db/staging.sqlite3
-#     pool: 5
-#     timeout: 5000
-  adapter: postgresql
-  database: boaStage1
-  host: localhost
-  username: boaUser
-  password: Prof_H_No_Sn00p1ng
-  pool: 5
-  timeout: 5000
+    adapter: sqlite3
+    database: db/staging.sqlite3
+    pool: 5
+    timeout: 5000
+  # adapter: postgresql
+  # database: boaStage1
+  # host: localhost
+  # username: boaUser
+  # password: Prof_H_No_Sn00p1ng
+  # pool: 5
+  # timeout: 5000
 
 production:
   adapter: postgresql
