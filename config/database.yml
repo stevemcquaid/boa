@@ -9,12 +9,12 @@ development:
   database: db/development.sqlite3
   pool: 5
   timeout: 5000
-
+  
 production:
   adapter: postgresql
   encoding: unicode
   host: localhost
-  database: boaprod1
+  database: boaprod
   username: boauser
   password: Prof_H_No_Sn00p1ng
   pool: 5
@@ -24,11 +24,11 @@ staging:
   adapter: postgresql
   encoding: unicode
   host: localhost
-  database: boastage1
+  database: boastage
   username: boauser
   password: Prof_H_No_Sn00p1ng
   pool: 5
   timeout: 5000
-
+  
 cucumber:
   <<: *test

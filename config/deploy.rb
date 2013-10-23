@@ -84,7 +84,7 @@ namespace :db do
 
   desc "Create database associated with deployment environment"
   task :create, :except => { :no_release => true }, :roles => :db do
-    run "cd #{current_path} && bundle exec rake RAILS_ENV=#{rails_env} db:create --trace"
+    run "cd #{current_path} && bundle exec rake RAILS_ENV=#{rails_env} db:create"
   end
 
 end
