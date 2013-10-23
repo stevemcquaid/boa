@@ -173,13 +173,13 @@ ActiveRecord::Schema.define(:version => 20131018042733) do
 
   create_table "tasks", :force => true do |t|
     t.datetime "due_at"
-    t.datetime "display_duration"
     t.integer  "completed_by_id"
     t.string   "name"
     t.text     "description"
     t.integer  "task_status_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.datetime "display_duration"
     t.integer  "created_by"
     t.integer  "assigned_person"
     t.integer  "task_category_id"
