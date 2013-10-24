@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 ruby '1.9.3'
 gem 'rails', '3.2.13'
-gem 'sqlite3'
 
 
 #Flip the two gems below this when trying to generate...
@@ -37,6 +36,7 @@ gem 'minitest', "~> 4.0"
 gem 'rails-erd'
 
 group :test do
+  gem 'sqlite3'
   gem 'capybara'
   gem 'ci_reporter'
   gem 'cucumber-rails', :require=>false
@@ -55,6 +55,7 @@ group :test do
 end
 
 group :development do
+  gem 'sqlite3'
   gem 'hirb' # pretty formatting for rails console
   gem 'passenger'
   gem 'populator3'
@@ -78,7 +79,36 @@ group :development do
   gem 'simplecov-rcov', :require => false #code coverage
 end
 
+group :staging do
+  gem 'pg'# , :require => true
+  gem 'ci_reporter'
+  gem 'rspec-rails'
+  
+  gem 'hirb' # pretty formatting for rails console
+  gem 'populator3'
+  
+  gem 'passenger'
+  gem 'rspec-rails'
+  gem 'email_spec'
+  gem 'launchy'
+  
+  gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
+  gem 'quiet_assets'
+  
+  
+  gem 'shoulda'
+  gem 'shoulda-matchers'
+
+  # Steve said this gem is DIRTY.
+  # gem 'test-unit', '~> 2.0.0'
+
+  # Pretty printed test output
+  gem 'turn', :require => false
+end
+
+
 group :production do
+  gem 'pg'
   gem 'ci_reporter'
   gem 'passenger'
   gem 'rspec-rails'

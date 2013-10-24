@@ -6,8 +6,8 @@
 set :application, "trailer"
 
 # Multistage configuration
-set :stages, %w(development production)
-set :default_stage, "development"
+set :stages, %w(staging production)
+set :default_stage, "staging"
 require 'capistrano/ext/multistage'
 
 # Remote machine options
@@ -35,7 +35,6 @@ depend :remote, :directory, local_config_path
 # Bundler required to install other gems
 depend :local, :command, "bundle"
 set :bundle_flags, "--quiet"
-set :bundle_without, [:development, :test]
 require "bundler/capistrano"
 
 

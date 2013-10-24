@@ -3,16 +3,31 @@
   <div class="page-header">
     <h1><%=t '.title', :default => model_class.model_name.human %></h1>
   </div>
-  <dl class="dl-horizontal">
-    <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-    <dd><%= @tool.name %></dd>
-    <dt><strong><%= model_class.human_attribute_name(:barcode) %>:</strong></dt>
-    <dd><%= @tool.barcode %></dd>
-    <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-    <dd><%= @tool.description %></dd>
-    <dt><strong><%= model_class.human_attribute_name(:is_checked_out) %>:</strong></dt>
-    <dd><%= @tool.is_checked_out? %></dd>
-  </dl>
+  
+  <p>
+    <strong><%= model_class.human_attribute_name(:name) %>:</strong>
+    <%= @tool.name %>
+    </p>
+    <p>
+    <strong><%= model_class.human_attribute_name(:barcode) %>:</strong>
+    <%= @tool.barcode %>
+    </p>
+    <p>
+    <strong><%= model_class.human_attribute_name(:description) %>:</strong>
+    <%= @tool.description %>
+    </p>
+    <p>
+    <strong><%= model_class.human_attribute_name(:is_checked_out) %>:</strong>
+    <%= @tool.is_checked_out? %>
+    </p>
+
+    <p>
+    <% if(@tool.is_checked_out?) %>
+        <strong>Checked out by:</strong>
+    <% end %>
+    </p>
+
+
   <div class="form-actions">
     <%= link_to t('.back', :default => t("helpers.links.back")),
               tools_path, :class => 'btn'  %>

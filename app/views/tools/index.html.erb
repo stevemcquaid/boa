@@ -6,9 +6,8 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th><%= model_class.human_attribute_name(:id) %></th>
-        <th><%= model_class.human_attribute_name(:name) %></th>
         <th><%= model_class.human_attribute_name(:barcode) %></th>
+        <th><%= model_class.human_attribute_name(:name) %></th>
         <th><%= model_class.human_attribute_name(:description) %></th>
         <th><%= model_class.human_attribute_name(:is_checked_out) %></th>
         <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -17,9 +16,8 @@
     <tbody>
       <% @tools.each do |tool| %>
         <tr>
-          <td><%= link_to tool.id, tool_path(tool) %></td>
+          <td><%= link_to tool.barcode, tool_path(tool)%></td> 
           <td><%= tool.name %></td>
-          <td><%= tool.barcode %></td>
           <td><%= tool.description %></td>
           <td><%= tool.is_checked_out? %></td>
           <td>

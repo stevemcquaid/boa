@@ -3,13 +3,16 @@
   <div class="page-header">
     <!-- <h1><%=t '.title', :default => model_class.model_name.human %></h1> -->
   <h1><%= @organization.name %></h1>
+    <p>
+    <strong>Category:</strong>
+    <%= @organization.organization_category.name %>
+    </p>
   </div>
-  <dl class="dl-horizontal">
-    <dt><strong>Name: </strong></dt>
-    <dd><%= @organization.name %></dd>
-    <dt><strong>Category:</strong></dt>
-    <dd><%= @organization.organization_category.name %></dd>
-  </dl>
+
+<h4>Booth Chairs</h4>
+<div id="chairs">
+  <%= render :partial => 'participants/organization_booth_chair_list', :object => @booth_chairs %>
+</div>
 
 <%= render partial: 'show_org' %>
 

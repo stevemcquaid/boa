@@ -5,26 +5,30 @@
     <h1><%=t '.title', :default => @participant.andrewid %></h1>
   </div>
 
-  <dl class="dl-horizontal">
-    <dt><strong><%= model_class.human_attribute_name(:andrewid) %>:</strong></dt>
-    <dd><%= @participant.andrewid %></dd>
-
-    <dt><strong><%= model_class.human_attribute_name(:phone_number) %>:</strong></dt>
-    <dd><%= "(" + @participant.phone_number[0,3]+") "+@participant.phone_number[3,3]+"-"+@participant.phone_number[6,4] %></dd>
-    
-    <dt><strong><%= model_class.human_attribute_name(:memberships) %>:</strong></dt>
-    <dd><% @memberships.each do |membership| %><li><%= link_to membership.organization.name, membership.organization %></li><% end %></dd>
-
-
-    <dt><strong><%= model_class.human_attribute_name(:has_signed_waiver) %>:</strong></dt>
-    <dd><%= @participant.has_signed_waiver %></dd>
+  <p>
+    <strong><%= model_class.human_attribute_name(:andrewid) %>:</strong>
+    <%= @participant.andrewid %>
+  </p>
+  
+  <p>
+    <strong><%= model_class.human_attribute_name(:phone_number) %>:</strong>    
+    <%= "(" + @participant.phone_number[0,3]+") "+@participant.phone_number[3,3]+"-"+@participant.phone_number[6,4] %>
+  </p>
 
 
-    <dt><strong><%= model_class.human_attribute_name(:has_signed_hardhat_waiver) %>:</strong></dt>
-    <dd><%= @participant.has_signed_hardhat_waiver %></dd>
-  </dl>
+  <p>
+    <strong><%= model_class.human_attribute_name(:has_signed_waiver) %>:</strong>
+    <%= @participant.has_signed_waiver %>
+  </p>
 
-
+  <p>
+    <strong><%= model_class.human_attribute_name(:has_signed_hardhat_waiver) %>:</strong>
+    <%= @participant.has_signed_hardhat_waiver %>
+    </p>
+  <p>  
+    <strong><%= model_class.human_attribute_name(:memberships) %></strong>
+    <% @memberships.each do |membership| %><li><%= link_to membership.organization.name, membership.organization %></li><% end %>
+  </p>
   <div class="form-actions">
     <%= link_to t('.back', :default => t("helpers.links.back")),
                 participants_path, :class => 'btn'  %>
