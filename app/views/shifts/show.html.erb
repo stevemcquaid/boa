@@ -34,7 +34,7 @@
         <% @number_spots_left.times do %>
           <li>Person Not Checked In:
             <%= link_to t('.new', :default => t("helpers.links.new")),
-              new_shift_participant_path(:shift => {:shift_id => @shift.id}),
+              shift_checkin_path(),
               :class => 'btn btn-primary' %></li>
         <% end %>
       </ul>

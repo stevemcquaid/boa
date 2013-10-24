@@ -97,4 +97,32 @@ class ShiftParticipantsController < ApplicationController
         redirect_to @shift_participant.shift
     end
   end
+
+  def clock_in
+    @shift = Shift.find(params[:id])
+
+    @shift_participant = ShiftParticipant.new
+    @shift_participant.shift = @shift
+    shift = @shift
+
+
+    # @shift_participant.participant_id = Participant.find_by_card(params[:participant]).id
+
+    # @shift_participant.save!
+
+    # if(!@shift.is_checked_out?)
+    #     @checkout = Checkout.new
+    #     @checkout.checked_in_at = nil
+    #     @checkout.checked_out_at = Date.today
+    #     @checkout.tool = @tool
+    #     @checkout.participant = nil
+    #     @checkout.organization = nil
+    #     @checkout.save!
+
+    #     redirect_to @tool
+    # else
+    #     flash[:notice] = "#{@tool.name} was not checked out because it has been previously checked out."
+    #     redirect_to @tool
+    # end
+  end
 end
