@@ -336,6 +336,12 @@ namespace :db do
     puts "Tool"
 
     new_tool = Tool.new
+    new_tool.barcode = 1
+    new_tool.description = "Original Hammer"
+    new_tool.name = "Original Hammer"
+    new_tool.save!
+
+    new_tool = Tool.new
     new_tool.barcode = 12378083290
     new_tool.description = "HAMMER"
     new_tool.name = "Hammer"
@@ -355,6 +361,12 @@ namespace :db do
 
     new_tool = Tool.new
     new_tool.barcode = 123743280812
+    new_tool.description = "HARD HAT"
+    new_tool.name = "Hard Hat"
+    new_tool.save!
+
+    new_tool = Tool.new
+    new_tool.barcode = 1344
     new_tool.description = "HARD HAT"
     new_tool.name = "Hard Hat"
     new_tool.save!
