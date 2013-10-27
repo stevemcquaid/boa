@@ -1,7 +1,7 @@
 <% if can?(:create, @checkout) %>
   <%= simple_form_for @checkout, :html => { :class => 'form-horizontal' }, :url => create_tool_checkout_path do |f| %>
     <%= f.input :tool_id, label: 'Tool Barcode' %>
-    <%= f.input :participant_id, label: 'Participant ID Card Code' %>
+    <%= f.input :temp_id_card_number, label: 'Participant ID Card Code' %>
     <div class="form-actions">
       <%= f.button :submit, :class => 'btn-primary' %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
