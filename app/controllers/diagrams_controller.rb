@@ -1,17 +1,12 @@
 class DiagramsController < ApplicationController
   load_and_authorize_resource
 
-  require 'rubygems'
-  require 'pdf/reader'
-
-
   def index
     @diagrams = Diagram.all
   end
 
   def show
     @diagram = Diagram.find(params[:id])
-    
     @diagram_url_path = @diagram.image.to_s
   end
 
