@@ -1,6 +1,9 @@
 class DiagramsController < ApplicationController
   load_and_authorize_resource
-  
+
+  require 'rubygems'
+  require 'pdf/reader'
+
 
   def index
     @diagrams = Diagram.all
@@ -8,6 +11,8 @@ class DiagramsController < ApplicationController
 
   def show
     @diagram = Diagram.find(params[:id])
+    
+    @diagram_url_path = @diagram.image.to_s
   end
 
   def new
@@ -24,7 +29,7 @@ class DiagramsController < ApplicationController
 
     if @diagram.save
       flash[:notice] = "#{@diagram.name} has been created."
-      redirect_to @diagram 
+      redirect_to @diagram
     else
       render :action => 'new'
     end

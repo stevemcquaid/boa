@@ -2,7 +2,8 @@
   <div class="page-header">
     <h1><%= @diagram.name %></h1>
   </div>
-  <%= image_tag(@diagram.image, :alt => @diagram.name, :style => 'max-width: 500px') %>
+  <%= link_to t('.show', :default => t("helpers.links.show")),
+              @diagram_url_path, :class => 'btn' %>
   <div class="form-actions">
     <%= link_to t('.back', :default => t("helpers.links.back")),
               diagrams_path, :class => 'btn' %>
