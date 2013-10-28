@@ -20,8 +20,11 @@ Boa::Application.routes.draw do
   match "checkout_tool/:id" => "tools#checkout", :as => :checkout_tool
   match "checkin_tool/:id" => "tools#checkin", :as => :checkin_tool
 
-  match "clock_in_shift/:id" => "shift_participants#clock_in", :as => :clock_in_shift
-  match "clock_out_shift/:id" => "shift_participants#clock_out", :as => :clock_out_shift
+  match "new_shift_clock_in/:id" => "shift_participants#new_shift_clock_in", :as => :new_shift_clock_in
+  match "create_shift_clock_in" => "shift_participants#create_shift_clock_in", :as => :create_shift_clock_in
+
+  match "new_shift_clock_out/:id" => "shift_participants#new_shift_clock_out", :as => :new_shift_clock_out
+  match "create_shift_clock_out" => "shift_participants#create_shift_clock_out", :as => :create_shift_clock_out
 
   match "new_tool_checkout" => "checkouts#new_tool_checkout", :as => :new_tool_checkout
   match "create_tool_checkout" => "checkouts#create_tool_checkout", :as => :create_tool_checkout

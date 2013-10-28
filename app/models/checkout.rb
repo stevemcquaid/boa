@@ -2,6 +2,7 @@ class Checkout < ActiveRecord::Base
   attr_accessible :checked_in_at, :checked_out_at, :participant_id, :organization_id, :tool_id
   #before_save :hasParticipantOrOrganization
 
+  # used for ID swipe forms
   attr_accessible :temp_id_card_number
   attr_accessor :temp_id_card_number
 

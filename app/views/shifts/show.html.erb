@@ -26,15 +26,15 @@
             <% end %>
             )
             <% if shift_participant.clocked_out_at.nil? %>
-              <%= link_to t('.clock_out_shift', :default => t("helpers.links.clock_out_shift")),
-                              clock_out_shift_path(shift_participant), :class => 'btn btn-mini' %>
+              <%= link_to t('.new_shift_clock_out', :default => t("helpers.links.clock_out_shift")),
+                              new_shift_clock_out_path(shift_participant), :class => 'btn btn-mini' %>
             <% end %>
           </li>
         <% end %>
         <% @number_spots_left.times do %>
           <li>Person Not Checked In:
-            <%= link_to t('.new', :default => t("helpers.links.new")),
-              shift_checkin_path(),
+            <%= link_to t('.new_shift_clock_in', :default => t("helpers.links.clock_in")),
+              new_shift_clock_in_path,
               :class => 'btn btn-primary' %></li>
         <% end %>
       </ul>
