@@ -7,4 +7,6 @@ class OrganizationAlias < ActiveRecord::Base
 
   belongs_to :organization  
   
+  scope :search, lambda { |term| where('name LIKE ?', "#{term}%") }
+
 end

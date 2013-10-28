@@ -1,11 +1,7 @@
 Boa::Application.routes.draw do
 
   resources :task_categories
-
-
   resources :contact_lists
-
-
   resources :charges
   resources :checkouts
   resources :contact_lists
@@ -30,6 +26,7 @@ Boa::Application.routes.draw do
   match "new_tool_checkout" => "checkouts#new_tool_checkout", :as => :new_tool_checkout
   match "create_tool_checkout" => "checkouts#create_tool_checkout", :as => :create_tool_checkout
 
+
   match "new_participant_membership" => "memberships#new_participant_membership", :as => :new_participant_membership
   match "create_participant_membership" => "memberships#create_participant_membership", :as => :create_participant_membership
 
@@ -39,6 +36,8 @@ Boa::Application.routes.draw do
   match "contacts" => "home#contact_list", :as => "contacts"
   match "milestones" => "home#milestones", :as => "milestones"
   match "esp" => "home#esp", :as => "esp"
+
+  match "search" => "home#search", :as => "search"
 
   authenticated :user do
     root :to => 'home#index'

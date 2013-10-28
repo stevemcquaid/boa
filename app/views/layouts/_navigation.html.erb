@@ -12,6 +12,7 @@
           <li><%= link_to "Participants", participants_path %></li>
           <li><%= link_to "Tools", tools_path %></li>
           <li><%= link_to "Diagrams", diagrams_path %></li>
+
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Models<b class="caret"></b></a>
             <ul class="dropdown-menu">
@@ -42,18 +43,19 @@
             <li><%= link_to "Phone Numbers", phonenumbers_path %></li>
             <li><%= link_to "ESP", esp_path %></li>
             <li><%= link_to "Milestones", milestones_path %></li>
+            <li><%= link_to "Search", search_path %></li>
           </ul>
         </li>
       </ul>
       <!-- Right Navbar -->
       <ul class="nav navbar-right pull-right">
         <!-- Searchbar -->
-        <li>
-          <form class="navbar-form navbar-right pull-right " role="search">
-            <input type="text" class="form-control" placeholder="Search">
-              <button type="submit" class="btn btn-default">Search</button>
-            </form>
-          </li>
+          <form class="navbar-search pull-left" accept-charset="UTF-8" action="/search" method="post" >
+            <input type="text" class="search-query" placeholder="Search..." id="query" name="query" style="width: 130px;">
+            <input name="authenticity_token" type="hidden" value>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form> 
+      
           <!-- User Account Section -->
           <% if user_signed_in? %>
             <li class="dropdown">

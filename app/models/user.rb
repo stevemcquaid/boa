@@ -23,5 +23,7 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password, :message => "does not match"
   validates_length_of :password, :minimum => 4, :message => "must be at least 4 characters long", :allow_blank => true
   
+  scope :search, lambda { |term| where('name LIKE ? OR email LIKE ?', "#{term}%", "#{term}%") }
+
   
 end

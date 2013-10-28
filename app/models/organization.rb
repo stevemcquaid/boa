@@ -16,5 +16,7 @@ class Organization < ActiveRecord::Base
   default_scope order('name asc')
   scope :alphabetical, order('name')
 
+  scope :search, lambda { |term| where('name LIKE ?', "#{term}%") }
+
   
 end

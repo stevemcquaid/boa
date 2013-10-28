@@ -19,6 +19,9 @@ class Participant < ActiveRecord::Base
   has_one  :contact_list #this may need to be enabled?
   belongs_to :user
 
+  scope :search, lambda { |term| where('andrewid LIKE ?', "#{term}%") }
+
+
   def ldap_reference
     @ldap_reference ||= CarnegieMellonPerson.find_by_andrewid( self.andrewid )
     # Add new attributes to CarnegieMellonPerson attributes before adding 

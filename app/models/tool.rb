@@ -12,6 +12,9 @@ class Tool < ActiveRecord::Base
   scope :radios, where('NAME LIKE "%radio"')
   scope :just_tools, where('NAME NOT LIKE "%radio" AND NAME NOT LIKE "%hardhat"')
 
+  scope :search, lambda { |term| where('name LIKE ? OR barcode LIKE ?', "#{term}%", "#{term}%") }
+
+
   def current_organization
     if not self.checkouts.current.empty?
       return self.checkouts.current[0].organization
