@@ -80,7 +80,9 @@ group :development do
 end
 
 group :staging do
-  gem 'pg'# , :require => true
+  #gem 'pg'# , :require => true
+  gem 'sqlite3' #testing
+
   gem 'ci_reporter'
   gem 'rspec-rails'
   

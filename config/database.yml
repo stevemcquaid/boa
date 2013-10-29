@@ -21,14 +21,18 @@ production:
   timeout: 5000
 
 staging:
-  adapter: postgresql
-  encoding: unicode
-  host: localhost
-  database: boastage1
-  username: boauser
-  password: Prof_H_No_Sn00p1ng
+  adapter: sqlite3
+  database: db/staging.sqlite3
   pool: 5
   timeout: 5000
+  # adapter: postgresql
+  # encoding: unicode
+  # host: localhost
+  # database: boastage1
+  # username: boauser
+  # password: Prof_H_No_Sn00p1ng
+  # pool: 5
+  # timeout: 5000
 
 cucumber:
   <<: *test

@@ -123,7 +123,7 @@ class ShiftParticipantsController < ApplicationController
 
       respond_to do |format|
         if @shift_participant.save
-          format.html { redirect_to @shift, notice: "#{participant.name} was successfully checked in." }
+          format.html { redirect_to @shift, notice: "#{@participant.name} was successfully checked in." }
           format.json { render json: @shift, status: :created, location: @shift }
         else
           format.html { render action: "new" }
@@ -141,16 +141,16 @@ class ShiftParticipantsController < ApplicationController
           @participant = Participant.find_by_card(params[:shift_participant][:temp_id_card_number].to_s) #this creates a CMU directory request to get the andrew id associated with the card number. Then finds the local DB mapping to get the participant id.
           raise ParticipantDoesNotExist unless !@participant.nil?
 
+          # puts @participant.name != Participant.find_by_id(@shift_participant.participant).name
+
         if(@participant.name != Participant.find_by_id(@shift_participant.participant).name)
           raise "Participant does not match"
         end
 
-        @shift_participant.save!
-
         respond_to do |format|
-          if @shift_participant.save
-            format.html { redirect_to @shift, notice: "#{participant.name} was successfully checked out." }
-            format.json { render json: @shift, status: :created, location: @shift }
+          if @shift_participant.save!
+            format.html { redirect_to @shift_participant.shift, notice: "#{@participant.name} was successfully checked out." }
+            format.json { render json: @shift_participant.shift, status: :created, location: @shift }
           else
             format.html { render action: "new" }
             format.json { render json: @shift_participant.errors, status: :unprocessable_entity }
