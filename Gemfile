@@ -80,7 +80,7 @@ group :development do
 end
 
 group :staging do
-  #gem 'pg'# , :require => true
+  gem 'pg'# , :require => true
   gem 'sqlite3' #testing
 
   gem 'ci_reporter'
@@ -111,6 +111,7 @@ end
 
 group :production do
   gem 'pg'
+  gem 'sqlite3'
   gem 'ci_reporter'
   gem 'passenger'
   gem 'rspec-rails'
