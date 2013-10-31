@@ -28,7 +28,7 @@ set :deploy_via, :copy
 set :local_config_path, "/usr/local/etc/#{application}"
 set :destination_config_path, deploy_to
 set :local_config_files, ["#{File.join('config','initializers','secret_token.rb')}",
-                          "#{File.join('config','database.yml')}"                          
+                          #"#{File.join('config','database.yml')}"                          
                          ]
 depend :remote, :directory, local_config_path
 
@@ -49,7 +49,7 @@ namespace :deploy do
   task :start do ; end
 
   task :stop do ; end
-
+  
   desc "Reload mod_passenger"
   task :restart, :except => { :no_release => true }, :roles => :app do
     run "touch #{File.join(current_path,'tmp','restart.txt')}"
