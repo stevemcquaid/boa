@@ -28,7 +28,7 @@ staging:
   # adapter: postgresql
   # encoding: unicode
   # host: localhost
-  # database: boastage1
+  # database: boastage
   # username: boauser
   # password: Prof_H_No_Sn00p1ng
   # pool: 5
