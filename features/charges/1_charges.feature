@@ -1,16 +1,17 @@
 Feature: Manage charges
+	Charges should be managed properly
 
-	As an admin
-	I want to be able to manage charge information
-	So I can make money
+	Scenario: Administrators should be able to see the edit and delete actions
+		Given I am an admin
+		When I go to the charges index page
+		Then I should see edit
+		And I should see destroy
+		When I press destroy
+		Then the confirmation box should have been displayed
 
-	Background:
-		Given an initial charge
-
-	Scenario: View charges
-		When I go to the charges page
-		Then I should see "Organization"
-		And I should see "Charge Type"
-		And I should see "Amount"
-		And I should see "Description"
-		And I should see "Charged At"
+	Scenario: Administrators should be able to edit a charge
+		Given I am an admin
+		When I go to the charge view page
+		I should see "*Organization"
+		And I should see "*Charge Type"
+		And I should see "*Amount"

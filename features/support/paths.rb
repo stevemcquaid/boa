@@ -17,6 +17,18 @@ module NavigationHelpers
     when /the sign in page/
       '/users/sign_in'
 
+    # Charges
+
+    when /the charges index page/
+      charges_path
+
+    when /the charge view page/
+      charge_path(1)
+
+    # Checkouts
+    when /the checkout index page/
+      checkouts_path
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
