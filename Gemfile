@@ -15,7 +15,7 @@ group :assets do
 end
 
 gem 'bootstrap-sass'
-gem 'capistrano' #auto deployment
+gem "capistrano", "~> 2.15.5"
 gem 'factory_girl_rails' #fixture testing
 gem 'jquery-rails'
 gem 'cancan' #user auth
