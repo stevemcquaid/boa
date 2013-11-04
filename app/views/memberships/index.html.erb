@@ -21,7 +21,7 @@
           <td><%= link_to membership.id, membership_path(membership) %></td>
           <td><%= membership.organization.name %></td>
           <td><%= membership.participant.andrewid %></td>
-          <td><%= "#{(membership.is_booth_chair)? "Yes" : "No"}" %></td>
+          <td><%= format_boolean(membership.is_booth_chair?) %></td>
           <td><%= membership.title %></td>
           <td><%= membership.booth_chair_order %></td>
           <td>
@@ -29,7 +29,6 @@
               <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_membership_path(membership), :class => 'btn btn-mini' %>
             <% end %>
-
             <% if can?(:destroy, membership) %>
               <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       membership_path(membership),
@@ -47,7 +46,6 @@
             new_membership_path,
             :class => 'btn btn-primary' %>
   <% end %>
-  
 <% else %>
   <h3>Not Authorized!</h3>
 <% end %>

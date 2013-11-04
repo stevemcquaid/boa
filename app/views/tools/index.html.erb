@@ -16,25 +16,22 @@
     <tbody>
       <% @tools.each do |tool| %>
         <tr>
-          <td><%= link_to tool.barcode, tool_path(tool)%></td> 
+          <td><%= link_to tool.barcode, tool_path(tool)%></td>
           <td><%= tool.name %></td>
           <td><%= tool.description %></td>
-          <td><%= tool.is_checked_out? %></td>
+          <td><%= format_boolean(tool.is_checked_out?) %></td>
           <td>
             <% if(tool.is_checked_out?) %>
               <%= link_to t('.checkin', :default => t("helpers.links.checkin")),
                               checkin_tool_path(tool), :class => 'btn btn-mini' %>
-
             <% else %>
               <%= link_to t('.checkout', :default => t("helpers.links.checkout")),
                               checkout_tool_path(tool), :class => 'btn btn-mini' %>
             <% end %>
-            
             <% if can?(:update, tool) %>
               <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_tool_path(tool), :class => 'btn btn-mini' %>
             <% end %>
-
             <% if can?(:destroy, tool) %>
               <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       tool_path(tool),
@@ -47,13 +44,11 @@
       <% end %>
     </tbody>
   </table>
-  
   <% if can?(:create, Tool) %>
     <%= link_to t('.new', :default => t("helpers.links.new")),
             new_tool_path,
             :class => 'btn btn-primary' %>
   <% end %>
-
 <% else %>
   <h3>Not Authorized!</h3>
 <% end %>
