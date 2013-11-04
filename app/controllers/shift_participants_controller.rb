@@ -83,6 +83,7 @@ class ShiftParticipantsController < ApplicationController
     end
   end
 
+  # GET
   def new_shift_clock_in
     @shift_participant = ShiftParticipant.new
     @shift = Shift.find(params[:id])
@@ -94,6 +95,7 @@ class ShiftParticipantsController < ApplicationController
     end
   end
 
+  # GET
   def new_shift_clock_out
     @shift_participant = ShiftParticipant.find(params[:id])
 
@@ -106,10 +108,19 @@ class ShiftParticipantsController < ApplicationController
     end
   end
 
+  class ShiftDoesNotExist < Exception
+  end
+
+  class ParticipantDoesNotExist < Exception
+  end
+
+  class ParticipantDoesNotMatch < Exception
+  end
+
   # POST
   def create_shift_clock_in
     @shift_participant = ShiftParticipant.new
-    @shift_participant.clocked_in_at = Date.today
+    @shift_participant.clocked_in_at = Time.now
     @shift = Shift.find_by_id(params[:shift_participant][:shift_id])
     raise ShiftDoesNotExist unless !@shift.nil?
 
@@ -131,73 +142,27 @@ class ShiftParticipantsController < ApplicationController
         end
       end
     end
+  end
 
-    def create_shift_clock_out
-      @shift_participant = ShiftParticipant.find(params[:shift_participant][:id])
-      @shift_participant.clocked_out_at = Date.today
+  # POST
+  def create_shift_clock_out
+    @shift_participant = ShiftParticipant.find(params[:shift_participant][:id])
+    @shift_participant.clocked_out_at = Time.now
 
-      #do app logic validation here where the participant id field can map to different organizations.
-          #this could be cool for having a student id number represent an organization and instead of participant_id we will change it to an organization_id
-          @participant = Participant.find_by_card(params[:shift_participant][:temp_id_card_number].to_s) #this creates a CMU directory request to get the andrew id associated with the card number. Then finds the local DB mapping to get the participant id.
-          raise ParticipantDoesNotExist unless !@participant.nil?
+    #do app logic validation here where the participant id field can map to different organizations.
+        #this could be cool for having a student id number represent an organization and instead of participant_id we will change it to an organization_id
+        @participant = Participant.find_by_card(params[:shift_participant][:temp_id_card_number].to_s) #this creates a CMU directory request to get the andrew id associated with the card number. Then finds the local DB mapping to get the participant id.
+        raise ParticipantDoesNotExist unless !@participant.nil?
 
-          # puts @participant.name != Participant.find_by_id(@shift_participant.participant).name
+      raise ParticipantDoesNotMatch unless (@participant.name == Participant.find_by_id(@shift_participant.participant).name)
 
-        if(@participant.name != Participant.find_by_id(@shift_participant.participant).name)
-          raise "Participant does not match"
+      respond_to do |format|
+        if @shift_participant.save!
+          format.html { redirect_to @shift_participant.shift, notice: "#{@participant.name} was successfully checked out." }
+          format.json { render json: @shift_participant.shift, status: :created, location: @shift }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @shift_participant.errors, status: :unprocessable_entity }
         end
-
-        respond_to do |format|
-          if @shift_participant.save!
-            format.html { redirect_to @shift_participant.shift, notice: "#{@participant.name} was successfully checked out." }
-            format.json { render json: @shift_participant.shift, status: :created, location: @shift }
-          else
-            format.html { render action: "new" }
-            format.json { render json: @shift_participant.errors, status: :unprocessable_entity }
-          end
-        end
-      end
-
-
-      # def new_shift_clock_out
-
-
-      #   if(!@shift_participant.nil? && @shift_participant.clocked_out_at.nil?)
-      #       @shift_participant.clocked_out_at = Date.today
-      #       @shift_participant.save!
-
-      #       redirect_to @shift_participant.shift
-      #   else
-      #       flash[:notice] = "#{@shift_participant.participant.name} was not clocked out."
-      #       redirect_to @shift_participant.shift
-      #   end
-      # end
-
-      def clock_in
-        @shift = Shift.find(params[:id])
-
-        @shift_participant = ShiftParticipant.new
-        @shift_participant.shift = @shift
-        shift = @shift
-
-
-        # @shift_participant.participant_id = Participant.find_by_card(params[:participant]).id
-
-        # @shift_participant.save!
-
-        # if(!@shift.is_checked_out?)
-        #     @checkout = Checkout.new
-        #     @checkout.checked_in_at = nil
-        #     @checkout.checked_out_at = Date.today
-        #     @checkout.tool = @tool
-        #     @checkout.participant = nil
-        #     @checkout.organization = nil
-        #     @checkout.save!
-
-        #     redirect_to @tool
-        # else
-        #     flash[:notice] = "#{@tool.name} was not checked out because it has been previously checked out."
-        #     redirect_to @tool
-        # end
       end
     end
