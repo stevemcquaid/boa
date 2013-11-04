@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class MidwayDiagramUploader < CarrierWave::Uploader::Base
+class DocumentUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick

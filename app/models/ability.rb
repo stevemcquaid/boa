@@ -13,7 +13,7 @@ class Ability
     elsif user.has_role? :booth_chair
       cannot :manage, :all
 
-      can :read, [ChargeType, Checkout, ContactList, Diagram, Faq, Membership, Organization, OrganizationAlias,
+      can :read, [ChargeType, Checkout, ContactList, Document, Faq, Membership, Organization, OrganizationAlias,
                   OrganizationCategory, Participant, Role, ShiftParticipant, ShiftType, Tool]
       can :read, Charge, :organization_id => user.participant.organizations.first.id
       can :read, Shift, :organization_id => user.participant.organizations.first.id
@@ -24,7 +24,7 @@ class Ability
     elsif user.has_role? :member
       cannot :manage, :all
 
-      can :read, [Checkout, ContactList, Diagram, Faq, Membership, Organization, OrganizationAlias,
+      can :read, [Checkout, ContactList, Document, Faq, Membership, Organization, OrganizationAlias,
                   OrganizationCategory, Participant, Role, ShiftParticipant, ShiftType, Tool]
       can :read, Shift, :organization_id => user.participant.organizations.first.id
       can :read, User, :user_id => user.id

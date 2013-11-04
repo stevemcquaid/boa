@@ -55,12 +55,12 @@ ActiveRecord::Schema.define(:version => 20131018042733) do
     t.datetime "updated_at",      :null => false
   end
 
-  create_table "diagrams", :force => true do |t|
-    t.integer  "diagram_id"
+  create_table "documents", :force => true do |t|
+    t.integer  "document_id"
     t.string   "name"
-    t.string   "image"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "url"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "faqs", :force => true do |t|

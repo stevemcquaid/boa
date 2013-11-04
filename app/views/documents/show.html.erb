@@ -1,21 +1,21 @@
-<% if can?(:read, @diagram) %>
+<% if can?(:read, @document) %>
   <div class="page-header">
-    <h1><%= @diagram.name %></h1>
+    <h1><%= @document.name %></h1>
   </div>
   <%= link_to t('.show', :default => t("helpers.links.show")),
-              @diagram_url_path, :class => 'btn' %>
+              @document_url_path, :class => 'btn' %>
   <div class="form-actions">
     <%= link_to t('.back', :default => t("helpers.links.back")),
-              diagrams_path, :class => 'btn' %>
+              documents_path, :class => 'btn' %>
               
-    <% if can?(:edit, @diagram) %>
+    <% if can?(:edit, @document) %>
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_diagram_path(@diagram), :class => 'btn' %>
+              edit_document_path(@document), :class => 'btn' %>
     <% end %>
     
-    <% if can?(:destroy, @diagram) %>
+    <% if can?(:destroy, @document) %>
       <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              diagram_path(@diagram),
+              document_path(@document),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>

@@ -5,7 +5,7 @@ Boa::Application.routes.draw do
   resources :charges
   resources :checkouts
   resources :contact_lists
-  resources :diagrams
+  resources :documents
   resources :faqs
   resources :memberships
   resources :organizations
