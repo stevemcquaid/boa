@@ -1,9 +1,9 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :diagram do
-    diagram_id 1
+  factory :document do
+    document_id 1
     name "MyString"
-    image "MyString"
+    url "MyString"
   end
 end

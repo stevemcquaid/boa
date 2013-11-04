@@ -26,7 +26,7 @@ class AbilityTest < ActiveSupport::TestCase
       assert ability.can?(:manage, ChargeType)
       assert ability.can?(:manage, Checkout)
       assert ability.can?(:manage, ContactList)
-      assert ability.can?(:manage, Diagram)
+      assert ability.can?(:manage, Document)
       assert ability.can?(:manage, Faq)
       assert ability.can?(:manage, Membership)
       assert ability.can?(:manage, Organization)
@@ -73,10 +73,10 @@ class AbilityTest < ActiveSupport::TestCase
       assert ability.cannot?(:destroy, ContactList)
       assert ability.can?(:read, ContactList)
 
-      assert ability.cannot?(:create, Diagram)
-      assert ability.cannot?(:update, Diagram)
-      assert ability.cannot?(:destroy, Diagram)
-      assert ability.can?(:read, Diagram)
+      assert ability.cannot?(:create, Document)
+      assert ability.cannot?(:update, Document)
+      assert ability.cannot?(:destroy, Document)
+      assert ability.can?(:read, Document)
 
       assert ability.cannot?(:create, Faq)
       assert ability.cannot?(:update, Faq)
@@ -158,10 +158,10 @@ class AbilityTest < ActiveSupport::TestCase
       assert ability.cannot?(:destroy, ContactList)
       assert ability.can?(:read, ContactList)
 
-      assert ability.cannot?(:create, Diagram)
-      assert ability.cannot?(:update, Diagram)
-      assert ability.cannot?(:destroy, Diagram)
-      assert ability.can?(:read, Diagram)
+      assert ability.cannot?(:create, Document)
+      assert ability.cannot?(:update, Document)
+      assert ability.cannot?(:destroy, Document)
+      assert ability.can?(:read, Document)
 
       assert ability.cannot?(:create, Faq)
       assert ability.cannot?(:update, Faq)
