@@ -190,6 +190,14 @@ namespace :db do
     new_participant.user = User.find_by_name("Jackson Gallagher")
     new_participant.save!
 
+    ew_participant = Participant.new
+    new_participant.andrewid = "lheimann"
+    # new_participant.has_signed_waiver = false
+    # new_participant.has_signed_hardhat_waiver = false
+    new_participant.phone_number = 1234567887
+    new_participant.user = User.find_by_name("Test Member")
+    new_participant.save!
+
 
     puts "Task Category"
 
@@ -373,6 +381,22 @@ namespace :db do
     new_membership.booth_chair_order = 1
     new_membership.is_booth_chair = true
     new_membership.title = nil
+    new_membership.save!
+
+    new_membership = Membership.new
+    new_membership.participant = Participant.find_by_andrewid("lheimann")
+    new_membership.organization = Organization.find_by_name("Student Dormitory Council")
+    new_membership.booth_chair_order = nil
+    new_membership.is_booth_chair = false
+    new_membership.title = ""
+    new_membership.save!
+
+    new_membership = Membership.new
+    new_membership.participant = Participant.find_by_andrewid("lheimann")
+    new_membership.organization = Organization.find_by_name("Spring Carnival Committee")
+    new_membership.booth_chair_order = nil
+    new_membership.is_booth_chair = false
+    new_membership.title = ""
     new_membership.save!
 
     puts
