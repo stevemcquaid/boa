@@ -36,10 +36,10 @@ rake ci:setup:minitest test
 # rake test:integration
 
 #kill old server daemon
-kill -INT `ps -e | grep ruby | awk '{print $1}'`
+#kill -INT `ps -e | grep ruby | awk '{print $1}'`
 
-#start new server daemon
-rails s -d
+#start new server daemon fail gracefully!
+rails s -d || true
 
 cap staging deploy
 
