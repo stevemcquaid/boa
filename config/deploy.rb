@@ -88,7 +88,7 @@ namespace :db do
   end
 
   task :migrate, :except => { :no_release => true }, :roles => :db do
-    run "cd #{current_path} && bundle exec rake db:create"
+    run "cd #{current_path} && bundle exec rake db:popInit"
   end
 
 end
