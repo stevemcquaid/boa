@@ -15,8 +15,15 @@ class Ability
 
       can :read, [ChargeType, Checkout, ContactList, Document, Faq, Membership, Organization, OrganizationAlias,
                   OrganizationCategory, Participant, Role, ShiftParticipant, ShiftType, Tool]
-      can :read, Charge, :organization_id => user.participant.organizations.first.id
-      can :read, Shift, :organization_id => user.participant.organizations.first.id
+
+      can :read, Charge do |c|
+        c.organization.participants.include? (user.participant)
+      end
+
+      can :read, Shift do |s|
+        s.organization.participants.include? (user.participant)
+      end
+
       can :read, User, :user_id => user.id
       cannot :update, User
       cannot :destroy, User
