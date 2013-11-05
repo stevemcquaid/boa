@@ -142,27 +142,27 @@ class ShiftParticipantsController < ApplicationController
         end
       end
     end
-  end
 
-  # POST
-  def create_shift_clock_out
-    @shift_participant = ShiftParticipant.find(params[:shift_participant][:id])
-    @shift_participant.clocked_out_at = Time.now
+    # POST
+    def create_shift_clock_out
+      @shift_participant = ShiftParticipant.find(params[:shift_participant][:id])
+      @shift_participant.clocked_out_at = Time.now
 
-    #do app logic validation here where the participant id field can map to different organizations.
-        #this could be cool for having a student id number represent an organization and instead of participant_id we will change it to an organization_id
-        @participant = Participant.find_by_card(params[:shift_participant][:temp_id_card_number].to_s) #this creates a CMU directory request to get the andrew id associated with the card number. Then finds the local DB mapping to get the participant id.
-        raise ParticipantDoesNotExist unless !@participant.nil?
+      #do app logic validation here where the participant id field can map to different organizations.
+          #this could be cool for having a student id number represent an organization and instead of participant_id we will change it to an organization_id
+          @participant = Participant.find_by_card(params[:shift_participant][:temp_id_card_number].to_s) #this creates a CMU directory request to get the andrew id associated with the card number. Then finds the local DB mapping to get the participant id.
+          raise ParticipantDoesNotExist unless !@participant.nil?
 
-      raise ParticipantDoesNotMatch unless (@participant.name == Participant.find_by_id(@shift_participant.participant).name)
+        raise ParticipantDoesNotMatch unless (@participant.name == Participant.find_by_id(@shift_participant.participant).name)
 
-      respond_to do |format|
-        if @shift_participant.save!
-          format.html { redirect_to @shift_participant.shift, notice: "#{@participant.name} was successfully checked out." }
-          format.json { render json: @shift_participant.shift, status: :created, location: @shift }
-        else
-          format.html { render action: "new" }
-          format.json { render json: @shift_participant.errors, status: :unprocessable_entity }
+        respond_to do |format|
+          if @shift_participant.save!
+            format.html { redirect_to @shift_participant.shift, notice: "#{@participant.name} was successfully checked out." }
+            format.json { render json: @shift_participant.shift, status: :created, location: @shift }
+          else
+            format.html { render action: "new" }
+            format.json { render json: @shift_participant.errors, status: :unprocessable_entity }
+          end
         end
       end
     end

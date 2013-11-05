@@ -25,6 +25,12 @@ class ApplicationController < ActionController::Base
     redirect_to "/tools/new"
   end
 
+  rescue_from 'ShiftParticipantsController::ParticipantDoesNotMatch' do |exception|
+    flash[:error] = "The participants don't match!"
+    #Event.new_event "Exception: #{exception.message}", current_user, request.remote_ip #deugging
+    redirect_to "/shifts"
+  end
+
   rescue_from 'RestClient::Forbidden' do |exception|
     flash[:error] = "Cannot connect to CMU Authentication"
     #Event.new_event "Exception: #{exception.message}", current_user, request.remote_ip #deugging
