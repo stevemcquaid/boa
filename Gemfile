@@ -12,9 +12,9 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'sass-rails',   '~> 3.2.3'
   gem 'uglifier', '>= 1.0.3'
+  gem 'bootstrap-sass', '~> 3.0.1.0.rc'
 end
 
-gem 'bootstrap-sass', '~> 3.0.1.0.rc'
 gem "capistrano", "2.15.5"
 gem 'factory_girl_rails' #fixture testing
 gem 'jquery-rails'
@@ -84,9 +84,6 @@ group :staging do
   gem 'sqlite3' #testing
   
   
-  gem "therubyracer"
-  gem "less-rails"
-  gem "twitter-bootstrap-rails"
   
   gem 'ci_reporter'
   gem 'rspec-rails'
