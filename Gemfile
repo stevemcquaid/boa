@@ -14,7 +14,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.0.1.0.rc'
 gem "capistrano", "2.15.5"
 gem 'factory_girl_rails' #fixture testing
 gem 'jquery-rails'
