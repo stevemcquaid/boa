@@ -18,7 +18,22 @@
 
 $(document).ready(function(){
 	dynamicFaq();
+    addFlashFadeOutListeners();
 });
+
+function addFlashFadeOutListeners() {
+    $(function() {
+       $('.alert-success').fadeIn('normal', function() {
+          $(this).delay(2500).fadeOut();
+       });
+    });
+    
+    $(function() {
+       $('.alert-error').fadeIn('normal', function() {
+          $(this).delay(2500).fadeOut();
+       });
+    });
+}
 
 // This is buggy - it does not hide the correct elements
 function dynamicFaq(){

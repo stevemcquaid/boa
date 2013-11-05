@@ -10,7 +10,7 @@ namespace :db do
     Rake::Task['db:migrate'].invoke
 
     # clear out old data in the database and reset the id sequences to 1 on each run of the populator
-    [Charge, ChargeType, Checkout, Diagram, Faq, Membership, Organization, OrganizationAlias, OrganizationCategory, Participant, Role, Shift, ShiftParticipant, ShiftType, Task, TaskStatus, TaskCategory, Tool].each(&:delete_all)
+    [Charge, ChargeType, Checkout, Document, Faq, Membership, Organization, OrganizationAlias, OrganizationCategory, Participant, Role, Shift, ShiftParticipant, ShiftType, Task, TaskStatus, TaskCategory, Tool].each(&:delete_all)
     
     #Seed tools
     require_relative ('../../db/tool_seed.rb')

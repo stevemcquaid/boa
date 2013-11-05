@@ -6,24 +6,22 @@
   <dl class="dl-horizontal">
     <dt><strong><%= model_class.human_attribute_name(:tool) %>:</strong></dt>
     <dd><%= @checkout.tool.name %></dd>
-    <dt><strong><%= model_class.human_attribute_name(:participant_id) %>:</strong></dt>
-    <dd><%= @checkout.participant.andrewid unless @checkout.participant.nil? %></dd>
     <dt><strong><%= model_class.human_attribute_name(:checked_out_at) %>:</strong></dt>
     <dd><%= @checkout.checked_out_at.strftime("%m/%d/%y %I:%M%p") %></dd>
     <dt><strong><%= model_class.human_attribute_name(:checked_in_at) %>:</strong></dt>
     <dd><%= @checkout.checked_in_at.strftime("%m/%d/%y %I:%M%p") unless @checkout.checked_in_at.nil? %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:participant_id) %>:</strong></dt>
+    <dd><%= @checkout.participant.andrewid unless @checkout.participant.nil? %></dd>
     <dt><strong><%= model_class.human_attribute_name(:organization_id) %>:</strong></dt>
     <dd><%= @checkout.organization.name unless @checkout.organization.nil? %></dd>
   </dl>
   <div class="form-actions">
     <%= link_to t('.back', :default => t("helpers.links.back")),
               checkouts_path, :class => 'btn' %>
-
     <% if can?(:edit, @checkout) %>
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_checkout_path(@checkout), :class => 'btn' %>
     <% end %>
-
     <% if can?(:destroy, @checkout) %>
       <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               checkout_path(@checkout),
@@ -32,7 +30,6 @@
               :class => 'btn btn-danger' %>
     <% end %>
   </div>
-  
 <% else %>
   <h3>Not Authorized!</h3>
 <% end %>

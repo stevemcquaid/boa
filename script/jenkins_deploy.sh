@@ -3,6 +3,11 @@
 #sudo gem install ruby-graphviz
 #sudo apt-get install nodejs
 
+#might be necessary?
+rm Gemfile.lock
+gem uninstall capistrano -v 3.0.0
+gem install capistrano -v 2.15.5
+
 #this may error if any configs are changed
 bundle install
 ls

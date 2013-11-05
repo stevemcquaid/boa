@@ -18,7 +18,7 @@ namespace :db do
     require 'populator'
 
     # clear out old data in the database and reset the id sequences to 1 on each run of the populator
-    [Charge, ChargeType, Checkout, Diagram, Faq, Membership, Organization, OrganizationAlias, OrganizationCategory, Participant, Role, Shift, ShiftParticipant, ShiftType, Task, TaskStatus, Tool].each(&:delete_all)
+    [Charge, ChargeType, Checkout, Document, Faq, Membership, Organization, OrganizationAlias, OrganizationCategory, Participant, Role, Shift, ShiftParticipant, ShiftType, Task, TaskStatus, Tool].each(&:delete_all)
 
     puts "adding new data to database..."
     puts

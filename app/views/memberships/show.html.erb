@@ -9,7 +9,7 @@
     <dt><strong><%= model_class.human_attribute_name(:participant) %>:</strong></dt>
     <dd><%= @membership.participant.andrewid %></dd>
     <dt><strong><%= model_class.human_attribute_name(:is_booth_chair) %>:</strong></dt>
-    <dd><%= @membership.is_booth_chair %></dd>
+    <dd><%= format_boolean(@membership.is_booth_chair?)  %></dd>
     <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
     <dd><%= @membership.title %></dd>
     <dt><strong><%= model_class.human_attribute_name(:booth_chair_order) %>:</strong></dt>
@@ -18,12 +18,10 @@
   <div class="form-actions">
     <%= link_to t('.back', :default => t("helpers.links.back")),
               memberships_path, :class => 'btn' %>
-
     <% if can?(:update, @membership) %>
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_membership_path(@membership), :class => 'btn' %>
     <% end %>
-
     <% if can?(:destroy, @membership) %>
       <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               membership_path(@membership),
@@ -32,7 +30,6 @@
               :class => 'btn btn-danger' %>
     <% end %>
   </div>
-  
 <% else %>
   <h3>Not Authorized!</h3>
 <% end %>
