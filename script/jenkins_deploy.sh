@@ -15,7 +15,7 @@ ls
 
 
 #this task will drop old data, create new db, run migratiosn and seed it
-rake db:popInit
+rake db:popSimulate
 
 #if env = stageServ 
 #rake db:popSimulate 
@@ -34,6 +34,8 @@ rake ci:setup:minitest test
 # rake test:functionals
 # # Run all integration tests
 # rake test:integration
+
+rails s -d
 
 cap staging deploy
 
