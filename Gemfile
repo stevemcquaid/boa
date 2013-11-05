@@ -82,7 +82,12 @@ end
 group :staging do
   gem 'pg'# , :require => true
   gem 'sqlite3' #testing
-
+  
+  
+  gem "therubyracer"
+  gem "less-rails"
+  gem "twitter-bootstrap-rails"
+  
   gem 'ci_reporter'
   gem 'rspec-rails'
   
@@ -115,6 +120,10 @@ group :production do
   gem 'ci_reporter'
   gem 'passenger'
   gem 'rspec-rails'
+  
+  gem "therubyracer"
+  gem "less-rails"
+  gem "twitter-bootstrap-rails"
 
   # Steve said this gem is DIRTY.
   # gem 'test-unit', '~> 2.0.0'
