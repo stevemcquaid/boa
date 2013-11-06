@@ -27,9 +27,7 @@ set :deploy_via, :copy
 # App configuration files not in source control
 set :local_config_path, "/usr/local/etc/#{application}"
 set :destination_config_path, deploy_to
-set :local_config_files, ["#{File.join('config','initializers','secret_token.rb')}", 
-                           "{File.join('config','database.yml')}"                          
-                         ]
+set :local_config_files, ["#{File.join('config','initializers','secret_token.rb')}", "#{File.join('config','database.yml')}"]
 depend :remote, :directory, local_config_path
 
 # Bundler required to install other gems
