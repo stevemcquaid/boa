@@ -24,10 +24,17 @@ Boa::Application.routes.draw do
   match "new_shift_clock_out/:id" => "shift_participants#new_shift_clock_out", :as => :new_shift_clock_out
   match "create_shift_clock_out" => "shift_participants#create_shift_clock_out", :as => :create_shift_clock_out
 
+  # tool check in / check out
   match "new_tool_checkout" => "checkouts#new_tool_checkout", :as => :new_tool_checkout
   match "create_tool_checkout" => "checkouts#create_tool_checkout", :as => :create_tool_checkout
   match "new_tool_checkin" => "checkouts#new_tool_checkin", :as => :new_tool_checkin
   match "create_tool_checkin" => "checkouts#create_tool_checkin", :as => :create_tool_checkin
+
+  # user creation
+  match "new_user_and_participant" => "participants#new_user_and_participant", :as => :new_user_and_participant
+  match "create_participant_user" => "checkouts#create_tool_checkin", :as => :create_tool_checkin
+  match "add_participant_memberships" => "memberships#add_participant_memberships", :as => :add_participant_memberships
+  match "create_participant_memberships" => "memberships#create_participant_memberships", :as => :create_participant_memberships
 
   match "new_participant_membership" => "memberships#new_participant_membership", :as => :new_participant_membership
   match "create_participant_membership" => "memberships#create_participant_membership", :as => :create_participant_membership

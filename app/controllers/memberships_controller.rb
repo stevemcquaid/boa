@@ -1,6 +1,6 @@
 class MembershipsController < ApplicationController
   load_and_authorize_resource
-  
+
   # GET /memberships
   # GET /memberships.json
   def index
@@ -15,26 +15,86 @@ class MembershipsController < ApplicationController
   # GET
   def new_participant_membership
     @membership = Membership.new
-    
+
     respond_to do |format|
-          format.html # index.html.erb
-          format.json { render json: @memberships }
+      format.html # index.html.erb
+      format.json { render json: @memberships }
     end
   end
-  
+
   #declare error classes
   class OrganizationNotExist < Exception
   end
   class ParticipantNotExist < Exception
   end
 
+  def add_participant_memberships
+    @participant = Participant.new(params[:participant])
+    @participant.andrewid = Participant.card_number_to_andrewid(params[:participant][:temp_id_card_number])
+
+    if(Participant.find_by_andrewid(@participant.andrewid).nil?)
+      @participant.save!
+    else
+      @participant = Participant.find_by_andrewid(@participant.andrewid)
+    end
+
+    @membership = Membership.new
+
+    respond_to do |format|
+      format.html # add_participant_memberships.html.erb
+      format.json { render json: @memberships }
+    end
+  end
+
+  # POST
+  def create_participant_memberships
+    @organization_ids = params[:organization_ids]
+    @participant_id = params[:membership][:participant_id]
+
+    @participant = Participant.find_by_id(@participant_id)
+    raise ParticipantDoesNotExist unless !@participant.nil?
+
+    @organization_ids.each do |org_id|
+      @organization = Organization.find(org_id)
+      raise OrganizationDoesNotExist unless !@organization.nil?
+    end
+
+    @organization_ids.each do |org_id|
+      begin
+        @membership = Membership.new()
+        @membership.participant_id = @participant_id
+        @membership.organization = Organization.find_by_id(org_id)
+        @membership.save!
+        @role_id = params[:membership][:role_ids]
+
+        @user = User.new
+        @user.email = @participant.email
+        @user.password = "testtest"
+        @user.password_confirmation = "testtest"
+        @user.name = @participant.name
+        @user.add_role Role::ROLES[@role_id.to_i - 1]
+        @user.save!
+      rescue
+      end
+    end
+    
+    respond_to do |format|
+      if @membership.save
+        format.html { redirect_to @participant, notice: 'Membership was successfully created.' }
+        format.json { render json: @participant, status: :created, location: @participant }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @membership.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # POST
   def create_participant_membership
     @membership = Membership.new(params[:membership])
     # @organization = Organization.find(params[:id])
     # raise OrganizationDoesNotExist unless !@organization.nil?
-    
+
     @participant = Participant.find_by_card(@membership.participant_id) #this creates a CMU directory request to get the andrew id associated with the card number. Then finds the local DB mapping to get the participant id.
     raise ParticipantDoesNotExist unless @participant.nil?
 

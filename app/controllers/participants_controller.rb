@@ -60,6 +60,17 @@ class ParticipantsController < ApplicationController
     end
   end
 
+  # GET /participants/new
+  # GET /participants/new.json
+  def new_user_and_participant
+    @participant = Participant.new
+
+    respond_to do |format|
+      format.html # new_user_and_participant.html.erb
+      format.json { render json: @participant }
+    end
+  end
+
   # GET /participants/1/edit
   def edit
     @participant = Participant.find(params[:id])
