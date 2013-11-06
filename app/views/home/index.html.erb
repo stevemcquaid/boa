@@ -1,6 +1,3 @@
-<!-- <div id="bg">
-  <img src="http://farm3.staticflickr.com/2441/3923792977_35c1d04829_b.jpg" alt="">
-</div> -->
 <style>
 
 html { 
@@ -11,17 +8,19 @@ html {
   background-size: cover;
 }
 
+.side-nav {
+  width: 20%;
+  padding: 10px;
+  background: white;
+}
+
+body {
+  background-color: none;
+}
 </style>
 
 
-<h3>Home</h3>
+    <div class="side-nav">
+    <%= render :partial => 'quick_links' %>
+    </div>
 
-<div class="jumbotron">
-  <div class="container">
-    <h1>Welcome to BOA!</h1>
-    <p>This is the official home of our 67-475 Project for Fall 2013. Advisor: Professor Jeria Quesenberry</p>
-    <p><%= link_to "Frequently Asked Questions", faqs_path, :class => "btn btn-lg btn-primary " %></p>
-	<p><%= link_to "Important Contacts", contacts_path, :class => "btn btn-lg btn-primary" %></p>
-	<p><%= link_to "Milestones", milestones_path, :class => "btn btn-lg btn-primary" %></p>
-  </div>
-</div>
