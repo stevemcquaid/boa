@@ -42,3 +42,4 @@ function dynamicFaq(){
 		$(this).toggleClass('open').next().slideToggle();;
 	});
 }
+

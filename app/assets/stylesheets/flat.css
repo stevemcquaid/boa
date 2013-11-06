@@ -521,8 +521,8 @@ h6 {
   .navbar .nav > li:hover > ul {
     top: 100%; }
   .navbar .nav > li > ul {
-    padding-top: 13px;
-    top: 80%;
+    padding-top: 0px;
+    top: 100%;
     background-color: white\9; }
     .navbar .nav > li > ul:before {
       content: "";
@@ -1080,7 +1080,7 @@ textarea,
   .checkbox input,
   .radio input {
     outline: none !important;
-    opacity: 0;
+    opacity: 100;
     filter: alpha(opacity=0);
     zoom: 1; }
   .checkbox.checked .icon,
@@ -2531,3 +2531,5 @@ body.vjs-full-window {
 
 .mll, .mhl, .mal {
   margin-left: 20px; }
+
+

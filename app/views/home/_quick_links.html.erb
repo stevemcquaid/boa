@@ -1,0 +1,14 @@
+	<h3>Quick Links:</h3>
+	
+	<p><%= link_to "Emergency Contacts", contacts_path, :class => "btn btn-lg btn-primary" %></p>
+	<p><%= link_to "Milestones", milestones_path, :class => "btn btn-lg btn-primary" %></p>
+	<p><%= link_to "Frequently Asked Questions", faqs_path, :class => "btn btn-lg btn-primary " %></p>
+	<p><%= link_to 'Emergency Shutdown Procedures', esp_path, :class => "btn btn-lg btn-primary" %></p>
+
+	<%= form_tag(search_path) do %>
+		<%= text_field_tag('query', '', :size => 12) %>
+		<%= submit_tag('Search') %>
+	<% end %>
+
+
+	<p>&nbsp;</p>

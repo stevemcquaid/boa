@@ -39,6 +39,7 @@ Boa::Application.routes.draw do
   match "esp" => "home#esp", :as => "esp"
 
   match "search" => "home#search", :as => "search"
+  match "home" => "home#home", :as => "home"
 
   authenticated :user do
     root :to => 'home#index'
