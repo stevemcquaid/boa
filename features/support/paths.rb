@@ -23,7 +23,7 @@ module NavigationHelpers
       charges_path
 
     when /the charge view page/
-      charge_path(@meeting_fine)
+      charge_path(charge)
 
     # Checkouts
     when /the checkout index page/

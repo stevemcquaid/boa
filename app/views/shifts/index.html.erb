@@ -17,40 +17,38 @@
     </thead>
     <tbody>
       <% @shifts.each do |shift| %>
-        <tr>
-          <td><%= link_to t('.show', :default => t("helpers.links.show")),
+        <% if can?(:read, shift) %>
+          <tr>
+            <td><%= link_to t('.show', :default => t("helpers.links.show")),
                           shift_path(shift), :class => 'btn btn-mini' %></td>
-          <td><%= shift.starts_at.strftime("%m/%d/%y %I:%M%p")  %></td>
-          <td><%= shift.ends_at.strftime("%m/%d/%y %I:%M%p") %></td>
-          <td><%= shift.required_number_of_participants %></td>
-          <td><%= shift.organization.name %></td>
-          <td><%= shift.shift_type.name %></td>
-          <td>
-            <% if can?(:update, shift) %>
-              <%= link_to t('.edit', :default => t("helpers.links.edit")),
+            <td><%= shift.starts_at.strftime("%m/%d/%y %I:%M%p")  %></td>
+            <td><%= shift.ends_at.strftime("%m/%d/%y %I:%M%p") %></td>
+            <td><%= shift.required_number_of_participants %></td>
+            <td><%= shift.organization.name %></td>
+            <td><%= shift.shift_type.name %></td>
+            <td>
+              <% if can?(:update, shift) %>
+                <%= link_to t('.edit', :default => t("helpers.links.edit")),
                           edit_shift_path(shift), :class => 'btn btn-mini' %>
-            <% end %>
-
-            <% if can?(:destroy, shift) %>
-              <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              <% end %>
+              <% if can?(:destroy, shift) %>
+                <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                         shift_path(shift),
                         :method => :delete,
                         :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                         :class => 'btn btn-mini btn-danger' %>
-            <% end %>
-          </td>
-        </tr>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>
-
   <% if can?(:create, Shift) %>
-
     <%= link_to t('.new', :default => t("helpers.links.new")),
                 new_shift_path,
                 :class => 'btn btn-primary' %>
   <% end %>
-
 <% else %>
   <h3>Not Authorized!</h3>
 <% end %>
