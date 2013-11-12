@@ -36,4 +36,8 @@ class ApplicationController < ActionController::Base
     #Event.new_event "Exception: #{exception.message}", current_user, request.remote_ip #deugging
     redirect_to "/"
   end
+
+  def participant_already_in_system(participant)
+    flash[:notice] = "The participant is already in the system - Update organizations for #{participant.name}"
+  end
 end

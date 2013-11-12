@@ -16,12 +16,12 @@ class Participant < ActiveRecord::Base
   has_many :organizations, :through => :memberships
   has_many :shifts, :through => :shift_participants
   # has_many :organizations, :through => :memberships
-  has_many :checkouts
+  has_many :checkouts, dependent: :destroy
   has_many :tools, :through => :checkouts
-  has_many :memberships
-  has_many :shift_participants
+  has_many :memberships, dependent: :destroy
+  has_many :shift_participants, dependent: :destroy
   has_one  :contact_list #this may need to be enabled?
-  belongs_to :user
+  belongs_to :user, dependent: :destroy
 
   scope :search, lambda { |term| where('andrewid LIKE ?', "#{term}%") }
 

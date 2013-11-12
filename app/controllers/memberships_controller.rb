@@ -22,9 +22,10 @@ class MembershipsController < ApplicationController
     end
   end
 
-  #declare error classes
+  #declare error / info classes
   class OrganizationNotExist < Exception
   end
+
   class ParticipantNotExist < Exception
   end
 
@@ -35,6 +36,8 @@ class MembershipsController < ApplicationController
     if(Participant.find_by_andrewid(@participant.andrewid).nil?)
       @participant.save!
     else
+      participant_already_in_system(@participant)
+
       @participant = Participant.find_by_andrewid(@participant.andrewid)
     end
 
@@ -54,33 +57,62 @@ class MembershipsController < ApplicationController
     @participant = Participant.find_by_id(@participant_id)
     raise ParticipantDoesNotExist unless !@participant.nil?
 
+    # make sure all organizations exist
     @organization_ids.each do |org_id|
       @organization = Organization.find(org_id)
       raise OrganizationDoesNotExist unless !@organization.nil?
     end
 
-    @organization_ids.each do |org_id|
-      begin
-        @membership = Membership.new()
-        @membership.participant_id = @participant_id
-        @membership.organization = Organization.find_by_id(org_id)
-        @membership.save!
-        @role_id = params[:membership][:role_ids]
+    # delete any organizations that were previously added, but not checked on submission
+    @participant_orgs = @participant.organizations
 
-        @user = User.new
-        @user.email = @participant.email
-        @user.password = "testtest"
-        @user.password_confirmation = "testtest"
-        @user.name = @participant.name
-        @user.add_role Role::ROLES[@role_id.to_i - 1]
-        @user.save!
-      rescue
+    @participant_orgs.each do |org|
+      if(@organization_ids.include?(org.id))
+        @membership = Membership.find(:conditions => [ "participant_id = ? AND organization_id", @participant.id, org.id])
+        @membership.destroy
       end
     end
-    
+
+    all_ok = true
+
+    # create new memberships (only if they don't have a membership already)
+    @organization_ids.each do |org_id|
+      if(!@participant.organizations.include?(@organization))
+        begin
+          @membership = Membership.new()
+          @membership.participant_id = @participant_id
+          @membership.organization = Organization.find_by_id(org_id)
+
+          if(!@membership.save!)
+            all_ok = false
+            break
+          end
+        rescue
+        end
+      end
+    end
+
+    @role_id = params[:membership][:role_ids]
+
+    @user = User.find_by_email(@participant.email)
+    # puts "user above"
+
+    if(@user.nil?)
+      @user = User.new
+      @user.email = @participant.email
+      @user.password = "testtest"
+      @user.password_confirmation = "testtest"
+      @user.name = @participant.name
+      @user.add_role Role::ROLES[@role_id.to_i - 1]
+      @user.save!
+    end
+
+    @participant.user_id = @user.id
+    @participant.save!
+
     respond_to do |format|
-      if @membership.save
-        format.html { redirect_to @participant, notice: 'Membership was successfully created.' }
+      if all_ok
+        format.html { redirect_to @participant, notice: 'Participant updated.' }
         format.json { render json: @participant, status: :created, location: @participant }
       else
         format.html { render action: "new" }

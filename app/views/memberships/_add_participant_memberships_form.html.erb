@@ -18,8 +18,13 @@
               </li>
             <% end %>
           </ul>
-
-          <%= f.input :role_ids, :collection => Role.all, :as => :radio_buttons, :label_method => lambda {|t| t.name.titleize}, :label =>   false, :item_wrapper_class => 'inline' %>
+          <% if @participant.user.roles.first.id.nil? %>
+            <%= f.input :role_ids, :collection => Role.all, :as => :radio_buttons, :label_method => lambda {|t| t.name.titleize}, :label =>   false, :item_wrapper_class => 'inline' %>
+          <% else %>
+            <%= @participant.name %>
+            is a
+            <%= @participant.user.roles.first.name %>
+          <% end %>
           <div class="form-actions">
             <%= f.button :submit, :class => 'btn-primary' %>
             <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
