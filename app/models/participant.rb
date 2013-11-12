@@ -1,5 +1,5 @@
 class Participant < ActiveRecord::Base
-  before_save :reformat_phone
+  before_save :reformat_phone, :validate_booth_chair_loyalty
 
   attr_accessible :andrewid, :has_signed_waiver, :phone_number, :has_signed_hardhat_waiver, :card_number
   attr_reader :card_number
@@ -64,6 +64,9 @@ class Participant < ActiveRecord::Base
   class NotRegistered < Exception
   end
 
+  class BoothChairLoyalty < Exception
+  end
+
   def self.find_by_card(card_number)
     andrewid = CarnegieMellonIDCard.search(card_number)
     
@@ -88,4 +91,13 @@ class Participant < ActiveRecord::Base
    phone_number.gsub!(/[^0-9]/,"")
    self.phone_number = phone_number 
   end
+
+  #due to permissions issues with being a booth chair. Only allow booth chairs to be a member of one organization.
+  def validate_booth_chair_loyalty
+    if ( (self.user.roles.include?(:booth_chair)) && (self.organizations.size > 1) )
+      raise BoothChairLoyalty
+    end
+    return true
+  end
+
 end

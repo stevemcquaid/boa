@@ -18,7 +18,7 @@
               </li>
             <% end %>
           </ul>
-          <% if @participant.user.roles.first.id.nil? %>
+          <% if @participant.user.nil? || @participant.user.roles.first.id.nil? %>
             <%= f.input :role_ids, :collection => Role.all, :as => :radio_buttons, :label_method => lambda {|t| t.name.titleize}, :label =>   false, :item_wrapper_class => 'inline' %>
           <% else %>
             <%= @participant.name %>

@@ -37,6 +37,12 @@ class ApplicationController < ActionController::Base
     redirect_to "/"
   end
 
+  rescue_from 'Participant::BoothChairLoyalty' do |exception|
+    flash[:error] = "Booth chairs can only be a member of 1 organization.  This booth chair is associated with more than one organization."
+    #Event.new_event "Exception: #{exception.message}", current_user, request.remote_ip #deugging
+    redirect_to "/participants"
+  end
+
   def participant_already_in_system(participant)
     flash[:notice] = "The participant is already in the system - Update organizations for #{participant.name}"
   end

@@ -51,24 +51,25 @@ class MembershipsController < ApplicationController
 
   # POST
   def create_participant_memberships
-    @organization_ids = params[:organization_ids]
+    @new_organization_ids = params[:organization_ids]
     @participant_id = params[:membership][:participant_id]
 
     @participant = Participant.find_by_id(@participant_id)
     raise ParticipantDoesNotExist unless !@participant.nil?
 
     # make sure all organizations exist
-    @organization_ids.each do |org_id|
+    @new_organization_ids.each do |org_id|
       @organization = Organization.find(org_id)
       raise OrganizationDoesNotExist unless !@organization.nil?
     end
 
     # delete any organizations that were previously added, but not checked on submission
-    @participant_orgs = @participant.organizations
+    @old_participant_orgs = @participant.organizations
 
-    @participant_orgs.each do |org|
-      if(@organization_ids.include?(org.id))
-        @membership = Membership.find(:conditions => [ "participant_id = ? AND organization_id", @participant.id, org.id])
+    @old_participant_orgs.each do |org|
+      if(!@new_organization_ids.include?(org.id.to_s))
+        @membership = Membership.find(:first, :conditions => [ "participant_id = ? AND organization_id = ?", @participant.id, org.id])
+        puts @membership
         @membership.destroy
       end
     end
@@ -76,7 +77,7 @@ class MembershipsController < ApplicationController
     all_ok = true
 
     # create new memberships (only if they don't have a membership already)
-    @organization_ids.each do |org_id|
+    @new_organization_ids.each do |org_id|
       if(!@participant.organizations.include?(@organization))
         begin
           @membership = Membership.new()
