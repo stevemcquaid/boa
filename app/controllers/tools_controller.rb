@@ -84,40 +84,40 @@ class ToolsController < ApplicationController
   end
 
   # User permissions need to be added to the following 2 methods
-  def checkout
-    @tool = Tool.find(params[:id])
+  # def checkout
+  #   @tool = Tool.find(params[:id])
 
-    if(!@tool.is_checked_out?)
-        @checkout = Checkout.new
-        @checkout.checked_in_at = nil
-        @checkout.checked_out_at = Date.today
-        @checkout.tool = @tool
-        @checkout.participant = nil
-        @checkout.organization = nil
-        @checkout.save!
+  #   if(!@tool.is_checked_out?)
+  #       @checkout = Checkout.new
+  #       @checkout.checked_in_at = nil
+  #       @checkout.checked_out_at = Date.today
+  #       @checkout.tool = @tool
+  #       @checkout.participant = nil
+  #       @checkout.organization = nil
+  #       @checkout.save!
 
-        redirect_to @tool
-    else
-        flash[:notice] = "#{@tool.name} was not checked out because it has been previously checked out."
-        redirect_to @tool
-    end
-  end
+  #       redirect_to @tool
+  #   else
+  #       flash[:notice] = "#{@tool.name} was not checked out because it has been previously checked out."
+  #       redirect_to @tool
+  #   end
+  # end
 
 
-  def checkin
-    @tool = Tool.find(params[:id])
+  # def checkin
+  #   @tool = Tool.find(params[:id])
 
-    if(@tool.is_checked_out?)
-        @current = @tool.checkouts.current.pluck(:id)
-        @checkout = Checkout.find_by_id(@current)
+  #   if(@tool.is_checked_out?)
+  #       @current = @tool.checkouts.current.pluck(:id)
+  #       @checkout = Checkout.find_by_id(@current)
 
-        @checkout.checked_in_at = Date.today
-        @checkout.save!
+  #       @checkout.checked_in_at = Date.today
+  #       @checkout.save!
 
-        redirect_to @tool
-    else
-        flash[:notice] = "#{@tool.name} was not checked in because it was not checked out."
-        redirect_to @tool
-    end
-  end
+  #       redirect_to @tool
+  #   else
+  #       flash[:notice] = "#{@tool.name} was not checked in because it was not checked out."
+  #       redirect_to @tool
+  #   end
+  # end
 end

@@ -21,7 +21,7 @@
   </p>
   <p>
     <% if(@tool.is_checked_out?) %>
-      <strong>Checked out by:</strong>
+      <strong>Checked out by:</strong> <%= link_to(@tool.checkouts.last.participant.user.name, participant_path(@tool.checkouts.last.participant)) %>
     <% end %>
   </p>
   <div class="form-actions">
@@ -29,10 +29,10 @@
               tools_path, :class => 'btn'  %>
     <% if(@tool.is_checked_out?) %>
       <%= link_to t('.checkin', :default => t("helpers.links.checkin")),
-                      checkin_tool_path(@tool), :class => 'btn btn-mini' %>
+                      new_tool_checkin_given_tool_path(@tool), :class => 'btn btn-mini' %>
     <% else %>
       <%= link_to t('.checkout', :default => t("helpers.links.checkout")),
-                      checkout_tool_path(@tool), :class => 'btn btn-mini' %>
+                      new_tool_checkout_given_tool_path(@tool), :class => 'btn btn-mini' %>
     <% end %>
     <% if can?(:update, @tool) %>
       <%= link_to t('.edit', :default => t("helpers.links.edit")),

@@ -1,4 +1,5 @@
 <% if can?(:create, @checkout) %>
+  <h3>Check In Tool</h3>
   <%= simple_form_for @checkout, :html => { :class => 'form-horizontal' }, :url => create_tool_checkin_path do |f| %>
     <%= f.input :tool_id, label: 'Tool Barcode' %>
     <div class="form-actions">
