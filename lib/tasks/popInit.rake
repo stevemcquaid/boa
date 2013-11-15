@@ -10,8 +10,8 @@ namespace :db do
     
     # clear out old data in the database and reset the id sequences to 1 on each run of the populator
     #was getting a "Could not find table 'task_statuses'" error... comented out
-    objs = [Charge, ChargeType, Checkout, Document, Faq, Membership, Organization, OrganizationAlias, OrganizationCategory, Participant, Role, Shift, ShiftParticipant, ShiftType, Task, TaskStatus, TaskCategory, Tool]
-    objs.try(:each){|i| i.delete_all}
+    #objs = [Charge, ChargeType, Checkout, Document, Faq, Membership, Organization, OrganizationAlias, OrganizationCategory, Participant, Role, Shift, ShiftParticipant, ShiftType, Task, TaskStatus, TaskCategory, Tool]
+    #objs.try(:each){|i| i.delete_all}
     
     Rake::Task['db:migrate'].invoke
 
