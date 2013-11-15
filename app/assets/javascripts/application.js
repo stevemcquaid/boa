@@ -16,6 +16,7 @@
 //= require_tree .
 
 
+
 $(document).ready(function(){
 	dynamicFaq();
     addFlashFadeOutListeners();
