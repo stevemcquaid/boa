@@ -39,6 +39,11 @@ Boa::Application.routes.draw do
   match "new_participant_membership" => "memberships#new_participant_membership", :as => :new_participant_membership
   match "create_participant_membership" => "memberships#create_participant_membership", :as => :create_participant_membership
 
+  match "new_organization_alias/:id" => "organization_aliases#new_alias", :as => :new_organization_alias
+  match "create_organization_alias" => "organization_aliases#create_alias", :as => :create_organization_alias
+  match "remove_organization_alias/:id" => "organization_aliases#destroy_alias", :as => :remove_organization_alias
+
+
   match "old_faq" => "home#faq", :as => "old_faq"
   match "phonenumbers" => "home#phone_numbers", :as => "phonenumbers"
   match "contacts" => "home#contact_list", :as => "contacts"

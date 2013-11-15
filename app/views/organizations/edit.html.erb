@@ -1,4 +1,4 @@
-<% if can?(:update, @organization %>
+<% if can?(:update, @organization) %>
   <%- model_class = Organization -%>
   <div class="page-header">
     <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human %></h1>

@@ -90,7 +90,7 @@ class ShiftParticipantsController < ApplicationController
     @shift_participant.shift = @shift
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # new_shift_clock_in.html.erb
       format.json { render json: @shift_participants }
     end
   end
@@ -103,7 +103,7 @@ class ShiftParticipantsController < ApplicationController
     @participant = @shift_participant.participant
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # new_shift_clock_out.html.erb
       format.json { render json: @shift_participants }
     end
   end
