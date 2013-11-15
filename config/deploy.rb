@@ -45,9 +45,8 @@ end
 # ==|== deploy =============================================================
 namespace :deploy do
   task :start do ; end
-
   task :stop do ; end
-  
+
   desc "Reload mod_passenger"
   task :restart, :except => { :no_release => true }, :roles => :app do
     run "touch #{File.join(current_path,'tmp','restart.txt')}"
@@ -67,9 +66,9 @@ namespace :deploy do
 
 end
 
-on :after, "deploy:copy_local_configs", "db:create", :only => "deploy:cold"
-
 on :before, "deploy:restart", "deploy:fix_log_permissions", :only => "deploy:cold"
+
+on :after, "deploy:copy_local_configs", "db:create", :only => "deploy:cold"
 
 after "deploy:update_code", "deploy:copy_local_configs", "deploy:migrate"
 
@@ -86,7 +85,7 @@ namespace :db do
   end
 
   task :migrate, :except => { :no_release => true }, :roles => :db do
-    run "cd #{current_path} && bundle exec rake db:popInit"
+    run "cd #{current_path} && bundle exec rake db:migrate && rake db:popSimulate"
   end
 
 end
