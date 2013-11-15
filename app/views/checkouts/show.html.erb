@@ -7,9 +7,9 @@
     <dt><strong><%= model_class.human_attribute_name(:tool) %>:</strong></dt>
     <dd><%= @checkout.tool.name %></dd>
     <dt><strong><%= model_class.human_attribute_name(:checked_out_at) %>:</strong></dt>
-    <dd><%= @checkout.checked_out_at.strftime("%m/%d/%y %I:%M%p") %></dd>
+    <dd><%= date_and_time(@checkout.checked_out_at) %></dd>
     <dt><strong><%= model_class.human_attribute_name(:checked_in_at) %>:</strong></dt>
-    <dd><%= @checkout.checked_in_at.strftime("%m/%d/%y %I:%M%p") unless @checkout.checked_in_at.nil? %></dd>
+    <dd><%= date_and_time(@checkout.checked_in_at) unless @checkout.checked_in_at.nil? %></dd>
     <dt><strong><%= model_class.human_attribute_name(:participant_id) %>:</strong></dt>
     <dd><%= @checkout.participant.andrewid unless @checkout.participant.nil? %></dd>
     <dt><strong><%= model_class.human_attribute_name(:organization_id) %>:</strong></dt>

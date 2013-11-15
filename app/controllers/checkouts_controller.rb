@@ -42,7 +42,7 @@ class CheckoutsController < ApplicationController
   # POST
   def create_tool_checkout
     @checkout = Checkout.new
-    @checkout.checked_out_at = Date.today
+    @checkout.checked_out_at = Time.now
 
     @tool = Tool.find_by_barcode(params[:checkout][:tool_id])
     raise ToolDoesNotExist unless !@tool.nil?
