@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
-  attr_accessible :completed_by_id, :description, :display_duration, :due_at, :name, :task_status_id
+  attr_accessible :completed_by_id, :description, :display_duration, :due_at, :name, :task_status_id, :task_status
 
   validates :name, :due_at, :task_status_id, :presence => true
   #validates :completed_by, :presence => true, :unless => :is_uncompleted?

@@ -437,6 +437,21 @@ namespace :db do
     new_membership.title = nil
     new_membership.save!
 
+    puts "TaskStatus"
+
+    new_task_status = TaskStatus.new
+    new_task_status.name = "Complete"
+    new_task_status.save!
+
+    new_task_status = TaskStatus.new
+    new_task_status.name = "Incomplete"
+    new_task_status.save!
+
+    new_task_status = TaskStatus.new
+    new_task_status.name = "In Progress"
+    new_task_status.save!
+    
+
     puts
     puts "db populated!"
   end
