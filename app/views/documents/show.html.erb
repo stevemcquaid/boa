@@ -7,7 +7,7 @@
   </iframe>
   <br>
     <%= link_to t('.show', :default => t("helpers.links.show")),
-              @document_url_path, :class => 'btn' %>
+              @document_url_path, :class => 'btn', :target => "_blank" %>
     <div class="form-actions">
       <%= link_to t('.back', :default => t("helpers.links.back")),
               documents_path, :class => 'btn' %>

@@ -24,7 +24,7 @@ namespace :db do
     puts
     puts "OrganizationCategory"
 
-    organization_categories = ["Blitz", "Independent", "Fraternity", "Sorority"]
+    organization_categories = ["Blitz", "Independent", "Fraternity", "Sorority", "Concession", "Non-Building"]
 
     organization_categories.each do |org_category|
       new_org_categories = OrganizationCategory.new
