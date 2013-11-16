@@ -24,8 +24,10 @@
     <% @memberships.each do |membership| %><li><%= link_to membership.organization.name, membership.organization %></li><% end %>
   </p>
   <p>
-    <strong><%= model_class.human_attribute_name(:user_role) %></strong>
-    <%= @participant.user.roles.first.name %>
+    <strong><%= model_class.human_attribute_name(:user_roles) %></strong>
+    <% @participant.user.roles.each do |role| %>
+      <li><%= role.name %></li>
+    <% end %>
   </p>
   <div class="form-actions">
     <%= link_to t('.back', :default => t("helpers.links.back")),
@@ -34,10 +36,8 @@
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
                 edit_participant_path(@participant), :class => 'btn' %>
     <% end %>
-
     <a data-toggle="modal" href="#role-options-<%= @participant.user.id %>" class="btn btn-mini" type="button">Change role</a>
     <%= render "/users/user", :user => @participant.user, :redirect => participant_path(@participant) %>
-
     <% if can?(:destroy, @participant) %>
       <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                 participant_path(@participant),
