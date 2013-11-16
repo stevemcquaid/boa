@@ -3,15 +3,6 @@ class HomeController < ApplicationController
     @users = User.all
   end
 
-  def faq
-  end
-
-  def contact_list
-  end
-
-  def phone_numbers
-  end
-  
   def milestones
   end
 
@@ -23,6 +14,4 @@ class HomeController < ApplicationController
     @organizations = Organization.search(@query)
     @organization_aliases = OrganizationAlias.search(@query)
   end
-
-  
 end

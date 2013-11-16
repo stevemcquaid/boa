@@ -45,10 +45,6 @@ Boa::Application.routes.draw do
   match "create_organization_alias" => "organization_aliases#create_alias", :as => :create_organization_alias
   match "remove_organization_alias/:id" => "organization_aliases#destroy_alias", :as => :remove_organization_alias
 
-
-  match "old_faq" => "home#faq", :as => "old_faq"
-  match "phonenumbers" => "home#phone_numbers", :as => "phonenumbers"
-  match "contacts" => "home#contact_list", :as => "contacts"
   match "milestones" => "home#milestones", :as => "milestones"
   match "esp" => "home#esp", :as => "esp"
 
