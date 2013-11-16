@@ -12,16 +12,18 @@ module ApplicationHelper
     html.html_safe
   end
 
-  def time(d)
-    d.strftime("%I:%M%p")
+  def time(display_time)
+    time_zone = ActiveSupport::TimeZone.new("Eastern Time (US & Canada)")
+    display_time.in_time_zone(time_zone).strftime("%I:%M%p")
   end
 
-  def date(d)
-    d.strftime("%m/%d/%y")
+  def date(display_date)
+    time_zone = ActiveSupport::TimeZone.new("Eastern Time (US & Canada)")
+    display_date.in_time_zone(time_zone).strftime("%m/%d/%y")
   end
 
-  def date_and_time(d)
-    [date(d), time(d)].compact.join(" ")
+  def date_and_time(display_date_and_time)
+    [date(display_date_and_time), time(display_date_and_time)].compact.join(" ")
   end
 
   def format_boolean(bool)

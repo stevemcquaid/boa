@@ -6,7 +6,7 @@
     <%= f.input :name %>
     <%= f.input :description %>
     <%= f.input :task_status_id %>
-    <%= f.input :task_category, :as => :select, :label => "Task Category", :collection => TaskCategor.all.map{|tc| [tc.name, tc.id] } %>
+    <%= f.input :task_category, :as => :select, :label => "Task Category", :collection => TaskCategory.all.map{|tc| [tc.name, tc.id] } %>
     <div class="form-actions">
       <%= f.button :submit, :class => 'btn-primary' %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

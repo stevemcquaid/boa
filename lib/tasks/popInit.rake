@@ -7,10 +7,14 @@ namespace :db do
     # Invoke rake db:migrate just in case...
     Rake::Task['db:drop'].invoke
     Rake::Task['db:create'].invoke
+    
+    # clear out old data in the database and reset the id sequences to 1 on each run of the populator
+    #was getting a "Could not find table 'task_statuses'" error... comented out
+    #objs = [Charge, ChargeType, Checkout, Document, Faq, Membership, Organization, OrganizationAlias, OrganizationCategory, Participant, Role, Shift, ShiftParticipant, ShiftType, Task, TaskStatus, TaskCategory, Tool]
+    #objs.try(:each){|i| i.delete_all}
+    
     Rake::Task['db:migrate'].invoke
 
-    # clear out old data in the database and reset the id sequences to 1 on each run of the populator
-    [Charge, ChargeType, Checkout, Document, Faq, Membership, Organization, OrganizationAlias, OrganizationCategory, Participant, Role, Shift, ShiftParticipant, ShiftType, Task, TaskStatus, TaskCategory, Tool].each(&:delete_all)
     
     #Seed tools
     require_relative ('../../db/tool_seed.rb')
@@ -21,7 +25,7 @@ namespace :db do
     puts
     puts "OrganizationCategory"
 
-    organization_categories = ["Blitz", "Independent", "Fraternity", "Sorority"]
+    organization_categories = ["Blitz", "Independent", "Fraternity", "Sorority", "Concession", "Non-Building"]
 
     organization_categories.each do |org_category|
       new_org_categories = OrganizationCategory.new

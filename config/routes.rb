@@ -15,8 +15,8 @@ Boa::Application.routes.draw do
   resources :tasks
   resources :tools
 
-  match "checkout_tool/:id" => "tools#checkout", :as => :checkout_tool
-  match "checkin_tool/:id" => "tools#checkin", :as => :checkin_tool
+  # match "checkout_tool/:id" => "tools#checkout", :as => :checkout_tool
+  # match "checkin_tool/:id" => "tools#checkin", :as => :checkin_tool
 
   # shift clock in / clock out
   match "new_shift_clock_in/:id" => "shift_participants#new_shift_clock_in", :as => :new_shift_clock_in
@@ -26,8 +26,10 @@ Boa::Application.routes.draw do
 
   # tool check in / check out
   match "new_tool_checkout" => "checkouts#new_tool_checkout", :as => :new_tool_checkout
+  match "new_tool_checkout/:tool_id" => "checkouts#new_tool_checkout", :as => :new_tool_checkout_given_tool
   match "create_tool_checkout" => "checkouts#create_tool_checkout", :as => :create_tool_checkout
-  match "new_tool_checkin" => "checkouts#new_tool_checkin", :as => :new_tool_checkin
+  match "new_tool_checkin/:tool_id" => "checkouts#new_tool_checkin", :as => :new_tool_checkin_given_tool
+  match "new_tool_checkout" => "checkouts#new_tool_checkout", :as => :new_tool_checkout
   match "create_tool_checkin" => "checkouts#create_tool_checkin", :as => :create_tool_checkin
 
   # user creation
@@ -43,10 +45,6 @@ Boa::Application.routes.draw do
   match "create_organization_alias" => "organization_aliases#create_alias", :as => :create_organization_alias
   match "remove_organization_alias/:id" => "organization_aliases#destroy_alias", :as => :remove_organization_alias
 
-
-  match "old_faq" => "home#faq", :as => "old_faq"
-  match "phonenumbers" => "home#phone_numbers", :as => "phonenumbers"
-  match "contacts" => "home#contact_list", :as => "contacts"
   match "milestones" => "home#milestones", :as => "milestones"
   match "esp" => "home#esp", :as => "esp"
 

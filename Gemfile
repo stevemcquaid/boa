@@ -10,9 +10,10 @@ gem 'activeldap', :require => 'active_ldap/railtie'
 
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'sass-rails',   '~> 3.2.3'
   gem 'uglifier', '>= 1.0.3'
-  gem 'bootstrap-sass', '~> 3.0.1.0.rc'
+  gem "therubyracer"#, :platforms => :ruby
+  gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+  gem 'twitter-bootstrap-rails'#, :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 end
 
 gem "capistrano", "2.15.5"
@@ -62,7 +63,7 @@ group :development do
 
   gem 'rspec-rails'
 
-  # gem 'better_errors'
+  gem 'better_errors'
 
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
   gem 'ci_reporter'
@@ -117,10 +118,6 @@ group :production do
   gem 'ci_reporter'
   gem 'passenger'
   gem 'rspec-rails'
-  
-  gem "therubyracer"
-  gem "less-rails"
-  gem "twitter-bootstrap-rails"
 
   # Steve said this gem is DIRTY.
   # gem 'test-unit', '~> 2.0.0'

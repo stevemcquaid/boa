@@ -1,5 +1,5 @@
 class CheckoutsController < ApplicationController
-  load_and_authorize_resource
+  # load_and_authorize_resource
 
   # GET /checkouts
   # GET /checkouts.json
@@ -15,9 +15,10 @@ class CheckoutsController < ApplicationController
   # GET
   def new_tool_checkout
     @checkout = Checkout.new
+    @checkout.tool_id = Tool.find_by_id(params[:tool_id]).barcode unless params[:tool_id].nil?
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # new_tool_checkout.html.erb
       format.json { render json: @checkouts }
     end
   end
@@ -25,6 +26,7 @@ class CheckoutsController < ApplicationController
   # GET
   def new_tool_checkin
     @checkout = Checkout.new
+    @checkout.tool_id = Tool.find_by_id(params[:tool_id]).barcode unless params[:tool_id].nil?
 
     respond_to do |format|
       format.html # index.html.erb
@@ -35,14 +37,14 @@ class CheckoutsController < ApplicationController
   #declare error classes
   class ToolDoesNotExist < Exception
   end
-  
+
   class ParticipantDoesNotExist < Exception
   end
 
   # POST
   def create_tool_checkout
     @checkout = Checkout.new
-    @checkout.checked_out_at = Date.today
+    @checkout.checked_out_at = Time.now
 
     @tool = Tool.find_by_barcode(params[:checkout][:tool_id])
     raise ToolDoesNotExist unless !@tool.nil?

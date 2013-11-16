@@ -5,11 +5,13 @@
   </div>
   <dl class="dl-horizontal">
     <dt><strong><%= model_class.human_attribute_name(:tool) %>:</strong></dt>
-    <dd><%= @checkout.tool.name %></dd>
+    <dd><%= link_to(@checkout.tool.name, tool_path(@checkout.tool)) %></dd>
     <dt><strong><%= model_class.human_attribute_name(:checked_out_at) %>:</strong></dt>
-    <dd><%= @checkout.checked_out_at.strftime("%m/%d/%y %I:%M%p") %></dd>
-    <dt><strong><%= model_class.human_attribute_name(:checked_in_at) %>:</strong></dt>
-    <dd><%= @checkout.checked_in_at.strftime("%m/%d/%y %I:%M%p") unless @checkout.checked_in_at.nil? %></dd>
+    <dd><%= date_and_time(@checkout.checked_out_at) %></dd>
+    <% if(!@checkout.checked_in_at.nil?) %>
+      <dt><strong><%= model_class.human_attribute_name(:checked_in_at) %>:</strong></dt>
+      <dd><%= date_and_time(@checkout.checked_in_at) %></dd>
+    <% end %>
     <dt><strong><%= model_class.human_attribute_name(:participant_id) %>:</strong></dt>
     <dd><%= @checkout.participant.andrewid unless @checkout.participant.nil? %></dd>
     <dt><strong><%= model_class.human_attribute_name(:organization_id) %>:</strong></dt>

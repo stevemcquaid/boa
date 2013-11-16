@@ -1,4 +1,5 @@
 <% if can?(:create, @checkout) %>
+  <h3>Check Out Tool</h3>
   <%= simple_form_for @checkout, :html => { :class => 'form-horizontal' }, :url => create_tool_checkout_path do |f| %>
     <%= f.input :tool_id, label: 'Tool Barcode' %>
     <%= f.input :temp_id_card_number, label: 'Participant ID Card Code' %>
@@ -8,7 +9,6 @@
                 checkouts_path, :class => 'btn' %>
     </div>
   <% end %>
-  
 <% else %>
   <h3>Not Authorized!</h3>
 <% end %>
