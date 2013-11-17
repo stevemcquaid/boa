@@ -8,6 +8,7 @@ class HomeController < ApplicationController
 
   def search
     @query = params[:query]
+    @faqs = Faq.search(@query)
     @users = User.search(@query)
     @participants = Participant.search(@query)
     @tools = Tool.search(@query)

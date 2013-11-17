@@ -1,7 +1,7 @@
 <% if can?(:read, @faq) %>
   <%- model_class = Faq -%>
   <div class="page-header">
-    <h1>Show FAQ></h1>
+    <h1>Show FAQ</h1>
   </div>
   <dl class="dl-horizontal">
     <dt><strong><%= model_class.human_attribute_name(:question) %>:</strong></dt>
