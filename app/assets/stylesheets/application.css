@@ -25,3 +25,12 @@
 }
 
 .brand {height: 25px;}
+
+.description-text {
+    width: 300px;
+    height: 200px;
+}
+
+textarea {
+height: 200px;
+}

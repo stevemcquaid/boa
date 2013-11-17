@@ -33,7 +33,7 @@
     </tbody>
   </table>
   <% if can?(:create, Document) %>
-    <%= link_to t('.new', :default => t("helpers.links.new")), new_document_path, :class => 'btn btn-primary' %>
+    <%= link_to t('.new', :default => t("Upload")), new_document_path, :class => 'btn btn-primary' %>
   <% end %>
   
 <% else %>
