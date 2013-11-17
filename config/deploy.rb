@@ -68,7 +68,7 @@ end
 
 on :before, "deploy:restart", "deploy:fix_log_permissions", :only => "deploy:cold"
 
-on :after, "deploy:copy_local_configs", "db:create", :only => "deploy:cold"
+#on :after, "deploy:copy_local_configs", "db:create", :only => "deploy:cold"
 
 after "deploy:update_code", "deploy:copy_local_configs", "deploy:migrate"
 
@@ -79,13 +79,13 @@ after "deploy:restart", "deploy:cleanup"
 # ==|== db =================================================================
 namespace :db do
 
-  desc "Create database associated with deployment environment"
-  task :create, :except => { :no_release => true }, :roles => :db do
-    run "cd #{current_path} && bundle exec rake db:create"
-  end
+  # desc "Create database associated with deployment environment"
+  # task :create, :except => { :no_release => true }, :roles => :db do
+  #   run "cd #{current_path} && bundle exec rake db:create"
+  # end
 
   task :migrate, :except => { :no_release => true }, :roles => :db do
-    run "cd #{current_path} && bundle exec rake db:migrate && rake db:popSimulate"
+    run "cd #{current_path} && bundle exec rake db:popSimulate"
   end
 
 end
