@@ -20,17 +20,20 @@ Boa::Application.routes.draw do
 
   # shift clock in / clock out
   match "new_shift_clock_in/:id" => "shift_participants#new_shift_clock_in", :as => :new_shift_clock_in
-  match "create_shift_clock_in" => "shift_participants#create_shift_clock_in", :as => :create_shift_clock_in
   match "new_shift_clock_out/:id" => "shift_participants#new_shift_clock_out", :as => :new_shift_clock_out
+
+  match "create_shift_clock_in" => "shift_participants#create_shift_clock_in", :as => :create_shift_clock_in
   match "create_shift_clock_out" => "shift_participants#create_shift_clock_out", :as => :create_shift_clock_out
 
   # tool check in / check out
+  match "new_tool_checkin" => "checkouts#new_tool_checkin", :as => :new_tool_checkin
   match "new_tool_checkout" => "checkouts#new_tool_checkout", :as => :new_tool_checkout
-  match "new_tool_checkout/:tool_id" => "checkouts#new_tool_checkout", :as => :new_tool_checkout_given_tool
-  match "create_tool_checkout" => "checkouts#create_tool_checkout", :as => :create_tool_checkout
+
   match "new_tool_checkin/:tool_id" => "checkouts#new_tool_checkin", :as => :new_tool_checkin_given_tool
-  match "new_tool_checkout" => "checkouts#new_tool_checkout", :as => :new_tool_checkout
+  match "new_tool_checkout/:tool_id" => "checkouts#new_tool_checkout", :as => :new_tool_checkout_given_tool
+
   match "create_tool_checkin" => "checkouts#create_tool_checkin", :as => :create_tool_checkin
+  match "create_tool_checkout" => "checkouts#create_tool_checkout", :as => :create_tool_checkout
 
   # user creation
   match "new_user_and_participant" => "participants#new_user_and_participant", :as => :new_user_and_participant
@@ -41,6 +44,7 @@ Boa::Application.routes.draw do
   match "new_participant_membership" => "memberships#new_participant_membership", :as => :new_participant_membership
   match "create_participant_membership" => "memberships#create_participant_membership", :as => :create_participant_membership
 
+  # organization alias
   match "new_organization_alias/:id" => "organization_aliases#new_alias", :as => :new_organization_alias
   match "create_organization_alias" => "organization_aliases#create_alias", :as => :create_organization_alias
   match "remove_organization_alias/:id" => "organization_aliases#destroy_alias", :as => :remove_organization_alias
