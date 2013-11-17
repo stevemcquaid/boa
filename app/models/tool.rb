@@ -7,6 +7,8 @@ class Tool < ActiveRecord::Base
 
   validates :barcode, :uniqueness => true
   validates :name, :presence => true
+  
+  scope :by_barcode, order('barcode')
 
   scope :hardhats, where('NAME LIKE "%hardhat"')
   scope :radios, where('NAME LIKE "%radio"')

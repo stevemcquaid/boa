@@ -4,7 +4,7 @@ class ToolsController < ApplicationController
   # GET /tools
   # GET /tools.json
   def index
-    @tools = Tool.all
+    @tools = Tool.by_barcode.paginate(:page => params[:page]).per_page(10)
 
     respond_to do |format|
       format.html # index.html.erb
