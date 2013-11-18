@@ -60,7 +60,7 @@ class Participant < ActiveRecord::Base
   end
 
   def find_by_card(card_number)
-    andrewid = CarnegieMellonIDCard.search(card_number)
+    andrewid = self.card_number_to_andrewid(card_number)
 
     if !andrewid.nil?
       theUser = self.find_by_andrewid(andrewid)

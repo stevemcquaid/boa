@@ -14,7 +14,7 @@ class ParticipantTest < ActiveSupport::TestCase
     
 
     should "check that student object is the same object as the Participant lookup via card number (This depends on the idcard lookup working)" do
-      assert_equal @jonathan, Participant.find_by_andrew(811825505)
+      assert_equal @jonathan, Participant.find_by_card(811825505)
     end
 
     should "return name from directory" do
