@@ -10,8 +10,7 @@ class Participant < ActiveRecord::Base
 
   validates :andrewid, :presence => true, :uniqueness => true
   validates :has_signed_waiver, :acceptance => {:accept => true}
-  validates :phone_number, :length => { :minimum => 10, :maximum => 10}, :numericality => true, :allow_nil => true
-  # validates :checkout_id, :length => { :minimum => 9, :maximum => 9}
+  validates :checkout_id, :length => { :minimum => 9, :maximum => 9}, :numericality => true,
   validates_format_of :phone_number, :with => /^\(?\d{3}\)?[-. ]?\d{3}[-.]?\d{4}$/, :message => "should be 10 digits (area code needed) and delimited with dashes only", :allow_blank => true
 
   has_many :organizations, :through => :memberships
