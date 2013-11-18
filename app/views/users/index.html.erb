@@ -1,6 +1,11 @@
 <% if can?(:read, User) %>
   <h3>Users</h3>
-  <div class="span8">
+  <div class="span12">
+
+  <% if can?(:create, :user) %>
+    <%= link_to raw("<i class='icon-plus icon-white'></i> Add a New User"), new_user_path, :class => 'btn btn-primary' %>
+  <% end %>
+
     <table class="table table-condensed">
       <thead>
         <tr>
@@ -30,9 +35,7 @@
     </table>
   </div>
 
-  <% if can?(:create, :user) %>
-    <%= link_to raw("<i class='icon-plus icon-white'></i> Add a New User"), new_user_path, :class => 'btn btn-primary' %>
-  <% end %>
+
   
   <% else %>
     <h3>Not Authorized!</h3>
