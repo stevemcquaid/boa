@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131018042733) do
+ActiveRecord::Schema.define(:version => 20131117052524) do
 
   create_table "charge_types", :force => true do |t|
     t.string   "name"
@@ -116,6 +116,12 @@ ActiveRecord::Schema.define(:version => 20131018042733) do
     t.string   "phone_number"
     t.boolean  "has_signed_hardhat_waiver"
     t.integer  "user_id"
+    t.string   "cached_name"
+    t.string   "cached_surname"
+    t.string   "cached_email"
+    t.string   "cached_department"
+    t.string   "cached_student_class"
+    t.datetime "cache_updated"
   end
 
   create_table "roles", :force => true do |t|
