@@ -30,8 +30,12 @@ class MembershipsController < ApplicationController
   end
 
   def add_participant_memberships
-    @participant = Participant.new(params[:participant])
-    @participant.andrewid = Participant.card_number_to_andrewid(params[:participant][:temp_id_card_number])
+    if(!Participant.find(params[:participant]).nil?)
+      @participant = Participant.find(params[:participant])
+    else
+      @participant = Participant.new(params[:participant])
+      @participant.andrewid = Participant.card_number_to_andrewid(params[:participant][:temp_id_card_number])
+    end
 
     if(Participant.find_by_andrewid(@participant.andrewid).nil?)
       @participant.save!
@@ -77,39 +81,38 @@ class MembershipsController < ApplicationController
     all_ok = true
 
     # create new memberships (only if they don't have a membership already)
-    @new_organization_ids.each do |org_id|
-      if(!@participant.organizations.include?(@organization))
-        begin
-          @membership = Membership.new()
-          @membership.participant_id = @participant_id
-          @membership.organization = Organization.find_by_id(org_id)
+    @new_organization_ids.each do |new_org_id|
+      if(!@participant.organizations.map{|o| o.id.to_s}.include?(new_org_id.to_s))
+        @membership = Membership.new
+        @membership.participant_id = @participant_id
+        @membership.organization = Organization.find_by_id(new_org_id)
 
-          if(!@membership.save!)
-            all_ok = false
-            break
-          end
-        rescue
+        if(!@membership.save!)
+          all_ok = false
+          break
         end
       end
     end
 
-    @role_id = params[:membership][:role_ids]
+    # update user role
+    @role_ids = params[:membership][:role_ids]
 
-    @user = User.find_by_email(@participant.email)
-    # puts "user above"
+    if(!@role_ids.nil?)
+      @user = User.find_by_email(@participant.email)
 
-    if(@user.nil?)
-      @user = User.new
-      @user.email = @participant.email
-      @user.password = "testtest"
-      @user.password_confirmation = "testtest"
-      @user.name = @participant.name
-      @user.add_role Role::ROLES[@role_id.to_i - 1]
-      @user.save!
+      if(@user.nil?)
+        @user = User.new
+        @user.email = @participant.email
+        @user.password = "testtest"
+        @user.password_confirmation = "testtest"
+        @user.name = @participant.name
+        @user.add_role Role::ROLES[@role_ids.to_i - 1]
+        @user.save!
+      end
+
+      @participant.user_id = @user.id
+      @participant.save!
     end
-
-    @participant.user_id = @user.id
-    @participant.save!
 
     respond_to do |format|
       if all_ok

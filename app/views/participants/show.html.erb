@@ -35,6 +35,8 @@
     <% if can?(:update, @participant) %>
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
                 edit_participant_path(@participant), :class => 'btn' %>
+      <%= link_to t('.add membership', :default => t("helpers.links.add membership")),
+                add_participant_memberships_given_participant_path(@participant), :class => 'btn' %>
     <% end %>
     <a data-toggle="modal" href="#role-options-<%= @participant.user.id %>" class="btn btn-mini" type="button">Change role</a>
     <%= render "/users/user", :user => @participant.user, :redirect => participant_path(@participant) %>

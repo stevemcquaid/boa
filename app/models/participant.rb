@@ -1,5 +1,5 @@
 class Participant < ActiveRecord::Base
-  before_save :reformat_phone, :validate_booth_chair_loyalty
+  before_save :reformat_phone
 
   attr_accessible :andrewid, :has_signed_waiver, :phone_number, :has_signed_hardhat_waiver, :card_number
   attr_reader :card_number
@@ -29,7 +29,7 @@ class Participant < ActiveRecord::Base
 
   def ldap_reference
     @ldap_reference ||= CarnegieMellonPerson.find_by_andrewid( self.andrewid )
-    # Add new attributes to CarnegieMellonPerson attributes before adding 
+    # Add new attributes to CarnegieMellonPerson attributes before adding
     # references to them in participant.rb
   end
 
@@ -40,7 +40,7 @@ class Participant < ActiveRecord::Base
   def surname
     ldap_reference["sn"]
   end
-  
+
   def email
     ldap_reference["mail"]
   end
@@ -60,7 +60,7 @@ class Participant < ActiveRecord::Base
   def card_number
     @card_number
   end
-  
+
   #error handling here does not work?
   class NotRegistered < Exception
   end
@@ -70,35 +70,26 @@ class Participant < ActiveRecord::Base
 
   def self.find_by_card(card_number)
     andrewid = CarnegieMellonIDCard.search(card_number)
-    
+
     if !andrewid.nil?
       theUser = self.find_by_andrewid(andrewid)
     end
-    
+
     raise NotRegistered unless !theUser.nil?
-        
+
     return theUser
   end
 
   def self.card_number_to_andrewid(card_number)
     andrewid = CarnegieMellonIDCard.search(card_number)
-    
+
     return andrewid
   end
 
   private
   def reformat_phone
-   phone_number = self.phone_number.to_s 
-   phone_number.gsub!(/[^0-9]/,"")
-   self.phone_number = phone_number 
+    phone_number = self.phone_number.to_s
+    phone_number.gsub!(/[^0-9]/,"")
+    self.phone_number = phone_number
   end
-
-  #due to permissions issues with being a booth chair. Only allow booth chairs to be a member of one organization.
-  def validate_booth_chair_loyalty
-    if ( (self.user.roles.include?(:booth_chair)) && (self.organizations.size > 1) )
-      raise BoothChairLoyalty
-    end
-    return true
-  end
-
 end
