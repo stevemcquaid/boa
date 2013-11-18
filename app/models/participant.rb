@@ -59,8 +59,8 @@ class Participant < ActiveRecord::Base
   class BoothChairLoyalty < Exception
   end
 
-  def find_by_card(card_number)
-    andrewid = get_andrewid(card_number)
+  def self.find_by_card(card_number)
+    andrewid = self.get_andrewid(card_number)
 
     if !andrewid.nil?
       theUser = self.find_by_andrewid(andrewid)
@@ -73,7 +73,7 @@ class Participant < ActiveRecord::Base
 
   private
   
-  def get_andrewid(card_number)
+  def self.get_andrewid(card_number)
     andrewid = CarnegieMellonIDCard.search(card_number)
 
     return andrewid
