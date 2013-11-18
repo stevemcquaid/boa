@@ -6,7 +6,7 @@ class Checkout < ActiveRecord::Base
   attr_accessible :temp_id_card_number
   attr_accessor :temp_id_card_number
 
-  validates :tool_id, :presence => true
+  validates :tool_id, :numericality => true, :presence => true
 
   before_save :checked_out_at, :presence => true
 

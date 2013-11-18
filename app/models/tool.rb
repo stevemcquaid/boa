@@ -5,7 +5,7 @@ class Tool < ActiveRecord::Base
   has_many :participants, :through => :checkouts
   has_many :organizations, :through => :checkouts
 
-  validates :barcode, :uniqueness => true
+  validates :barcode, :presence => true, :uniqueness => true, :length => { :minimum => 2, :maximum => 12}
   validates :name, :presence => true
   
   scope :by_barcode, order('barcode')

@@ -13,8 +13,6 @@ class ParticipantTest < ActiveSupport::TestCase
 
   # Validations
 
-
-
   context "With a proper context, " do
     setup do
       create_context
@@ -32,13 +30,6 @@ class ParticipantTest < ActiveSupport::TestCase
       should "know participants" do
         assert_equal ["rcrown", "shannon1", "dcorwin", "asteger", "member", "juc"], Participant.all.map{|e| e.andrewid}
       end
-    end
-    
-    should "properly set and return card number" do
-      @jonathan.card_number=811825505
-      assert_equal 811825505, @jonathan.card_number
-      @jonathan.card_number=123456789
-      assert_equal 123456789, @jonathan.card_number
     end
     
   end

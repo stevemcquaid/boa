@@ -10,7 +10,6 @@ class Participant < ActiveRecord::Base
 
   validates :andrewid, :presence => true, :uniqueness => true
   validates :has_signed_waiver, :acceptance => {:accept => true}
-  validates :checkout_id, :length => { :minimum => 9, :maximum => 9}, :numericality => true
   validates_format_of :phone_number, :with => /^\(?\d{3}\)?[-. ]?\d{3}[-.]?\d{4}$/, :message => "should be 10 digits (area code needed) and delimited with dashes only", :allow_blank => true
 
   has_many :organizations, :through => :memberships
@@ -24,12 +23,6 @@ class Participant < ActiveRecord::Base
   belongs_to :user, dependent: :destroy
 
   scope :search, lambda { |term| where('andrewid LIKE ?', "#{term}%") }
-
-  def ldap_reference
-    @ldap_reference ||= CarnegieMellonPerson.find_by_andrewid( self.andrewid )
-    # Add new attributes to CarnegieMellonPerson attributes before adding
-    # references to them in participant.rb
-  end
   
   def name
     cached_name
@@ -66,7 +59,7 @@ class Participant < ActiveRecord::Base
   class BoothChairLoyalty < Exception
   end
 
-  def self.find_by_card(card_number)
+  def find_by_card(card_number)
     andrewid = CarnegieMellonIDCard.search(card_number)
 
     if !andrewid.nil?
@@ -78,16 +71,15 @@ class Participant < ActiveRecord::Base
     return theUser
   end
 
-  def self.card_number_to_andrewid(card_number)
+  def card_number_to_andrewid(card_number)
     andrewid = CarnegieMellonIDCard.search(card_number)
 
     return andrewid
   end
 
 
-
   private
-  
+
   def cached_name
     if DateTime.now - 14.days > cache_updated
       update_cache
@@ -138,7 +130,7 @@ class Participant < ActiveRecord::Base
   
   def cached_student_class
     if DateTime.now - 14.days > cache_updated
-      update_cache
+      self.update_cache
     end
     
     read_attribute(:cached_student_class)
@@ -167,7 +159,7 @@ class Participant < ActiveRecord::Base
     write_attribute :cached_surname, ldap_reference["sn"].to_s
     write_attribute :cached_email, ldap_reference["mail"]
     write_attribute :cached_department, ldap_reference["cmuDepartment"]
-    write_attribute :cached_student_class, ldap_reference["mail"]
+    write_attribute :cached_student_class, ldap_reference["cmuStudentClass"]
     write_attribute :cache_updated, DateTime.now
 
     self.save!
