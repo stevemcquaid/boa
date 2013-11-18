@@ -25,23 +25,23 @@ class Participant < ActiveRecord::Base
   scope :search, lambda { |term| where('andrewid LIKE ?', "#{term}%") }
   
   def name
-    self.cached_name
+    cached_name
   end
 
   def surname
-    self.cached_surname
+    cached_surname
   end
 
   def email
-    self.cached_email
+    cached_email
   end
 
   def department
-    self.cached_department
+    cached_department
   end
 
   def student_class
-    self.cached_student_class
+    cached_student_class
   end
 
   def card_number=( card_number )
@@ -59,7 +59,7 @@ class Participant < ActiveRecord::Base
   class BoothChairLoyalty < Exception
   end
 
-  def self.find_by_card(card_number)
+  def find_by_card(card_number)
     andrewid = CarnegieMellonIDCard.search(card_number)
 
     if !andrewid.nil?
@@ -71,12 +71,11 @@ class Participant < ActiveRecord::Base
     return theUser
   end
 
-  def self.card_number_to_andrewid(card_number)
+  def card_number_to_andrewid(card_number)
     andrewid = CarnegieMellonIDCard.search(card_number)
 
     return andrewid
   end
-
 
 
   private
@@ -118,7 +117,7 @@ class Participant < ActiveRecord::Base
   end
   
   def cached_department
-    if DateTime.now - 14.days > selfcache_updated
+    if DateTime.now - 14.days > cache_updated
       update_cache
     end
     
@@ -130,7 +129,7 @@ class Participant < ActiveRecord::Base
   end
   
   def cached_student_class
-    if DateTime.now - 14.days > self.cache_updated
+    if DateTime.now - 14.days > cache_updated
       self.update_cache
     end
     
@@ -160,7 +159,7 @@ class Participant < ActiveRecord::Base
     write_attribute :cached_surname, ldap_reference["sn"].to_s
     write_attribute :cached_email, ldap_reference["mail"]
     write_attribute :cached_department, ldap_reference["cmuDepartment"]
-    write_attribute :cached_student_class, ldap_reference["mail"]
+    write_attribute :cached_student_class, ldap_reference["cmuStudentClass"]
     write_attribute :cache_updated, DateTime.now
 
     self.save!
