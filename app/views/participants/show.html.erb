@@ -1,7 +1,7 @@
 <% if can?(:read, @participant) %>
   <%- model_class = Participant -%>
   <div class="page-header">
-    <h1><%=t '.title', :default => @participant.user.name %></h1>
+    <h1><%=t '.title', :default => @participant.name %></h1>
   </div>
   <p>
     <strong><%= model_class.human_attribute_name(:andrewid) %>:</strong>
@@ -10,6 +10,14 @@
   <p>
     <strong><%= model_class.human_attribute_name(:phone_number) %>:</strong>
     <%= "(" + @participant.phone_number[0,3]+") "+@participant.phone_number[3,3]+"-"+@participant.phone_number[6,4] %>
+  </p>
+  <p>
+    <strong><%= model_class.human_attribute_name(:department) %>:</strong>
+    <%= @participant.department %>
+  </p>
+  <p>
+    <strong><%= model_class.human_attribute_name(:student_class) %>:</strong>
+    <%= @participant.student_class %>
   </p>
   <p>
     <strong><%= model_class.human_attribute_name(:has_signed_waiver) %>:</strong>
