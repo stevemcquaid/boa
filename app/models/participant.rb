@@ -23,31 +23,25 @@ class Participant < ActiveRecord::Base
   belongs_to :user, dependent: :destroy
 
   scope :search, lambda { |term| where('andrewid LIKE ?', "#{term}%") }
-
-  def ldap_reference
-    @ldap_reference ||= CarnegieMellonPerson.find_by_andrewid( self.andrewid )
-    # Add new attributes to CarnegieMellonPerson attributes before adding
-    # references to them in participant.rb
-  end
   
   def name
-    cached_name
+    self.cached_name
   end
 
   def surname
-    cached_surname
+    self.cached_surname
   end
 
   def email
-    cached_email
+    self.cached_email
   end
 
   def department
-    cached_department
+    self.cached_department
   end
 
   def student_class
-    cached_student_class
+    self.cached_student_class
   end
 
   def card_number=( card_number )
@@ -86,7 +80,7 @@ class Participant < ActiveRecord::Base
 
 
   private
-  
+
   def cached_name
     if DateTime.now - 14.days > cache_updated
       update_cache
@@ -124,7 +118,7 @@ class Participant < ActiveRecord::Base
   end
   
   def cached_department
-    if DateTime.now - 14.days > cache_updated
+    if DateTime.now - 14.days > selfcache_updated
       update_cache
     end
     
@@ -136,8 +130,8 @@ class Participant < ActiveRecord::Base
   end
   
   def cached_student_class
-    if DateTime.now - 14.days > cache_updated
-      update_cache
+    if DateTime.now - 14.days > self.cache_updated
+      self.update_cache
     end
     
     read_attribute(:cached_student_class)

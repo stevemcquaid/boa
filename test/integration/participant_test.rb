@@ -2,18 +2,19 @@ require 'test_helper'
 
 class ParticipantTest < ActiveSupport::TestCase
 
-  context "With a proper context, " do
+  context "With a refreshed ldap cache, " do
     setup do
       create_context
+      @jonathan.send(:update_cache)
     end
 
     teardown do
-      remove_context
+      #@TODO: remove this comment below
+      #remove_context
     end
     
 
-    should "do something relating to loading the student's information from cmu servers" do
-      @jonathan.ldap_reference
+    should "check that student object is the same object as the Participant lookup via card number" do
       assert_equal @jonathan, Participant.find_by_card(811825505)
     end
 
