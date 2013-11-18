@@ -34,3 +34,4 @@ rerun.txt
 pickle-email-*.html
 public/uploads/**
 Gemfile.lock
+*.swp
