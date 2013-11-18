@@ -10,8 +10,7 @@ class Participant < ActiveRecord::Base
 
   validates :andrewid, :presence => true, :uniqueness => true
   validates :has_signed_waiver, :acceptance => {:accept => true}
-  validates :phone_number, :length => { :minimum => 10, :maximum => 10}, :numericality => true, :allow_nil => true
-  # validates :checkout_id, :length => { :minimum => 9, :maximum => 9}
+  validates :checkout_id, :length => { :minimum => 9, :maximum => 9}, :numericality => true
   validates_format_of :phone_number, :with => /^\(?\d{3}\)?[-. ]?\d{3}[-.]?\d{4}$/, :message => "should be 10 digits (area code needed) and delimited with dashes only", :allow_blank => true
 
   has_many :organizations, :through => :memberships
@@ -26,31 +25,30 @@ class Participant < ActiveRecord::Base
 
   scope :search, lambda { |term| where('andrewid LIKE ?', "#{term}%") }
 
-
   def ldap_reference
     @ldap_reference ||= CarnegieMellonPerson.find_by_andrewid( self.andrewid )
     # Add new attributes to CarnegieMellonPerson attributes before adding
     # references to them in participant.rb
   end
-
+  
   def name
-    Array.[](ldap_reference["cn"]).flatten.last
+    cached_name
   end
 
   def surname
-    ldap_reference["sn"]
+    cached_surname
   end
 
   def email
-    ldap_reference["mail"]
+    cached_email
   end
 
   def department
-    ldap_reference["cmuDepartment"]
+    cached_department
   end
 
   def student_class
-    ldap_reference["cmuStudentClass"]
+    cached_student_class
   end
 
   def card_number=( card_number )
@@ -86,7 +84,95 @@ class Participant < ActiveRecord::Base
     return andrewid
   end
 
+
+
   private
+  
+  def cached_name
+    if DateTime.now - 14.days > cache_updated
+      update_cache
+    end
+    
+    read_attribute(:cached_name)
+  end
+  
+  def cached_name=(val)
+    write_attribute :cached_name, val
+  end
+  
+  def cached_surname
+    if DateTime.now - 14.days > cache_updated
+      update_cache
+    end
+    
+    read_attribute(:cached_surname)
+  end
+  
+  def cached_surname=(val)
+    write_attribute :cached_surname, val
+  end
+  
+  def cached_email
+    if DateTime.now - 14.days > cache_updated
+      update_cache
+    end
+    
+    read_attribute(:cached_email)
+  end
+  
+  def cached_email=(val)
+    write_attribute :cached_email, val
+  end
+  
+  def cached_department
+    if DateTime.now - 14.days > cache_updated
+      update_cache
+    end
+    
+    read_attribute(:cached_department)
+  end
+  
+  def cached_department=(val)
+    write_attribute :cached_department, val
+  end
+  
+  def cached_student_class
+    if DateTime.now - 14.days > cache_updated
+      update_cache
+    end
+    
+    read_attribute(:cached_student_class)
+  end
+  
+  def cached_student_class=(val)
+    write_attribute :cached_student_class, val
+  end
+  
+  def cache_updated
+    if read_attribute(:cache_updated).nil?
+      update_cache
+    end
+    
+    read_attribute(:cache_updated)
+  end
+  
+  def cache_updated=(val)
+    write_attribute :cache_updated, val
+  end
+  
+  def update_cache
+    ldap_reference ||= CarnegieMellonPerson.find_by_andrewid( self.andrewid )
+    
+    write_attribute :cached_name, Array.[](ldap_reference["cn"]).flatten.last.to_s
+    write_attribute :cached_surname, ldap_reference["sn"].to_s
+    write_attribute :cached_email, ldap_reference["mail"]
+    write_attribute :cached_department, ldap_reference["cmuDepartment"]
+    write_attribute :cached_student_class, ldap_reference["mail"]
+    write_attribute :cache_updated, DateTime.now
+
+    self.save!
+  end
+  
   def reformat_phone
     phone_number = self.phone_number.to_s
     phone_number.gsub!(/[^0-9]/,"")
