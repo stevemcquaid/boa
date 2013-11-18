@@ -10,7 +10,7 @@ class Ability
       can :manage, :all
 
       cannot :read, Membership
-      cannot :destroy, User
+      cannot :destroy, :all
 
     elsif user.has_role? :booth_chair
       cannot :manage, :all
