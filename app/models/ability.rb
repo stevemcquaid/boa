@@ -8,12 +8,14 @@ class Ability
 
     elsif user.has_role? :scc
       can :manage, :all
-      cannot :destroy, User
+
+      cannot :read, Membership
+      cannot :destroy, :all
 
     elsif user.has_role? :booth_chair
       cannot :manage, :all
 
-      can :read, [ChargeType, Checkout, ContactList, Document, Faq, Membership, Organization, OrganizationAlias,
+      can :read, [ChargeType, Checkout, ContactList, Document, Faq, Organization, OrganizationAlias,
                   OrganizationCategory, Participant, Role, ShiftParticipant, ShiftType, Tool]
 
       can :read, Charge do |c|
@@ -31,7 +33,7 @@ class Ability
     elsif user.has_role? :member
       cannot :manage, :all
 
-      can :read, [Checkout, ContactList, Document, Faq, Membership, OrganizationAlias,
+      can :read, [Checkout, ContactList, Document, Faq, OrganizationAlias,
                   OrganizationCategory, Participant, Role, ShiftParticipant, ShiftType, Tool]
 
       can :read, Shift do |s|
