@@ -155,8 +155,8 @@ class Participant < ActiveRecord::Base
   def update_cache
     ldap_reference ||= CarnegieMellonPerson.find_by_andrewid( self.andrewid )
     
-    write_attribute :cached_name, Array.[](ldap_reference["cn"]).flatten.last.to_s
-    write_attribute :cached_surname, ldap_reference["sn"].to_s
+    write_attribute :cached_name, Array.[](ldap_reference["cn"]).flatten.last
+    write_attribute :cached_surname, ldap_reference["sn"]
     write_attribute :cached_email, ldap_reference["mail"]
     write_attribute :cached_department, ldap_reference["cmuDepartment"]
     write_attribute :cached_student_class, ldap_reference["cmuStudentClass"]
