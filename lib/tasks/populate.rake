@@ -336,7 +336,7 @@ namespace :db do
     puts "Tool"
 
     new_tool = Tool.new
-    new_tool.barcode = 1
+    new_tool.barcode = 1412
     new_tool.description = "Original Hammer"
     new_tool.name = "Original Hammer"
     new_tool.save!
@@ -397,6 +397,30 @@ namespace :db do
     new_checkout.tool = Tool.find_by_name("Hard Hat")
     new_checkout.save!
 
+
+    puts "Faq"
+
+    new_faq = Faq.new
+    new_faq.question = "What is Booth?"
+    new_faq.answer = "Booth is one of the biggest showpieces of Spring Carnival. Student organizations build multi-story structures around our annual theme (2014: Best of the Best), hosting interactive games and elaborate decorations. The booths will be placed on Midway, which is located in the Morewood Gardens Parking Lot."
+    new_faq.save!
+
+    new_faq = Faq.new
+    new_faq.question = "What do I do if something catches on fire?"
+    new_faq.answer = "There are fire extinguishers located at every booth. Take one and follow the instructions listed on the can."
+    new_faq.save!
+
+    new_faq = Faq.new
+    new_faq.question = "Where does CMU get money for Carnival?"
+    new_faq.answer = "Carnegie Mellon University's Spring Carnival is funded in part by your Student Activities Fee."
+    new_faq.save!
+
+    new_faq = Faq.new
+    new_faq.question = "Who won booth last year (2013)? "
+    new_faq.answer = "Independent: ASA, Fraternity: Sigma Phi Epsilon, Sorority: Delta Gamma, Blitz: Mayur SASA, Environmental Award: Delta Gamma and Mudge, T-Shirt Award: TSA, Chairman's Choice: Alpha Phi"
+    new_faq.save!
+
+
     puts "Charge"
 
     new_charge = Charge.new
@@ -436,21 +460,8 @@ namespace :db do
     new_membership.is_booth_chair = true
     new_membership.title = nil
     new_membership.save!
-
-    puts "TaskStatus"
-
-    new_task_status = TaskStatus.new
-    new_task_status.name = "Complete"
-    new_task_status.save!
-
-    new_task_status = TaskStatus.new
-    new_task_status.name = "Incomplete"
-    new_task_status.save!
-
-    new_task_status = TaskStatus.new
-    new_task_status.name = "In Progress"
-    new_task_status.save!
     
+
 
     puts
     puts "db populated!"
