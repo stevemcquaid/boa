@@ -35,8 +35,8 @@ rake ci:setup:minitest test
 # # Run all integration tests
 # rake test:integration
 
-#kill old server daemon
-#kill -INT `ps -e | grep ruby | awk '{print $1}'`
+#make permissions correctly if necessary
+#sudo chown -R jenkins tmp/
 
 #start new server daemon fail gracefully!
 rails s -d || true
