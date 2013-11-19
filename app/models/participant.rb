@@ -1,9 +1,7 @@
 class Participant < ActiveRecord::Base
   before_save :reformat_phone
-
-  # :card_number used for ID swipe forms
-  attr_accessible :andrewid, :has_signed_waiver, :phone_number, :has_signed_hardhat_waiver, :card_number
-  attr_reader :card_number
+  
+  attr_accessible :andrewid, :has_signed_waiver, :phone_number, :has_signed_hardhat_waiver
 
   validates :andrewid, :presence => true, :uniqueness => true
   validates :has_signed_waiver, :acceptance => {:accept => true}
@@ -11,7 +9,6 @@ class Participant < ActiveRecord::Base
 
   has_many :organizations, :through => :memberships
   has_many :shifts, :through => :shift_participants
-  # has_many :organizations, :through => :memberships
   has_many :checkouts, dependent: :destroy
   has_many :tools, :through => :checkouts
   has_many :memberships, dependent: :destroy
@@ -39,14 +36,6 @@ class Participant < ActiveRecord::Base
 
   def student_class
     cached_student_class
-  end
-
-  def card_number=( card_number )
-    @card_number = card_number
-  end
-
-  def card_number
-    @card_number
   end
 
   #error handling here does not work?
@@ -77,88 +66,54 @@ class Participant < ActiveRecord::Base
   end
 
   def cached_name
-    if DateTime.now - 14.days > cache_updated
-      update_cache
-    end
+    update_cache
     
     read_attribute(:cached_name)
   end
   
-  def cached_name=(val)
-    write_attribute :cached_name, val
-  end
-  
   def cached_surname
-    if DateTime.now - 14.days > cache_updated
-      update_cache
-    end
+    update_cache
     
     read_attribute(:cached_surname)
   end
   
-  def cached_surname=(val)
-    write_attribute :cached_surname, val
-  end
-  
   def cached_email
-    if DateTime.now - 14.days > cache_updated
-      update_cache
-    end
+    update_cache
     
     read_attribute(:cached_email)
   end
   
-  def cached_email=(val)
-    write_attribute :cached_email, val
-  end
-  
   def cached_department
-    if DateTime.now - 14.days > cache_updated
-      update_cache
-    end
+    update_cache
     
     read_attribute(:cached_department)
   end
   
-  def cached_department=(val)
-    write_attribute :cached_department, val
-  end
-  
   def cached_student_class
-    if DateTime.now - 14.days > cache_updated
-      self.update_cache
-    end
+    update_cache
     
     read_attribute(:cached_student_class)
   end
   
-  def cached_student_class=(val)
-    write_attribute :cached_student_class, val
-  end
-  
   def cache_updated
-    if read_attribute(:cache_updated).nil?
-      update_cache
-    end
+    update_cache
     
     read_attribute(:cache_updated)
   end
   
-  def cache_updated=(val)
-    write_attribute :cache_updated, val
-  end
-  
   def update_cache
-    ldap_reference ||= CarnegieMellonPerson.find_by_andrewid( self.andrewid )
-    
-    write_attribute :cached_name, Array.[](ldap_reference["cn"]).flatten.last
-    write_attribute :cached_surname, ldap_reference["sn"]
-    write_attribute :cached_email, ldap_reference["mail"]
-    write_attribute :cached_department, ldap_reference["cmuDepartment"]
-    write_attribute :cached_student_class, ldap_reference["cmuStudentClass"]
-    write_attribute :cache_updated, DateTime.now
+    if read_attribute(:cache_updated).nil? || DateTime.now - 14.days > read_attribute(:cache_updated)
+      ldap_reference ||= CarnegieMellonPerson.find_by_andrewid( self.andrewid )
+      
+      write_attribute :cached_name, Array.[](ldap_reference["cn"]).flatten.last
+      write_attribute :cached_surname, ldap_reference["sn"]
+      write_attribute :cached_email, ldap_reference["mail"]
+      write_attribute :cached_department, ldap_reference["cmuDepartment"]
+      write_attribute :cached_student_class, ldap_reference["cmuStudentClass"]
+      write_attribute :cache_updated, DateTime.now
 
-    self.save!
+      self.save!
+    end
   end
   
   def reformat_phone
