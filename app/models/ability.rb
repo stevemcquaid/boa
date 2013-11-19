@@ -16,7 +16,8 @@ class Ability
       cannot :manage, :all
 
       can :read, [ChargeType, Checkout, ContactList, Document, Faq, Organization, OrganizationAlias,
-                  OrganizationCategory, Participant, Role, ShiftParticipant, ShiftType, Tool]
+                  OrganizationCategory, Participant, Role, ShiftParticipant, ShiftType, Tool,
+                  Membership]
 
       can :read, Charge do |c|
         c.organization.participants.include? (user.participant)
@@ -34,7 +35,8 @@ class Ability
       cannot :manage, :all
 
       can :read, [Checkout, ContactList, Document, Faq, OrganizationAlias,
-                  OrganizationCategory, Participant, Role, ShiftParticipant, ShiftType, Tool]
+                  OrganizationCategory, Participant, Role, ShiftParticipant, ShiftType, Tool,
+                  Membership]
 
       can :read, Shift do |s|
         s.organization.participants.include? (user.participant)
