@@ -1,4 +1,5 @@
 class CheckoutsController < ApplicationController
+  # permissions error - when enabled, this tries to find a Checkout with the current related model id on creation
   # load_and_authorize_resource
 
   # GET /checkouts
@@ -59,7 +60,7 @@ class CheckoutsController < ApplicationController
 
     raise ToolAlreadyCheckedOut unless not @tool.is_checked_out?
 
-    @participant = Participant.find_by_card(params[:checkout][:temp_id_card_number].to_s) #this creates a CMU directory request to get the andrew id associated with the card number. Then finds the local DB mapping to get the participant id.
+    @participant = Participant.find_by_card(params[:checkout][:card_number].to_s) #this creates a CMU directory request to get the andrew id associated with the card number. Then finds the local DB mapping to get the participant id.
 
     raise ParticipantDoesNotExist unless !@participant.nil?
 

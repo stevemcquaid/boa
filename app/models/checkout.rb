@@ -3,8 +3,8 @@ class Checkout < ActiveRecord::Base
   #before_save :hasParticipantOrOrganization
 
   # used for ID swipe forms
-  attr_accessible :temp_id_card_number
-  attr_accessor :temp_id_card_number
+  attr_accessible :card_number
+  attr_accessor :card_number
 
   validates :tool_id, :numericality => true, :presence => true
 

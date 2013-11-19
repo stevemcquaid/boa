@@ -1,6 +1,6 @@
 $("#new_checkout").submit(function(e) {
-  if($("#checkout_temp_id_card_number").val() == "") {
-    $("#checkout_temp_id_card_number").focus();
+  if($("#checkout_card_number").val() == "") {
+    $("#checkout_card_number").focus();
     e.preventDefault();
     return false;
         

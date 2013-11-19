@@ -1,7 +1,7 @@
 <% if can?(:update, @shift_participant) %>
   <%- model_class = Shift -%>
   <div class="page-header">
-    <h1><%=t '.title', :default => [:'helpers.titles.new', 'Clock Out %{model}'], :model => model_class.model_name.human %></h1>
+    <h1>Clock Out</h1>
   </div>
   <%= render :partial => 'new_clock_out_form' %>
   

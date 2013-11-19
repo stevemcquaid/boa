@@ -37,7 +37,7 @@ Boa::Application.routes.draw do
   match "new_user_and_participant" => "participants#new_user_and_participant", :as => :new_user_and_participant
   match "create_participant_user" => "checkouts#create_tool_checkin", :as => :create_tool_checkin
   match "add_participant_memberships" => "memberships#add_participant_memberships", :as => :add_participant_memberships
-  match "add_participant_memberships/:participant" => "memberships#add_participant_memberships", :as => :add_participant_memberships_given_participant
+  match "add_participant_memberships/:participant_id_to_add_to" => "memberships#add_participant_memberships", :as => :add_participant_memberships_given_participant
   match "create_participant_memberships" => "memberships#create_participant_memberships", :as => :create_participant_memberships
 
   match "new_participant_membership" => "memberships#new_participant_membership", :as => :new_participant_membership

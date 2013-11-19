@@ -30,11 +30,14 @@ class MembershipsController < ApplicationController
   end
 
   def add_participant_memberships
-    if(!Participant.find(params[:participant]).nil?)
-      @participant = Participant.find(params[:participant])
+    # check if we are simply trying to add new memberships to an already existing participant (from participant#show)
+    if(params.has_key?(:participant_id_to_add_to))
+      # we are adding to an already existing participant
+      @participant = Participant.find(params[:participant_id_to_add_to])
     else
+      # we are trying to create a new participant
       @participant = Participant.new(params[:participant])
-      @participant.andrewid = Participant.card_number_to_andrewid(params[:participant][:temp_id_card_number])
+      @participant.andrewid = Participant.get_andrewid(params[:participant][:card_number])
     end
 
     if(Participant.find_by_andrewid(@participant.andrewid).nil?)
@@ -61,10 +64,12 @@ class MembershipsController < ApplicationController
     @participant = Participant.find_by_id(@participant_id)
     raise ParticipantDoesNotExist unless !@participant.nil?
 
-    # make sure all organizations exist
-    @new_organization_ids.each do |org_id|
-      @organization = Organization.find(org_id)
-      raise OrganizationDoesNotExist unless !@organization.nil?
+    if(!@new_organization_ids.nil?)
+      # make sure all organizations exist
+      @new_organization_ids.each do |org_id|
+        @organization = Organization.find(org_id)
+        raise OrganizationDoesNotExist unless !@organization.nil?
+      end
     end
 
     # delete any organizations that were previously added, but not checked on submission
@@ -73,7 +78,6 @@ class MembershipsController < ApplicationController
     @old_participant_orgs.each do |org|
       if(!@new_organization_ids.include?(org.id.to_s))
         @membership = Membership.find(:first, :conditions => [ "participant_id = ? AND organization_id = ?", @participant.id, org.id])
-        puts @membership
         @membership.destroy
       end
     end
@@ -81,15 +85,17 @@ class MembershipsController < ApplicationController
     all_ok = true
 
     # create new memberships (only if they don't have a membership already)
-    @new_organization_ids.each do |new_org_id|
-      if(!@participant.organizations.map{|o| o.id.to_s}.include?(new_org_id.to_s))
-        @membership = Membership.new
-        @membership.participant_id = @participant_id
-        @membership.organization = Organization.find_by_id(new_org_id)
+    if(!@new_organization_ids.nil?)
+      @new_organization_ids.each do |new_org_id|
+        if(!@participant.organizations.map{|o| o.id.to_s}.include?(new_org_id.to_s))
+          @membership = Membership.new
+          @membership.participant_id = @participant_id
+          @membership.organization = Organization.find_by_id(new_org_id)
 
-        if(!@membership.save!)
-          all_ok = false
-          break
+          if(!@membership.save!)
+            all_ok = false
+            break
+          end
         end
       end
     end

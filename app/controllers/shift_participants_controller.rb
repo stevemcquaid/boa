@@ -1,5 +1,5 @@
 class ShiftParticipantsController < ApplicationController
-  load_and_authorize_resource
+  # permissions error - when enabled, this tries to find a ShiftParticipant with the current related model id on creation
 
   # GET /shift_participants
   # GET /shift_participants.json
@@ -126,7 +126,7 @@ class ShiftParticipantsController < ApplicationController
 
     #do app logic validation here where the participant id field can map to different organizations.
         #this could be cool for having a student id number represent an organization and instead of participant_id we will change it to an organization_id
-        @participant = Participant.find_by_card(params[:shift_participant][:temp_id_card_number].to_s) #this creates a CMU directory request to get the andrew id associated with the card number. Then finds the local DB mapping to get the participant id.
+        @participant = Participant.find_by_card(params[:shift_participant][:card_number].to_s) #this creates a CMU directory request to get the andrew id associated with the card number. Then finds the local DB mapping to get the participant id.
         raise ParticipantDoesNotExist unless !@participant.nil?
 
       @shift_participant.shift_id = @shift.id
@@ -150,7 +150,7 @@ class ShiftParticipantsController < ApplicationController
 
       #do app logic validation here where the participant id field can map to different organizations.
           #this could be cool for having a student id number represent an organization and instead of participant_id we will change it to an organization_id
-          @participant = Participant.find_by_card(params[:shift_participant][:temp_id_card_number].to_s) #this creates a CMU directory request to get the andrew id associated with the card number. Then finds the local DB mapping to get the participant id.
+          @participant = Participant.find_by_card(params[:shift_participant][:card_number].to_s) #this creates a CMU directory request to get the andrew id associated with the card number. Then finds the local DB mapping to get the participant id.
           raise ParticipantDoesNotExist unless !@participant.nil?
 
         raise ParticipantDoesNotMatch unless (@participant.name == Participant.find_by_id(@shift_participant.participant).name)

@@ -1,12 +1,9 @@
 class Participant < ActiveRecord::Base
   before_save :reformat_phone
 
+  # :card_number used for ID swipe forms
   attr_accessible :andrewid, :has_signed_waiver, :phone_number, :has_signed_hardhat_waiver, :card_number
   attr_reader :card_number
-
-  # used for ID swipe forms
-  attr_accessible :temp_id_card_number
-  attr_accessor :temp_id_card_number
 
   validates :andrewid, :presence => true, :uniqueness => true
   validates :has_signed_waiver, :acceptance => {:accept => true}

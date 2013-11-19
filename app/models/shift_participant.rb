@@ -5,8 +5,8 @@ class ShiftParticipant < ActiveRecord::Base
   attr_accessible :clocked_in_at, :clocked_out_at, :shift_id, :participant_id
 
   # used for ID swipe forms
-  attr_accessible :temp_id_card_number
-  attr_accessor :temp_id_card_number
+  attr_accessible :card_number
+  attr_accessor :card_number
 
   validates :shift_id, :clocked_in_at, :participant_id, :presence => true
 
