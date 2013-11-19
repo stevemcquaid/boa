@@ -15,12 +15,16 @@ class Ability
     elsif user.has_role? :booth_chair
       cannot :manage, :all
 
-      can :read, [ChargeType, Checkout, ContactList, Document, Faq, Organization, OrganizationAlias,
+      can :read, [ChargeType, Checkout, ContactList, Document, Faq, OrganizationAlias,
                   OrganizationCategory, Participant, Role, ShiftParticipant, ShiftType, Tool,
                   Membership]
 
       can :read, Charge do |c|
         c.organization.participants.include? (user.participant)
+      end
+
+      can :read, Organization do |o|
+        o.memberships.where("is_booth_chair=?", true).map{|m| m.participant}.include? (user.participant)
       end
 
       can :read, Shift do |s|
