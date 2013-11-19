@@ -13,10 +13,28 @@ class ApplicationController < ActionController::Base
     redirect_to "/participants/new"
   end
 
+  rescue_from 'CheckoutsController::OrganizationDoesNotExist' do |exception|
+    flash[:error] = "The organization you entered is not registered with the system. Please register it if desired."
+    #Event.new_event "Exception: #{exception.message}", current_user, request.remote_ip #deugging
+    redirect_to "/organization/new"
+  end
+
   rescue_from 'CheckoutsController::ParticipantNotExist' do |exception|
     flash.now[:error] = "The Student ID you swiped is not yet activated with a user account. Please register with andrew eMail"
     #Event.new_event "Exception: #{exception.message}", current_user, request.remote_ip #deugging
     redirect_to "/participants/new"
+  end
+
+  rescue_from 'CheckoutsController::ToolAlreadyCheckedIn' do |exception|
+    flash[:error] = "The Tool you selected is already checked in."
+    #Event.new_event "Exception: #{exception.message}", current_user, request.remote_ip #deugging
+    redirect_to "/tools"
+  end
+
+  rescue_from 'CheckoutsController::ToolAlreadyCheckedOut' do |exception|
+    flash[:error] = "The Tool you selected is already checked out."
+    #Event.new_event "Exception: #{exception.message}", current_user, request.remote_ip #deugging
+    redirect_to "/tools"
   end
 
   rescue_from 'CheckoutsController::ToolDoesNotExist' do |exception|

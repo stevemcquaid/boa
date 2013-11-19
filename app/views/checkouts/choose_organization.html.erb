@@ -1,0 +1,14 @@
+<% if can?(:create, @checkout) %>
+  <h3>Select Organization for Checkout (<%= @tool.name %>
+    for
+    <%= @participant.name %>)</h3>
+  <ul>
+    <% @participant.organizations.each do |organization| %>
+      <li>
+        <%= link_to(organization.name, create_tool_checkout_organization_selected_path(:participant => @participant, :tool => @tool, :organization => organization)) %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <h3>Not Authorized!</h3>
+<% end %>

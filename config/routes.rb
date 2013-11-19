@@ -31,6 +31,7 @@ Boa::Application.routes.draw do
 
   match "create_tool_checkin" => "checkouts#create_tool_checkin", :as => :create_tool_checkin
   match "create_tool_checkout" => "checkouts#create_tool_checkout", :as => :create_tool_checkout
+  match "create_tool_checkout_organization_selected" => "checkouts#create_tool_checkout_organization_selected", :as => :create_tool_checkout_organization_selected
 
   # user creation
   match "new_user_and_participant" => "participants#new_user_and_participant", :as => :new_user_and_participant
