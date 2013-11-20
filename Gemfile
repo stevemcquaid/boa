@@ -29,6 +29,7 @@ gem 'simple_form'
 gem 'carrierwave' #attachments
 gem 'rest-client'
 
+gem 'omniauth-shibboleth'
 gem 'net-ldap'
 gem "ruby-activeldap-debug", "~> 0.7.4"
 
