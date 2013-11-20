@@ -20,8 +20,6 @@ end
 gem "capistrano", "2.15.5"
 gem 'factory_girl_rails' #fixture testing
 gem 'jquery-rails'
-gem 'cancan' #user auth
-gem 'devise' #user auth
 gem 'figaro'
 gem 'mocha', :require => 'mocha/api'
 gem 'rolify'
@@ -29,6 +27,9 @@ gem 'simple_form'
 gem 'carrierwave' #attachments
 gem 'rest-client'
 
+gem 'cancan' #user auth
+gem 'devise' #user auth
+gem 'omniauth'
 gem 'omniauth-shibboleth'
 gem 'net-ldap'
 gem "ruby-activeldap-debug", "~> 0.7.4"

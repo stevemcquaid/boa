@@ -61,6 +61,12 @@ Boa::Application.routes.draw do
 
   root :to => "home#index"
 
-  devise_for :users
+  devise_for :users, :controllers => {
+    # :registrations => 'concerto_devise/registrations',
+    # :sessions => 'concerto_devise/sessions',
+    :omniauth_callbacks => 'users/omniauth_callbacks'
+  }
+
   resources :users
+
 end

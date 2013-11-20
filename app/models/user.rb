@@ -3,9 +3,8 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:shibboleth]
+  
   # Setup accessible (or protected) attributes for your model
   attr_accessible :role_ids, :as => :admin
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :id
@@ -26,4 +25,15 @@ class User < ActiveRecord::Base
   scope :search, lambda { |term| where('name LIKE ? OR email LIKE ?', "#{term}%", "#{term}%") }
 
   
+  # omniauth/shibboleth authentication
+  def self.find_for_shibboleth_oauth(request, signed_in_resource=nil)
+    user = User.where(:email => request.env['REMOTE_USER']).first
+    unless user
+      user = User.create(email: request.env['REMOTE_USER'],
+                         first_name: request.env['REMOTE_USER'].split('@')[0],
+                         password: Devise.friendly_token[0,20])
+    end
+    return user
+  end 
+    
 end

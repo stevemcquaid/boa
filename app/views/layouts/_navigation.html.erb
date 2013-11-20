@@ -71,6 +71,9 @@
                 </li>
               <% else %>
                 <li>
+                  <%= link_to 'Shib', main_app.user_omniauth_authorize_path(:shibboleth) %>
+                </li>
+                <li>
                   <%= link_to 'Login', new_user_session_path %>
                 </li>
                 <li>
