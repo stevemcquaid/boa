@@ -9,7 +9,7 @@
   </p>
   <p>
     <strong><%= model_class.human_attribute_name(:phone_number) %>:</strong>
-    <%= "(" + @participant.phone_number[0,3]+") "+@participant.phone_number[3,3]+"-"+@participant.phone_number[6,4] %>
+    <%= @participant.formatted_phone_number %>
   </p>
   <p>
     <strong><%= model_class.human_attribute_name(:department) %>:</strong>

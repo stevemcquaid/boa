@@ -1,7 +1,7 @@
 class Participant < ActiveRecord::Base
   before_save :reformat_phone
   
-  attr_accessible :andrewid, :has_signed_waiver, :phone_number, :has_signed_hardhat_waiver
+  attr_accessible :andrewid, :has_signed_waiver, :phone_number, :has_signed_hardhat_waiver, :membership
 
   validates :andrewid, :presence => true, :uniqueness => true
   validates :has_signed_waiver, :acceptance => {:accept => true}
@@ -13,7 +13,7 @@ class Participant < ActiveRecord::Base
   has_many :tools, :through => :checkouts
   has_many :memberships, dependent: :destroy
   has_many :shift_participants, dependent: :destroy
-  has_one  :contact_list #this may need to be enabled?
+  has_one  :contact_list
   belongs_to :user, dependent: :destroy
 
   scope :search, lambda { |term| where('andrewid LIKE ?', "#{term}%") }
@@ -36,6 +36,10 @@ class Participant < ActiveRecord::Base
 
   def student_class
     cached_student_class
+  end
+  
+  def formatted_phone_number
+    "(" + self.phone_number[0,3] + ") " + self.phone_number[3,3] + "-" + self.phone_number[6,4]
   end
 
   #error handling here does not work?

@@ -4,10 +4,10 @@
     <h1><%=t '.title', :default => model_class.model_name.human %></h1>
   </div>
   <dl class="dl-horizontal">
-    <dt><strong><%= model_class.human_attribute_name(:participant_id) %>:</strong></dt>
-    <dd><%= @contact_list.participant_id %></dd>
-    <dt><strong><%= model_class.human_attribute_name(:display_contact) %>:</strong></dt>
-    <dd><%= @contact_list.display_contact %></dd>
+    <dt><strong>Name:</strong></dt>
+    <dd><%= @contact_list.participant.name %></dd>
+    <dt><strong>Phone Number:</strong></dt>
+    <dd><%= @contact_list.participant.formatted_phone_number %></dd>
   </dl>
   <div class="form-actions">
     <%= link_to t('.back', :default => t("helpers.links.back")),

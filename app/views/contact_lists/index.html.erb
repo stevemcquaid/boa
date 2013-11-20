@@ -6,8 +6,8 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th><%= model_class.human_attribute_name(:participant_id) %></th>
-        <th><%= model_class.human_attribute_name(:display_contact) %></th>
+        <th>Name</th>
+        <th>Phone Number</th>
         <th><%=t '.actions', :default => t("helpers.actions") %></th>
       </tr>
     </thead>
@@ -15,7 +15,7 @@
       <% @contact_lists.each do |contact_list| %>
         <tr>
           <td><%= link_to contact_list.participant.name, participant_path(contact_list.participant_id)  unless contact_list.participant.nil? %></td>
-          <td><%= link_to contact_list.display_contact, contact_list_path(contact_list) %></td>
+          <td><%= link_to contact_list.participant.formatted_phone_number, participant_path(contact_list.participant_id)  unless contact_list.participant.nil? %></td>
           <td>
             <% if can?(:update, contact_list) %>
               <%= link_to t('.edit', :default => t("helpers.links.edit")),

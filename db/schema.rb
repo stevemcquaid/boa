@@ -50,9 +50,8 @@ ActiveRecord::Schema.define(:version => 20131117052524) do
 
   create_table "contact_lists", :force => true do |t|
     t.integer  "participant_id"
-    t.boolean  "display_contact"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "documents", :force => true do |t|
