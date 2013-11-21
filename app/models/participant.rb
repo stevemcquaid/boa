@@ -41,10 +41,6 @@ class Participant < ActiveRecord::Base
   def student_class
     cached_student_class
   end
-  
-  def formatted_phone_number
-    "(" + self.phone_number[0,3] + ") " + self.phone_number[3,3] + "-" + self.phone_number[6,4]
-  end
 
   #error handling here does not work?
   class NotRegistered < Exception
@@ -65,6 +61,10 @@ class Participant < ActiveRecord::Base
     return theUser
   end
 
+  def formatted_phone_number
+    number_to_phone(self.phone_number, area_code: true) || "N/A"
+  end
+  
   private
   
   def self.get_andrewid(card_number)
