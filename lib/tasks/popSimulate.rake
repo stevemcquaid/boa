@@ -235,9 +235,6 @@ namespace :db do
     new_task.due_at = Date.today
     new_task.save!
     
-    
-    
-
 
     puts "Shift"
 
@@ -265,54 +262,55 @@ namespace :db do
     new_shift.organization = Organization.find_by_name("Kappa Alpha Theta")
     new_shift.save!
 
+
     puts "ShiftParticipant"
 
     new_sp = ShiftParticipant.new
     new_sp.shift = Shift.find_by_id(1)
     new_sp.participant = Participant.find_by_id(1)
-    new_sp.clocked_in_at = Date.new
+    new_sp.clocked_in_at = Time.now - 50.minutes
     new_sp.save!
 
     new_sp = ShiftParticipant.new
     new_sp.shift = Shift.find_by_id(1)
     new_sp.participant = Participant.find_by_id(3)
-    new_sp.clocked_in_at = Date.new
+    new_sp.clocked_in_at = Time.now - 30.minutes
     new_sp.save!
 
     new_sp = ShiftParticipant.new
     new_sp.shift = Shift.find_by_id(1)
     new_sp.participant = Participant.find_by_id(2)
-    new_sp.clocked_in_at = Date.new
+    new_sp.clocked_in_at = Time.now - 40.minutes
     new_sp.save!
 
     new_sp = ShiftParticipant.new
     new_sp.shift = Shift.find_by_id(1)
     new_sp.participant = Participant.find_by_id(4)
-    new_sp.clocked_in_at = Date.new
+    new_sp.clocked_in_at = Time.now - 60.minutes
     new_sp.save!
 
     puts "Tool"
 
     new_tool = Tool.new
-    new_tool.barcode = 12378083290
+    new_tool.barcode = 923780
     new_tool.description = "HAMMER"
     new_tool.name = "Hammer"
     new_tool.save!
 
     new_tool = Tool.new
-    new_tool.barcode = 123789012343
+    new_tool.barcode = 923781
     new_tool.description = "SAW"
     new_tool.name = "Saw"
     new_tool.save!
 
     new_tool = Tool.new
-    new_tool.barcode = 12378424330120
+    new_tool.barcode = 923782
     new_tool.description = "LADDER"
     new_tool.name = "Ladder"
     new_tool.save!
 
     new_tool = Tool.new
-    new_tool.barcode = 123743280812
+    new_tool.barcode = 923783
     new_tool.description = "HARD HAT"
     new_tool.name = "Hard Hat"
     new_tool.save!
@@ -320,26 +318,26 @@ namespace :db do
     puts "Checkout"
 
     new_checkout = Checkout.new
-    new_checkout.checked_in_at = Date.new
-    new_checkout.checked_out_at = Date.new
+    new_checkout.checked_in_at = Time.now - 10.hours
+    new_checkout.checked_out_at = Time.now - 4.hours
     new_checkout.tool = Tool.find_by_name("Hammer")
     new_checkout.save!
 
     new_checkout = Checkout.new
-    new_checkout.checked_in_at = Date.new
-    new_checkout.checked_out_at = Date.new
+    new_checkout.checked_in_at = Time.now - 11.hours
+    new_checkout.checked_out_at = Time.now - 3.hours
     new_checkout.tool = Tool.find_by_name("Hammer")
     new_checkout.save!
 
     new_checkout = Checkout.new
-    new_checkout.checked_in_at = Date.new
-    new_checkout.checked_out_at = Date.new
+    new_checkout.checked_in_at = Time.now - 12.hours
+    new_checkout.checked_out_at = Time.now - 2.hours
     new_checkout.tool = Tool.find_by_name("Saw")
     new_checkout.save!
 
     new_checkout = Checkout.new
-    new_checkout.checked_in_at = Date.new
-    new_checkout.checked_out_at = Date.new
+    new_checkout.checked_in_at = Time.now - 2.hours
+    new_checkout.checked_out_at = Time.now - 1.hours
     new_checkout.tool = Tool.find_by_name("Hard Hat")
     new_checkout.save!
 
@@ -351,7 +349,7 @@ namespace :db do
     new_charge.receiving_participant = nil
     new_charge.organization = Organization.find_by_name("Kappa Alpha Theta")
     new_charge.amount = 50.00
-    new_charge.charged_at = Date.today
+    new_charge.charged_at = Time.now - 1.days
     new_charge.description = "Missed 10/2 meeting"
     new_charge.save!
 
@@ -361,7 +359,7 @@ namespace :db do
     new_charge.receiving_participant = Participant.find_by_andrewid("asteger")
     new_charge.organization = Organization.find_by_name("Kappa Alpha Theta")
     new_charge.amount = 25.00
-    new_charge.charged_at = Date.today - 1
+    new_charge.charged_at = Time.now - 2.days
     new_charge.description = "Breaker trip"
     new_charge.save!
 

@@ -5,8 +5,12 @@ test: &test
   timeout: 5000
 
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  database: boastage
+  username: boauser
+  password: Prof_H_No_Sn00p1ng
   pool: 5
   timeout: 5000
 
