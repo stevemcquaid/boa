@@ -242,25 +242,25 @@ namespace :db do
     puts "Shift"
 
     new_shift = Shift.new
-    new_shift.ends_at = Date.new
+    new_shift.ends_at = Time.now + 1.hours
     new_shift.required_number_of_participants = 3
-    new_shift.starts_at = Date.new
+    new_shift.starts_at = Time.now - 1.hours
     new_shift.shift_type = ShiftType.find_by_id(1)
     new_shift.organization = Organization.find_by_name("Kappa Alpha Theta")
     new_shift.save!
 
     new_shift = Shift.new
-    new_shift.ends_at = Date.new
+    new_shift.ends_at = Time.now - 1.hour
     new_shift.required_number_of_participants = 3
-    new_shift.starts_at = Date.new
+    new_shift.starts_at = Time.now - 3.hours
     new_shift.shift_type = ShiftType.find_by_id(2)
     new_shift.organization = Organization.find_by_name("Student Dormitory Council")
     new_shift.save!
 
     new_shift = Shift.new
-    new_shift.ends_at = Date.new
+    new_shift.ends_at = Time.now + 15.hours
     new_shift.required_number_of_participants = 3
-    new_shift.starts_at = Date.new
+    new_shift.starts_at = Time.now + 1.hours
     new_shift.shift_type = ShiftType.find_by_id(3)
     new_shift.organization = Organization.find_by_name("Kappa Alpha Theta")
     new_shift.save!
