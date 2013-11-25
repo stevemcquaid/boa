@@ -2,7 +2,7 @@ class ShiftParticipant < ActiveRecord::Base
   belongs_to :shift
   belongs_to :participant
 
-  attr_accessible :clocked_in_at, :clocked_out_at, :shift_id, :participant_id
+  attr_accessible :clocked_in_at, :clocked_out_at, :shift, :participant
 
   # used for ID swipe forms
   attr_accessible :card_number
