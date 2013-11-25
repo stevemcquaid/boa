@@ -1,16 +1,16 @@
 <% if can?(:read, Tool) %>
   <%- model_class = Tool -%>
   <div class="page-header">
-    <h1><%=t '.title', :default => model_class.model_name.human.pluralize %> (No Hardhats / Radios)</h1>
+    <h1>Radios</h1>
   </div>
 
   <% if can?(:create, Tool) %>
     <%= link_to raw("<i class='icon-plus icon-white'></i> Add a New Tool"), new_tool_path, :class => 'btn btn-primary' %>
     <%= link_to raw("<i class='icon-plus icon-white'></i> Checkout Tool"), new_tool_checkout_path, :class => 'btn btn-primary' %>
   <% end %>
-
+  
   <%= link_to raw("<i class='icon-plus icon-white'></i> Hardhats"), hardhats_index_path, :class => 'btn btn-primary' %>
-  <%= link_to raw("<i class='icon-plus icon-white'></i> Radios"), radios_index_path, :class => 'btn btn-primary' %>
+  <%= link_to raw("<i class='icon-plus icon-white'></i> Tools"), tools_path, :class => 'btn btn-primary' %>
 
   <br>
   <br>

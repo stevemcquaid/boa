@@ -20,7 +20,8 @@ class Participant < ActiveRecord::Base
   has_one  :contact_list
   belongs_to :user, dependent: :destroy
 
-  scope :search, lambda { |term| where('andrewid LIKE ?', "#{term}%") }
+  # ILIKE is case-insensitive LIKE in Postgres
+  scope :search, lambda { |term| where('andrewid ILIKE ?', "#{term}%") }
   
   def name
     cached_name

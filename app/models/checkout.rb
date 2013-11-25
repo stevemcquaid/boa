@@ -14,9 +14,9 @@ class Checkout < ActiveRecord::Base
   belongs_to :organization
   belongs_to :tool
 
-  default_scope order('tool_id and checked_out_at DESC')
-  scope :old, where('checked_in_at is not null')
-  scope :current, where('checked_in_at is null')
+  default_scope order('tool_id AND checked_out_at DESC')
+  scope :old, where('checked_in_at IS NOT NULL')
+  scope :current, where('checked_in_at IS NULL')
 
   def hasParticipantOrOrganization
     !(self.participant.nil? && self.organization.nil?)

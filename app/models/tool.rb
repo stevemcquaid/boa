@@ -10,11 +10,12 @@ class Tool < ActiveRecord::Base
   
   scope :by_barcode, order('barcode')
 
-  scope :hardhats, where('NAME LIKE "%hardhat"')
-  scope :radios, where('NAME LIKE "%radio"')
-  scope :just_tools, where('NAME NOT LIKE "%radio" AND NAME NOT LIKE "%hardhat"')
+  # ILIKE is case-insensitive LIKE in Postgres
+  scope :hardhats, where("name ILIKE '%hardhat'")
+  scope :radios, where("NAME ILIKE '%radio'")
+  scope :just_tools, where("NAME NOT ILIKE '%radio' AND NAME NOT ILIKE '%hardhat'")
 
-  scope :search, lambda { |term| where('name LIKE ? OR barcode LIKE ?', "#{term}%", "#{term}%") }
+  scope :search, lambda { |term| where("name ILIKE ? OR CAST(barcode AS TEXT) ILIKE ?", "#{term}%", "#{term}%") }
 
 
   def current_organization

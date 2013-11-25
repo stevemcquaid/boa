@@ -4,13 +4,36 @@ class ToolsController < ApplicationController
   # GET /tools
   # GET /tools.json
   def index
-    @tools = Tool.by_barcode.paginate(:page => params[:page]).per_page(10)
+    @tools = Tool.just_tools.by_barcode.paginate(:page => params[:page]).per_page(10)
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tools }
     end
   end
+
+  # GET /tools/hardhats
+  # GET /hardhats.json
+  def hardhats_only
+    @tools = Tool.hardhats.by_barcode.paginate(:page => params[:page]).per_page(10)
+
+    respond_to do |format|
+      format.html # hardhats.html.erb
+      format.json { render json: @tools }
+    end
+  end
+
+  # GET /tools/radios
+  # GET /radios.json
+  def radios_only
+    @tools = Tool.radios.by_barcode.paginate(:page => params[:page]).per_page(10)
+
+    respond_to do |format|
+      format.html # radios.html.erb
+      format.json { render json: @tools }
+    end
+  end
+
 
   # GET /tools/1
   # GET /tools/1.json

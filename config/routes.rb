@@ -15,6 +15,11 @@ Boa::Application.routes.draw do
   resources :tasks
   resources :tools
 
+  # organization alias
+  match "new_organization_alias/:id" => "organization_aliases#new_alias", :as => :new_organization_alias
+  match "create_organization_alias" => "organization_aliases#create_alias", :as => :create_organization_alias
+  match "remove_organization_alias/:id" => "organization_aliases#destroy_alias", :as => :remove_organization_alias
+
   # shift clock in / clock out
   match "new_shift_clock_in/:id" => "shift_participants#new_shift_clock_in", :as => :new_shift_clock_in
   match "new_shift_clock_out/:id" => "shift_participants#new_shift_clock_out", :as => :new_shift_clock_out
@@ -33,6 +38,10 @@ Boa::Application.routes.draw do
   match "create_tool_checkout" => "checkouts#create_tool_checkout", :as => :create_tool_checkout
   match "create_tool_checkout_organization_selected" => "checkouts#create_tool_checkout_organization_selected", :as => :create_tool_checkout_organization_selected
 
+  # tools - hardhats and radios taken out
+  match "hardhats" => "tools#hardhats_only", :as => :hardhats_index
+  match "radios" => "tools#radios_only", :as => :radios_index
+
   # user creation
   match "new_user_and_participant" => "participants#new_user_and_participant", :as => :new_user_and_participant
   match "create_participant_user" => "checkouts#create_tool_checkin", :as => :create_tool_checkin
@@ -42,11 +51,6 @@ Boa::Application.routes.draw do
 
   match "new_participant_membership" => "memberships#new_participant_membership", :as => :new_participant_membership
   match "create_participant_membership" => "memberships#create_participant_membership", :as => :create_participant_membership
-
-  # organization alias
-  match "new_organization_alias/:id" => "organization_aliases#new_alias", :as => :new_organization_alias
-  match "create_organization_alias" => "organization_aliases#create_alias", :as => :create_organization_alias
-  match "remove_organization_alias/:id" => "organization_aliases#destroy_alias", :as => :remove_organization_alias
 
   # static pages
   match "milestones" => "home#milestones", :as => "milestones"
