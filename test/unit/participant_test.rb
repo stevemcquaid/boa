@@ -28,7 +28,7 @@ class ParticipantTest < ActiveSupport::TestCase
 
     context "Testing participants" do
       should "know participants" do
-        assert_equal ["rcrown", "shannon1", "dcorwin", "asteger", "member", "juc"], Participant.all.map{|e| e.andrewid}
+        assert_equal ["asteger", "dcorwin", "juc", "member", "rcrown", "shannon1"], Participant.all.map{|e| e.andrewid}
       end
     end
     
