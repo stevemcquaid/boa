@@ -81,11 +81,11 @@ namespace :db do
 
   desc "Create database associated with deployment environment"
   task :create, :except => { :no_release => true }, :roles => :db do
-    run "cd #{current_path} && bundle exec rake db:popSimulate"
+    run "cd #{current_path} && bundle exec rake db:create"
   end
 
   task :migrate, :except => { :no_release => true }, :roles => :db do
-    run "cd #{current_path}"
+    run "cd #{current_path} && bundle exec rake db:migrate"
   end
 
 end
