@@ -7,7 +7,6 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-
 end
 gem 'jquery-rails'
 
@@ -66,6 +65,8 @@ group :staging do
   gem 'passenger'
   
   gem 'quiet_assets'
+
+  gem 'ci_reporter'
 end  
 
 group :test do
@@ -90,6 +91,7 @@ group :test do
   gem 'simplecov-rcov', :require => false #code coverage
   gem 'coveralls', require: false
   gem 'rake'
+
   gem 'ci_reporter'
 
 end
