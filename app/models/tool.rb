@@ -7,15 +7,13 @@ class Tool < ActiveRecord::Base
 
   validates :barcode, :presence => true, :uniqueness => true, :length => { :minimum => 2, :maximum => 20}
   validates :name, :presence => true
-  
+
   scope :by_barcode, order('barcode')
 
-  # ILIKE is case-insensitive LIKE in Postgres
-  scope :hardhats, where("name ILIKE '%hardhat'")
-  scope :radios, where("NAME ILIKE '%radio'")
-  scope :just_tools, where("NAME NOT ILIKE '%radio' AND NAME NOT ILIKE '%hardhat'")
-
-  scope :search, lambda { |term| where("name ILIKE ? OR CAST(barcode AS TEXT) ILIKE ?", "#{term}%", "#{term}%") }
+  scope :hardhats, where("lower(name) LIKE lower(?)", "%hardhat")
+  scope :radios, where("lower(NAME) LIKE lower(?)", "%radio")
+  scope :just_tools, where("lower(NAME) NOT LIKE lower(?) AND NAME NOT LIKE lower(?)", '%radio', '%hardhat')
+  scope :search, lambda { |term| where("lower(name) LIKE lower(?) OR lower(CAST(barcode AS TEXT)) LIKE lower(?)", "#{term}%", "#{term}%") }
 
 
   def current_organization

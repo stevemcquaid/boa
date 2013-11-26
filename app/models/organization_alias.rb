@@ -7,7 +7,6 @@ class OrganizationAlias < ActiveRecord::Base
 
   belongs_to :organization  
   
-  # ILIKE is case-insensitive LIKE in Postgres
-  scope :search, lambda { |term| where('name ILIKE ?', "#{term}%") }
+  scope :search, lambda { |term| where('lower(name) LIKE lower(?)', "#{term}%") }
 
 end

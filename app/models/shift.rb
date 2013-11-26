@@ -13,14 +13,11 @@ class Shift < ActiveRecord::Base
 
   scope :current, lambda { where("starts_at < ? and ends_at > ?", Time.zone.now, Time.zone.now ) }
   scope :upcoming, lambda { where("starts_at > ? and starts_at < ?", Time.zone.now, Time.zone.now + 2.hours ) }
-  
 
-
-
-	private
-	def set_end_time
-		et = self.ends_at
-		self.ends_at = starts_at + 2.hours if et.nil? || et.blank?
-	end
+  private
+  def set_end_time
+    et = self.ends_at
+    self.ends_at = starts_at + 2.hours if et.nil? || et.blank?
+  end
 
 end

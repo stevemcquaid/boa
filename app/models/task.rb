@@ -3,7 +3,7 @@ class Task < ActiveRecord::Base
 
   validates :name, :due_at, :task_status_id, :presence => true
   #validates :completed_by, :presence => true, :unless => :is_uncompleted?
-  
+
   belongs_to :task_status
   belongs_to :task_category
   belongs_to :completed_by, :class_name => "Participant"

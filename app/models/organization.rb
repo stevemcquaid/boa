@@ -16,8 +16,7 @@ class Organization < ActiveRecord::Base
   default_scope order('name asc')
   scope :alphabetical, order('name')
 
-  # ILIKE is case-insensitive LIKE in Postgres
-  scope :search, lambda { |term| where('name ILIKE ?', "#{term}%") }
+  scope :search, lambda { |term| where('lower(name) LIKE lower(?)', "#{term}%") }
 
   
 end
