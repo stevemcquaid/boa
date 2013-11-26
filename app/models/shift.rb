@@ -1,6 +1,5 @@
 class Shift < ActiveRecord::Base
   before_save :set_end_time
-
   belongs_to :organization
 
   attr_accessible :ends_at, :starts_at, :required_number_of_participants, :organization, :shift_type
@@ -9,6 +8,7 @@ class Shift < ActiveRecord::Base
   has_many :shift_participants
   belongs_to :shift_type
 
+  validates :organization, :starts_at, :ends_at, :required_number_of_participants, :presence => true
   validates :starts_at, :ends_at, :required_number_of_participants, :presence => true
 
   scope :current, lambda { where("starts_at < ? and ends_at > ?", Time.zone.now, Time.zone.now ) }
