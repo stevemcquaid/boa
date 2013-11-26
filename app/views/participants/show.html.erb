@@ -29,12 +29,18 @@
   </p>
   <p>
     <strong><%= model_class.human_attribute_name(:memberships) %></strong>
-    <% @memberships.each do |membership| %><li><%= link_to membership.organization.name, membership.organization %></li><% end %>
+    <% @memberships.each do |membership| %>
+      <li><%= link_to membership.organization.name, membership.organization %></li>
+    <% end %>
   </p>
   <p>
     <strong><%= model_class.human_attribute_name(:user_roles) %></strong>
-    <% @participant.user.roles.each do |role| %>
-      <li><%= role.name %></li>
+    <% if @participant.user.blank? %>
+      <li>No User Associated</li>
+    <% else %>
+      <% @participant.user.roles.each do |role| %>
+        <li><%= role.name %></li>
+      <% end %>
     <% end %>
   </p>
   <div class="form-actions">
@@ -46,8 +52,9 @@
       <%= link_to t('.add membership', :default => t("helpers.links.add membership")),
                 add_participant_memberships_given_participant_path(@participant), :class => 'btn' %>
     <% end %>
-    <a data-toggle="modal" href="#role-options-<%= @participant.user.id %>" class="btn btn-mini" type="button">Change role</a>
-    <%= render "/users/user", :user => @participant.user, :redirect => participant_path(@participant) %>
+    <!-- This code is not right, it works for now but it's a hack and the whole block should be role checked and not appear if there is no associated user --!>
+    <a data-toggle="modal" href="#role-options-<%= @participant.user.id unless @participant.user.blank? %>" class="btn btn-mini" type="button">Change role</a>
+    <%= render "/users/user", :user => @participant.user, :redirect => participant_path(@participant) unless @participant.user.blank? %>
     <% if can?(:destroy, @participant) %>
       <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                 participant_path(@participant),

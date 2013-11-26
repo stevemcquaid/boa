@@ -24,7 +24,7 @@
             <td><%= shift.starts_at.strftime("%m/%d/%y %I:%M%p")  %></td>
             <td><%= shift.ends_at.strftime("%m/%d/%y %I:%M%p") %></td>
             <td><%= shift.required_number_of_participants %></td>
-            <td><%= shift.organization.name %></td>
+            <td><%= link_to shift.organization.name, shift.organization unless shift.organization.blank? %></td>
             <td><%= shift.shift_type.name %></td>
             <td>
               <% if can?(:update, shift) %>
@@ -52,3 +52,4 @@
 <% else %>
   <h3>Not Authorized!</h3>
 <% end %>
+

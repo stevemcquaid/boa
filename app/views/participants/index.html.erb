@@ -6,7 +6,6 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <!-- <th><%= model_class.human_attribute_name(:id) %></th> -->
         <th>Name</th>
         <th><%= model_class.human_attribute_name(:andrewid) %></th>
         <th><%= model_class.human_attribute_name(:phone_number) %></th>
@@ -19,7 +18,7 @@
     <tbody>
       <% @participants.each do |participant| %>
         <tr>
-          <!--    <td><%= link_to participant.id, participant_path(participant) %></td>-->
+          <!--    <td><%= link_to participant, participant_path(participant) %></td>-->
           <td><%= link_to participant.name, participant_path(participant) %></td>
           <td><%= participant.andrewid %></td>
           <td><%= participant.formatted_phone_number %></td>
@@ -51,3 +50,4 @@
 <% else %>
   <h3>Not Authorized!</h3>
 <% end %>
+
