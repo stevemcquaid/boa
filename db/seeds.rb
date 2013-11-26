@@ -364,7 +364,7 @@ Faq.create([
   { question: "Parking complains about Asian row. What do I do?", 
     answer: "Tell Asian row to clear their stuff out. If they won't listen, call Rachel." },
   { question: "What should the 12am-4am watch shifts do?",
-    answer: "MOVE THE DUMPSTERS TO THE FIRELANE BY THE TENT. Check the radio station. Make sure no one is doing anything stupid (climbing on roofs, etc.)." },
+    answer: "MOVE THE DUMPSTERS TO THE FIRELANE BY THE TENT. Check the radio station. Make sure no one is doing anything stupid (climbing on roofs, having sex in booths, etc.)." },
   { question: "What's the difference between a security and watch shift?",
     answer: "Security is paid, watch is not. Watch shifts are booth orgs, while security are non-building orgs." },
   { question: "What do I do with my drunk watch/security shift that just showed up?",
