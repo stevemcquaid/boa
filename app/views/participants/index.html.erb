@@ -42,6 +42,11 @@
       <% end %>
     </tbody>
   </table>
+  
+  <span class="smtext">
+  <%= will_paginate @participants, :param_name => 'participants_page', :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+  </span>
+  
   <% if can?(:create, Participant) %>
     <%= link_to t('.new', :default => t("helpers.links.new")),
               new_user_and_participant_path,

@@ -4,7 +4,7 @@ class ParticipantsController < ApplicationController
   # GET /participants
   # GET /participants.json
   def index
-    @participants = Participant.all
+    @participants = Participant.alphabetical.paginate(:page => params[:participants_page]).per_page(50)
 
     respond_to do |format|
       format.html # index.html.erb
