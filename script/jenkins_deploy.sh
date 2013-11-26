@@ -1,4 +1,3 @@
-#check if rvm exists
 #rvm use 1.9.3
 #sudo gem install ruby-graphviz
 #sudo apt-get install nodejs
@@ -29,18 +28,8 @@ gem install capistrano -v 2.15.5
 # EOF
 
 
-#this may error if any configs are changed
 bundle install
 ls
-
-#this task will drop old data, create new db, run migratiosn and seed it
-rake db:reset
-
-#if env = stageServ 
-#rake db:popSimulate 
-
-# #Testing
-# rake db:test:load
 
 #Jenkins CI Testing
 rake ci:setup:minitest test
@@ -53,6 +42,9 @@ rake ci:setup:minitest test
 # rake test:functionals
 # # Run all integration tests
 # rake test:integration
+
+#Sanitize db: drop old data, create new db, run migratiosn and seed it
+rake db:reset
 
 #make permissions correctly if necessary
 #sudo chown -R jenkins tmp/
