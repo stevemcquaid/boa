@@ -27,38 +27,51 @@ FactoryGirl.define do
     association :tool
   end
 
+  # contact_list
+  factory :contact_list do
+    association :participant
+  end
+
+  # document
+  factory :document do
+    name "MyString"
+    url "MyString"
+  end
+
+  # faq
+  factory :faq do
+    question "MyText"
+    answer "MyText"
+  end
+
   # membership
   factory :membership do
-    booth_chair_order nil
-    is_booth_chair false
-    title "Head of Booth"
-
     association :organization
     association :participant
   end
 
   # organization
   factory :organization do
-    name "Kappa Alpha Theta"
+    name "Test Org"
 
     association :organization_category
   end
 
   # organization_alias
   factory :organization_alias do
-    name "Theta"
+    name "Test Alias"
 
     association :organization
   end
 
   # organization_category
   factory :organization_category do
-    name "Blitz"
+    name "Test Category"
   end
 
   # participant
   factory :participant, :aliases => [:completed_by, :issuing_participant, :receiving_participant] do
-    andrewid "rcrown"
+    andrewid "test"
     has_signed_hardhat_waiver true
     has_signed_waiver true
     phone_number 1234567890
@@ -95,9 +108,14 @@ FactoryGirl.define do
     association :completed_by
   end
 
+  # task_category
+  factory :task_category do
+    name "Default Task Category"
+  end
+
   # task_status
   factory :task_status do
-    name "Incomplete"
+    name "Test Status"
   end
 
 

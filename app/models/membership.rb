@@ -1,5 +1,5 @@
 class Membership < ActiveRecord::Base
-  attr_accessible :is_booth_chair, :title, :organization_id, :participant_id, :booth_chair_order, :role_ids
+  attr_accessible :is_booth_chair, :title, :organization, :participant, :booth_chair_order, :role_ids
 
   attr_accessor :role_ids
 

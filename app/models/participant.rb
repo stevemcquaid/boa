@@ -1,7 +1,7 @@
 class Participant < ActiveRecord::Base
   before_save :reformat_phone
   
-  attr_accessible :andrewid, :has_signed_waiver, :phone_number, :has_signed_hardhat_waiver, :membership
+  attr_accessible :andrewid, :has_signed_waiver, :phone_number, :has_signed_hardhat_waiver, :membership, :user
 
   #keep this DAMNIT. We need it for rails to allow the param access during swipes.
   attr_accessible :card_number

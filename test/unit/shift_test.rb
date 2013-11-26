@@ -8,7 +8,7 @@ class ShiftTest < ActiveSupport::TestCase
   should belong_to(:shift_type)
 
   # Validations
-  should validate_presence_of(:organization_id)
+  should validate_presence_of(:organization)
   should validate_presence_of(:starts_at)
   should validate_presence_of(:ends_at)
   should validate_presence_of(:required_number_of_participants)

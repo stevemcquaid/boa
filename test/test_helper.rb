@@ -68,7 +68,7 @@ class ActiveSupport::TestCase
     @jonathan_user.add_role(:member)
 
     # Create 6 participants
-    @rachel = FactoryGirl.create(:participant)
+    @rachel = FactoryGirl.create(:participant, :andrewid => "rcrown", :phone_number => 6178617669)
     @shannon = FactoryGirl.create(:participant, :andrewid => "shannon1", :phone_number => 4124124124)
     @dylan = FactoryGirl.create(:participant, :andrewid => "dcorwin", :phone_number => 4121235555)
     @alexis = FactoryGirl.create(:participant, :andrewid => "asteger", :phone_number => 5391234124, :user => @booth_chair_user)

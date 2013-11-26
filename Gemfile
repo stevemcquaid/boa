@@ -127,3 +127,77 @@ group :production do
   # Pretty printed test output
   gem 'turn', :require => false
 end
+
+
+# New Gemfile
+# source 'http://rubygems.org'
+# ruby '1.9.3'
+# gem 'rails', '3.2.13'
+# gem 'sqlite3'
+# group :assets do
+#   gem 'coffee-rails', '~> 3.2.1'
+#   gem 'uglifier', '>= 1.0.3'
+# end
+# gem 'jquery-rails'
+# 
+# # ldap
+# #Flip the two gems below this when trying to generate...
+# #gem "twitter-bootstrap-rails"
+# gem "activeldap", :require => 'active_ldap/railtie'
+# gem 'net-ldap'
+# 
+# # erd
+# gem "rails-erd"
+# 
+# # document
+# gem "carrierwave"
+# 
+# # Shibboleth
+# gem "omniauth"
+# gem "omniauth-shibboleth"
+# 
+# # Rest - For Card Lookup
+# gem 'rest-client'
+# 
+# gem 'cancan'
+# gem 'devise'
+# 
+# gem 'figaro'
+# gem 'rolify'
+# gem 'simple_form'
+# gem 'therubyracer', :platform=>:ruby
+# gem 'will_paginate'
+# 
+# gem 'webrick', "~> 1.3.1"
+# 
+# group :development do
+#   gem 'hirb' # pretty formatting for rails console
+#   gem 'better_errors'
+#   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
+#   gem 'quiet_assets'
+#   gem 'rails_layout'
+#   gem 'spring'
+# end
+# 
+# group :development, :test do
+#   gem 'factory_girl_rails'
+# end
+# 
+# group :test do
+#   #gem 'capybara'
+#   gem 'minitest-spec-rails'
+#   gem 'minitest-wscolor'
+# 
+#   gem 'shoulda'
+#   gem 'shoulda-matchers'
+# 
+#   # For mocking the call to cardlookup
+#   gem 'webmock'
+# 
+#   # Pretty test Output
+#   gem 'turn', :require => false
+# 
+#   # for Travis and CI
+#   gem 'rake'
+#   gem 'coveralls', require: false
+# end

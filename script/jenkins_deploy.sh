@@ -8,24 +8,25 @@ rm Gemfile.lock
 gem uninstall capistrano -v 3.0.0
 gem install capistrano -v 2.15.5
 
-echo 'configuring postgres db'
-stagedb='boastage'
-proddb='boaprod'
-username='boauser'
-psword='Prof_H_No_Sn00p1ng'
-psql << EOF
-DROP DATABASE $stagedb;
-DROP DATABASE $proddb;
-DROP DATABASE $username;
 
-DROP USER $username;
-CREATE USER $username WITH PASSWORD '$psword';
-ALTER USER $username WITH SUPERUSER;
-
-CREATE DATABASE $username OWNER $username;
-CREATE DATABASE $stagedb OWNER $username;
-CREATE DATABASE $proddb OWNER $username;
-EOF
+# echo 'configuring postgres db'
+# stagedb='boastage'
+# proddb='boaprod'
+# username='boauser'
+# psword='Prof_H_No_Sn00p1ng'
+# psql << EOF
+# DROP DATABASE $stagedb;
+# DROP DATABASE $proddb;
+# DROP DATABASE $username;
+# 
+# DROP USER $username;
+# CREATE USER $username WITH PASSWORD '$psword';
+# ALTER USER $username WITH SUPERUSER;
+# 
+# CREATE DATABASE $username OWNER $username;
+# CREATE DATABASE $stagedb OWNER $username;
+# CREATE DATABASE $proddb OWNER $username;
+# EOF
 
 
 #this may error if any configs are changed
@@ -33,7 +34,7 @@ bundle install
 ls
 
 #this task will drop old data, create new db, run migratiosn and seed it
-rake db:popSimulate
+rake db:reset
 
 #if env = stageServ 
 #rake db:popSimulate 
