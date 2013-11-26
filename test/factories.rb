@@ -83,7 +83,7 @@ FactoryGirl.define do
     required_number_of_participants 3
     starts_at Date.new
 
-    association :organization
+    #should not require and organization association
   end
 
   # shift_participant

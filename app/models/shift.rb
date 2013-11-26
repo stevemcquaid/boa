@@ -8,7 +8,8 @@ class Shift < ActiveRecord::Base
   has_many :shift_participants
   belongs_to :shift_type
 
-  validates :organization, :starts_at, :ends_at, :required_number_of_participants, :presence => true
+  #business logic: should be able to create shift without org.
+  validates :starts_at, :ends_at, :required_number_of_participants, :presence => true
   validates :starts_at, :ends_at, :required_number_of_participants, :presence => true
 
   scope :current, lambda { where("starts_at < ? and ends_at > ?", Time.zone.now, Time.zone.now ) }
