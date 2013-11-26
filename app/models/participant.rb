@@ -62,7 +62,7 @@ class Participant < ActiveRecord::Base
   end
 
   def formatted_phone_number
-    number_to_phone(self.phone_number, area_code: true) || "N/A"
+    ActionController::Base.helpers.number_to_phone(self.phone_number, area_code: true) || "N/A"
   end
   
   private

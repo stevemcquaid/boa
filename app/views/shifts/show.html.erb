@@ -11,7 +11,7 @@
     <dt><strong><%= model_class.human_attribute_name(:required_number_of_participants) %>:</strong></dt>
     <dd><%= @shift.required_number_of_participants %></dd>
     <dt><strong><%= model_class.human_attribute_name(:organization) %>:</strong></dt>
-    <dd><%= @shift.organization.name %></dd>
+    <dd><%= unless @shift.organization.blank? then link_to(@shift.organization.name, @shift.organization) else 'N/A' end %></dd>
     <dt><strong><%= model_class.human_attribute_name(:shift_type) %>:</strong></dt>
     <dd><%= @shift.shift_type.name %></dd>
     <dt><strong><%= model_class.human_attribute_name(:shift_participants) %>:</strong></dt>
@@ -58,3 +58,4 @@
 <% else %>
   <h3>Not Authorized!</h3>
 <% end %>
+
