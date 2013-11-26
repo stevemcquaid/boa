@@ -20,7 +20,7 @@ class Participant < ActiveRecord::Base
   has_one  :contact_list
   belongs_to :user, dependent: :destroy
 
-  scope :alphabetical, order('andrewid')
+  default_scope order('andrewid')
   scope :search, lambda { |term| where('lower(andrewid) LIKE lower(?)', "#{term}%") }
 
   

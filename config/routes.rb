@@ -20,6 +20,10 @@ Boa::Application.routes.draw do
   match "create_organization_alias" => "organization_aliases#create_alias", :as => :create_organization_alias
   match "remove_organization_alias/:id" => "organization_aliases#destroy_alias", :as => :remove_organization_alias
 
+  # shifts - all types separated
+  match "sec_shifts" => "shifts#sec_shifts", :as => :sec_shifts_index
+  match "coord_shifts" => "shifts#coord_shifts", :as => :coord_shifts_index
+
   # shift clock in / clock out
   match "new_shift_clock_in/:id" => "shift_participants#new_shift_clock_in", :as => :new_shift_clock_in
   match "new_shift_clock_out/:id" => "shift_participants#new_shift_clock_out", :as => :new_shift_clock_out

@@ -1,10 +1,10 @@
 <% if can?(:read, Shift) %>
   <%- model_class = Shift -%>
   <div class="page-header">
-    <h1><%=t '.title', :default => model_class.model_name.human.pluralize %> Watch Shifts</h1>
+    <h1>Security Shifts</h1>
   </div>
   
-  <%= link_to raw("<i class='icon-plus icon-white'></i> Security Shifts"), sec_shifts_index_path, :class => 'btn btn-primary' %>
+  <%= link_to raw("<i class='icon-plus icon-white'></i> Watch Shifts"), shifts_path, :class => 'btn btn-primary' %>
   <%= link_to raw("<i class='icon-plus icon-white'></i> Coordinator Shifts"), coord_shifts_index_path, :class => 'btn btn-primary' %>
   
   <table class="table table-striped">
