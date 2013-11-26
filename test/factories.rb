@@ -69,8 +69,6 @@ FactoryGirl.define do
     ends_at Date.new
     required_number_of_participants 3
     starts_at Date.new
-
-    association :organization
   end
 
   # shift_participant
@@ -92,7 +90,6 @@ FactoryGirl.define do
     name "Assign rides"
 
     association :task_status
-    association :completed_by
   end
 
   # task_status
