@@ -18,9 +18,9 @@ class OrganizationsController < ApplicationController
     @organization = Organization.find(params[:id])
     @charges = @organization.charges.all
     @booth_chairs = @organization.memberships.booth_chairs.all
-    @tools = Tool.checked_out_by_organization(@organization).just_tools.all
+    @tools = Tool.checked_out_by_organization(@organization).just_tools
     @members = @organization.participants.all
-    @hardhats = Tool.checked_out_by_organization(@organization).hardhats.all
+    @hardhats = Tool.checked_out_by_organization(@organization).hardhats
     @shifts = @organization.shifts.all
     
     respond_to do |format|
@@ -33,6 +33,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations/new.json
   def new
     @organization = Organization.new
+    @organization_categories = OrganizationCategory.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -43,6 +44,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1/edit
   def edit
     @organization = Organization.find(params[:id])
+    @organization_categories = OrganizationCategory.all
   end
 
   # POST /organizations

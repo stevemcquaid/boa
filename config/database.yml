@@ -8,6 +8,16 @@ development:
   adapter: postgresql
   encoding: unicode
   host: localhost
+  database: boadev
+  username: boauser
+  password: Prof_H_No_Sn00p1ng
+  pool: 5
+  timeout: 5000
+
+staging:
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
   database: boastage
   username: boauser
   password: Prof_H_No_Sn00p1ng
@@ -19,16 +29,6 @@ production:
   encoding: unicode
   host: localhost
   database: boaprod
-  username: boauser
-  password: Prof_H_No_Sn00p1ng
-  pool: 5
-  timeout: 5000
-
-staging:
-  adapter: postgresql
-  encoding: unicode
-  host: localhost
-  database: boastage
   username: boauser
   password: Prof_H_No_Sn00p1ng
   pool: 5

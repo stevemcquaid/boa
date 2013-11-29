@@ -32,8 +32,12 @@ bundle install
 ls
 
 #Jenkins CI Testing
+rake test:prepare
+echo '**** Running Unit & Integration Tests *****'
 rake ci:setup:minitest test
-#rake ci:setup:rspec spec
+echo '**** Running Rspec/Capybara/Request/View Feature Tests *****'
+rake ci:setup:rspec spec:requests
+
 #rake ci:setup:cucumber features #cucumber doesnt run
 
 # # Run all unit tests
