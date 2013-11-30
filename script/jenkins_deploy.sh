@@ -49,6 +49,8 @@ EOF
 bundle install
 ls
 
+rake db:reset
+
 #Jenkins CI Testing
 rake test:prepare
 echo '**** Running Unit & Integration Tests *****'
@@ -66,7 +68,7 @@ rake ci:setup:rspec spec:requests
 # rake test:integration
 
 #Sanitize db: drop old data, create new db, run migratiosn and seed it
-rake db:reset
+#rake db:reset
 
 #make permissions correctly if necessary
 #sudo chown -R jenkins tmp/
