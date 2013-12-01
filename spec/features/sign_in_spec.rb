@@ -1,18 +1,29 @@
 require 'spec_helper'
+include Devise::TestHelpers
 
+describe "The signin process", :type => :feature do
 
-describe "SignIn", :type => :feature do
-  before :each do
-    User.make(:email => 'user@example.com', :password => 'caplin')
-  end
+    it "signs me in using form" do
+      user = User.create(:email    => "test@boa.com",
+                       :password => "testtest")
+      visit 'users/sign_in'
+      within("#new_user") do
+        fill_in 'user_email', :with => 'test@boa.com'
+        fill_in 'user_password', :with => 'testtest'
+      end
 
-  it "signs me in" do
-    visit '/sessions/new'
-    within("#session") do
-      fill_in 'Login', :with => 'user@example.com'
-      fill_in 'Password', :with => 'password'
+      click_button 'sign_in'
+      expect(page).to have_content 'Success'
     end
-    click_link 'Sign in'
-    expect(page).to have_content 'Success'
+
+
+    describe "sets session data" do
+      let(:authed_user) { create_logged_in_user }
+
+      it "should allow access" do
+        visit user_path(authed_user)
+        # should be good!
+      end
+    end
+
   end
-end

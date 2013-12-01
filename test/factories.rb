@@ -46,6 +46,7 @@ FactoryGirl.define do
 
   # membership
   factory :membership do
+    is_booth_chair true
     association :organization
     association :participant
   end
@@ -129,8 +130,9 @@ FactoryGirl.define do
   # user
   factory :user do
     name "Test Member"
-    email "member@boa.com"
+    email "test@boa.com"
     password "testtest"
     password_confirmation "testtest"
+    association :participant
   end
 end
