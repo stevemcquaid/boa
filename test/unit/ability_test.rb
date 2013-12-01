@@ -8,7 +8,7 @@ class AbilityTest < ActiveSupport::TestCase
     end
 
     teardown do
-      remove_context
+      #remove_context
     end
 
     # admin tests

@@ -4,7 +4,7 @@ describe "Organizations" do
   before :each do
     #Mocking
     @user = User.new
-    @user.email = "test@boa.com"
+    @user.email = "organization@boa.com"
     @user.password = "testtest"
     @user.password_confirmation = "testtest"
     @user.name = "Test User"

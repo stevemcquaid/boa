@@ -9,7 +9,7 @@ class ParticipantTest < ActiveSupport::TestCase
     end
 
     teardown do
-      remove_context
+      #remove_context
     end
     
 

@@ -6,7 +6,7 @@ describe "The signin process", :type => :feature do
   before :each do
     #Mock User in DB
     @user = User.new
-    @user.email = "test@boa.com"
+    @user.email = "signin@boa.com"
     @user.password = "testtest"
     @user.password_confirmation = "testtest"
     @user.name = "Test User"

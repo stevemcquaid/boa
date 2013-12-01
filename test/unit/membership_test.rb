@@ -18,7 +18,7 @@ class MembershipTest < ActiveSupport::TestCase
     end
 
     teardown do
-      remove_context
+      #remove_context
     end
 
     should "show that all factories are properly created" do
