@@ -58,6 +58,11 @@ group :development, :test do
   gem 'database_cleaner', '1.0.1'
   gem 'launchy'
   gem 'capybara'
+  
+  # for Travis and CI
+  gem 'simplecov', :require => false #code coverage
+  gem 'simplecov-rcov', :require => false #code coverage
+  gem 'ci_reporter'
 end
 
 group :test do
@@ -76,11 +81,7 @@ group :test do
 
   # For mocking the call to cardlookup
   gem 'webmock'
-  
-  # for Travis and CI
-  gem 'simplecov', :require => false #code coverage
-  gem 'simplecov-rcov', :require => false #code coverage
-  gem 'ci_reporter'
+
   gem 'coveralls', require: false
   # Pretty test Output
   gem 'turn', :require => false # Pretty printed test output
@@ -99,7 +100,6 @@ group :development do
   gem "capistrano", "2.15.5"
   # gem "ruby-activeldap-debug", "~> 0.7.4"
 
-  #gem 'ci_reporter'
 end  
 
 group :staging do
