@@ -135,4 +135,5 @@ FactoryGirl.define do
     password_confirmation "testtest"
     association :participant
   end
+
 end
