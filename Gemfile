@@ -117,4 +117,5 @@ group :production do
   gem 'better_errors'
   gem 'passenger'
   gem 'quiet_assets'
+  gem 'ci_reporter'
 end
