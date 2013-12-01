@@ -56,7 +56,7 @@ rake test:prepare
 echo '**** Running Unit & Integration Tests *****'
 rake ci:setup:minitest test
 echo '**** Running Rspec/Capybara/Request/View Feature Tests *****'
-rake ci:setup:rspec spec:requests
+rake ci:setup:rspec spec:features
 
 #rake ci:setup:cucumber features #cucumber doesnt run
 

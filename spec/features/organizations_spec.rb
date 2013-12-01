@@ -9,7 +9,7 @@ describe "Organizations" do
     @user.password_confirmation = "testtest"
     @user.name = "Test User"
     @user.add_role :admin
-    @user.save!
+    @user.save  
 
     #let(:authed_user) { create_logged_in_user }
 

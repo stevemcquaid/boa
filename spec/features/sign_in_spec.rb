@@ -11,7 +11,7 @@ describe "The signin process", :type => :feature do
     @user.password_confirmation = "testtest"
     @user.name = "Test User"
     @user.add_role :admin
-    @user.save!
+    @user.save
 
     #let(:authed_user) { create_logged_in_user }
   end
@@ -33,7 +33,7 @@ describe "The signin process", :type => :feature do
 
     #save_and_open_page
     within("#new_user") do
-      fill_in 'user_email', :with => 'test@boa.com'
+      fill_in 'user_email', :with => 'signin@boa.com'
       fill_in 'user_password', :with => 'testtest'
     end
 

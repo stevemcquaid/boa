@@ -18,7 +18,7 @@ class MembershipTest < ActiveSupport::TestCase
     end
 
     teardown do
-      #remove_context
+      remove_context
     end
 
     should "show that all factories are properly created" do
@@ -30,8 +30,9 @@ class MembershipTest < ActiveSupport::TestCase
     # Methods
     context "Testing memberships" do
       should "know booth chairs" do
+        #puts Membership.booth_chairs.map{ |bc| bc.participant.andrewid }
         assert_equal 1, Membership.booth_chairs.size
-        assert_equal ["asteger"], Membership.booth_chairs.map{|e| e.participant.andrewid}
+        assert_equal ["asteger_FG"], Membership.booth_chairs.map{|e| e.participant.andrewid}
       end  
     end
   end

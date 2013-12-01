@@ -19,7 +19,7 @@ class ParticipantTest < ActiveSupport::TestCase
     end
 
     teardown do
-      #remove_context
+      remove_context
     end
 
     should "show that all factories are properly created" do
@@ -28,7 +28,7 @@ class ParticipantTest < ActiveSupport::TestCase
 
     context "Testing participants" do
       should "know participants" do
-        assert_equal ["asteger", "dcorwin", "juc", "member", "rcrown", "shannon1"], Participant.all.map{|e| e.andrewid}
+        assert_equal ["asteger_FG", "dcorwin_FG", "juc", "member_FG", "rcrown_FG", "shannon1_FG"], Participant.all.map{|e| e.andrewid}
       end
     end
     

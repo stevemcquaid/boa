@@ -16,7 +16,7 @@ class ToolTest < ActiveSupport::TestCase
     end
 
     teardown do
-      #remove_context
+      remove_context
     end
 
     should "show that all factories are properly created" do
@@ -44,7 +44,7 @@ class ToolTest < ActiveSupport::TestCase
 
     should "show that the 'current_participant' method works" do
       assert_equal nil, @hammer.current_participant
-      assert_equal @shannon, @saw.current_participant
+      assert_equal @shannon_participant, @saw.current_participant
       assert_equal nil, @hard_hat.current_participant
       assert_equal nil, @ladder.current_participant
     end
@@ -67,7 +67,6 @@ class ToolTest < ActiveSupport::TestCase
       assert_equal [@saw, @hard_hat], Tool.checked_out_by_organization(@theta)
     end
 
-
-  
+    
   end
 end

@@ -58,48 +58,53 @@ class ActiveSupport::TestCase
     @shift2 = FactoryGirl.create(:shift, :ends_at => Time.local(2000,1,1,15,0,0), :required_number_of_participants => 3, :starts_at => Time.local(2000,1,1,13,4,0), :organization => @sdc)
     @shift3 = FactoryGirl.create(:shift, :ends_at => Time.local(2000,1,1,15,0,0), :required_number_of_participants => 3, :starts_at => Time.local(2000,1,1,14,10,0), :organization => @theta)
 
+    #ORDER MATTERS: Participant first, then user.
+
     # Create 6 participants
-    @rachel = FactoryGirl.create(:participant, :andrewid => "rcrown", :phone_number => 6178617669)
-    @shannon = FactoryGirl.create(:participant, :andrewid => "shannon1", :phone_number => 4124124124)
-    @dylan = FactoryGirl.create(:participant, :andrewid => "dcorwin", :phone_number => 4121235555)
-    @alexis = FactoryGirl.create(:participant, :andrewid => "asteger", :phone_number => 5391234124, :user => @booth_chair_user)
-    @member = FactoryGirl.create(:participant, :andrewid => "member", :user => @member_user)
-    @jonathan = FactoryGirl.create(:participant, :andrewid => "juc", :phone_number => 4128675309, :user => @jonathan_user)
+    @member_participant = FactoryGirl.create(:participant, :andrewid => "member_FG", :user => @member_user)
+    @rachel_participant = FactoryGirl.create(:participant, :andrewid => "rcrown_FG", :phone_number => 6178617669, :user => @rachel_user)
+    @shannon_participant = FactoryGirl.create(:participant, :andrewid => "shannon1_FG", :phone_number => 4124124124, :user => @shannon_user)
+    @dylan_participant = FactoryGirl.create(:participant, :andrewid => "dcorwin_FG", :phone_number => 4121235555, :user => @dylan_user)
+    @alexis_participant = FactoryGirl.create(:participant, :andrewid => "asteger_FG", :phone_number => 5391234124, :user => @alexis_user)
+    @jonathan_participant = FactoryGirl.create(:participant, :andrewid => "juc", :phone_number => 4128675309, :user => @jonathan_user)
 
     # Create 5 users
-    @member_user = FactoryGirl.create(:user, )
+    @member_user = FactoryGirl.create(:user, :participant => @member_participant)
     @member_user.add_role(:member)
 
-    @booth_chair_user = FactoryGirl.create(:user, :name => "Booth Chair User", :email => "booth_chair@boa.com", :participant => @rachel)
-    @booth_chair_user.add_role(:booth_chair)
+    @rachel_user = FactoryGirl.create(:user, :name => "Rachel Crown", :email => "rcrown_FG@andrew.cmu.edu", :participant => @rachel_participant)
+    @rachel_user.add_role(:admin)
 
-    @scc_user = FactoryGirl.create(:user, :name => "SCC User", :email => "scc@boa.com", :participant => @shannon)
-    @scc_user.add_role(:scc)
+    @dylan_user = FactoryGirl.create(:user, :name => "Dylan Corwin", :email => "dcorwin_FG@andrew.cmu.edu", :participant => @dylan_participant)
+    @dylan_user.add_role(:admin)
 
-    @admin_user = FactoryGirl.create(:user, :name => "Admin User", :email => "admin@boa.com", :participant => @dylan)
-    @admin_user.add_role(:admin)
+    @alexis_user = FactoryGirl.create(:user, :name => "Alexis Steiger", :email => "asteiger_FG@andrew.cmu.edu", :participant => @alexis_participant)
+    @alexis_user.add_role(:booth_chair)
 
-    @jonathan_user = FactoryGirl.create(:user, :name => "Jonathan User", :email => "jc@boa.com", :participant => @jonathan)
+    @shannon_user = FactoryGirl.create(:user, :name => "Shannon Chen", :email => "shannon1_FG@andrew.cmu.edu", :participant => @shannon_participant)
+    @shannon_user.add_role(:scc)
+
+    @jonathan_user = FactoryGirl.create(:user, :name => "Jonathan U Chung", :email => "jonathanc@cmu.edu", :participant => @jonathan_participant)
     @jonathan_user.add_role(:member)
 
     # Create 4 Shift Participants
-    @sp1 = FactoryGirl.create(:shift_participant, :participant => @rachel, :clocked_in_at => Time.now, :shift => @shift1)
-    @sp2 = FactoryGirl.create(:shift_participant, :participant => @shannon, :clocked_in_at => Time.now, :shift => @shift2)
-    @sp3 = FactoryGirl.create(:shift_participant, :participant => @alexis, :clocked_in_at => Time.now, :shift => @shift3)
-    @sp4 = FactoryGirl.create(:shift_participant, :participant => @dylan, :clocked_in_at => Time.now, :shift => @shift3)
+    @sp1 = FactoryGirl.create(:shift_participant, :participant => @rachel_participant, :clocked_in_at => Time.now, :shift => @shift1)
+    @sp2 = FactoryGirl.create(:shift_participant, :participant => @shannon_participant, :clocked_in_at => Time.now, :shift => @shift2)
+    @sp3 = FactoryGirl.create(:shift_participant, :participant => @alexis_participant, :clocked_in_at => Time.now, :shift => @shift3)
+    @sp4 = FactoryGirl.create(:shift_participant, :participant => @dylan_participant, :clocked_in_at => Time.now, :shift => @shift3)
 
     # Create 2 memberships
-    @member_rachel = FactoryGirl.create(:membership, :participant => @rachel, :organization => @scc)
-    @member_alexis = FactoryGirl.create(:membership, :participant => @alexis, :organization => @theta, :booth_chair_order => 1, :is_booth_chair => true, :title => nil)
-    @member_member = FactoryGirl.create(:membership, :participant => @member, :organization => @sdc)
+    @member_rachel = FactoryGirl.create(:membership, :participant => @rachel_participant, :organization => @scc)
+    @member_alexis = FactoryGirl.create(:membership, :participant => @alexis_participant, :organization => @theta, :booth_chair_order => 1, :is_booth_chair => true, :title => nil)
+    @member_member = FactoryGirl.create(:membership, :participant => @member_participant, :organization => @sdc)
 
     # Create 2 charge types
     @miss_meeting = FactoryGirl.create(:charge_type, :default_amount => 100.00, :description => "Missed a meeting", :name => "Meeting", :requires_booth_chair_approval => false)
     @trip_breaker = FactoryGirl.create(:charge_type, :default_amount => 200.00, :description => "Tripped a breaker", :name => "Breaker", :requires_booth_chair_approval => true)
 
     # Create 2 charges
-    @meeting_fine = FactoryGirl.create(:charge, :charge_type => @miss_meeting, :issuing_participant => @rachel, :receiving_participant => nil, :organization => @theta, :amount => 50.00, :charged_at => Date.today, :description => "Missed 10/2 meeting")
-    @breaker_fine = FactoryGirl.create(:charge, :charge_type => @trip_breaker, :issuing_participant => @rachel, :receiving_participant => @alexis, :organization => @theta, :amount => 25.00, :charged_at => Date.today-1, :description => "Breaker trip")
+    @meeting_fine = FactoryGirl.create(:charge, :charge_type => @miss_meeting, :issuing_participant => @rachel_participant, :receiving_participant => nil, :organization => @theta, :amount => 50.00, :charged_at => Date.today, :description => "Missed 10/2 meeting")
+    @breaker_fine = FactoryGirl.create(:charge, :charge_type => @trip_breaker, :issuing_participant => @rachel_participant, :receiving_participant => @alexis_participant, :organization => @theta, :amount => 25.00, :charged_at => Date.today-1, :description => "Breaker trip")
 
     # Create 3 task statuses
     @complete = FactoryGirl.create(:task_status, :name => "Complete")
@@ -111,9 +116,9 @@ class ActiveSupport::TestCase
     @maintinance = FactoryGirl.create(:task_category, :name => "Maintinance")
     
     # Create 3 tasks
-    @assign_rides = FactoryGirl.create(:task, :completed_by => @rachel, :task_status => @incomplete, :due_at => Time.local(2000,1,1,12,3,0))
-    @buy_wood = FactoryGirl.create(:task, :name => "Buy wood", :task_category => @busy_work, :completed_by => @shannon, :task_status => @in_progress, :due_at => Time.local(2000,1,1,15,0,0))
-    @takeout_trash = FactoryGirl.create(:task, :name => "Take-out trash", :task_category => @maintinance, :completed_by => @dylan, :task_status => @complete, :due_at => Time.local(2020,1,1,15,0,0))
+    @assign_rides = FactoryGirl.create(:task, :completed_by => @rachel_participant, :task_status => @incomplete, :due_at => Time.local(2000,1,1,12,3,0))
+    @buy_wood = FactoryGirl.create(:task, :name => "Buy wood", :task_category => @busy_work, :completed_by => @shannon_participant, :task_status => @in_progress, :due_at => Time.local(2000,1,1,15,0,0))
+    @takeout_trash = FactoryGirl.create(:task, :name => "Take-out trash", :task_category => @maintinance, :completed_by => @dylan_participant, :task_status => @complete, :due_at => Time.local(2020,1,1,15,0,0))
         
     # Create 4 tools
     @hammer = FactoryGirl.create(:tool)
@@ -124,7 +129,7 @@ class ActiveSupport::TestCase
     # Create 4 checkouts
     @hammer_checkout1 = FactoryGirl.create(:checkout, :checked_in_at => Time.now + 2.days, :tool => @hammer)
     @hammer_checkout2 = FactoryGirl.create(:checkout, :tool => @hammer, :organization => @sdc)
-    @saw_checkout = FactoryGirl.create(:checkout, :tool => @saw, :organization => @theta, :participant => @shannon)
+    @saw_checkout = FactoryGirl.create(:checkout, :tool => @saw, :organization => @theta, :participant => @shannon_participant)
     @hard_hat_checkout = FactoryGirl.create(:checkout, :tool => @hard_hat, :organization => @theta)
   end
 
@@ -150,12 +155,12 @@ class ActiveSupport::TestCase
     @trip_breaker.destroy
 
     # Destroy 4 participants
-    @rachel.destroy
-    @shannon.destroy
-    @dylan.destroy
-    @alexis.destroy
-    @member.destroy
-    @jonathan.destroy
+    @rachel_participant.destroy
+    @shannon_participant.destroy
+    @dylan_participant.destroy
+    @alexis_participant.destroy
+    @member_participant.destroy
+    @jonathan_participant.destroy
 
     # Destroy task status
     @complete.destroy
@@ -209,9 +214,9 @@ class ActiveSupport::TestCase
 
     # Destroy 5 users
     @member_user.destroy
-    @booth_chair_user.destroy
-    @scc_user.destroy
-    @admin_user.destroy
+    @alexis_user.destroy
+    @shannon_user.destroy
+    @rachel_user.destroy
     @jonathan_user.destroy
   end
 end

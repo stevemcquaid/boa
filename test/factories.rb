@@ -46,7 +46,7 @@ FactoryGirl.define do
 
   # membership
   factory :membership do
-    is_booth_chair true
+    is_booth_chair false
     association :organization
     association :participant
   end
@@ -72,7 +72,7 @@ FactoryGirl.define do
 
   # participant
   factory :participant, :aliases => [:completed_by, :issuing_participant, :receiving_participant] do
-    andrewid "test"
+    andrewid "default_factory_andrew_id" #this should always be overridden
     has_signed_hardhat_waiver true
     has_signed_waiver true
     phone_number 1234567890
@@ -80,16 +80,16 @@ FactoryGirl.define do
 
   # shift
   factory :shift do
-    ends_at Date.new
+    ends_at Time.now - 2.days
     required_number_of_participants 3
-    starts_at Date.new
+    starts_at Time.now - 3.days
 
     #should not require and organization association
   end
 
   # shift_participant
   factory :shift_participant do
-    clocked_in_at Date.new
+    clocked_in_at Time.local(2000,1,1,12,3,0)
 
     association :participant
     association :shift
@@ -129,8 +129,8 @@ FactoryGirl.define do
 
   # user
   factory :user do
-    name "Test Member"
-    email "test@boa.com"
+    name "Test User"
+    email "default_factory_andrew_id@andrew.cmu.edu"
     password "testtest"
     password_confirmation "testtest"
     association :participant

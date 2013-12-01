@@ -8,18 +8,18 @@ class AbilityTest < ActiveSupport::TestCase
     end
 
     teardown do
-      #remove_context
+      remove_context
     end
 
     # admin tests
     should "admin can manage everything" do
-      ability = Ability.new(@admin_user)
+      ability = Ability.new(@rachel_user)
       assert ability.can?(:manage, :all)
     end
 
     # scc tests
     should "scc can do everything except destroy user" do
-      ability = Ability.new(@scc_user)
+      ability = Ability.new(@shannon_user)
       assert ability.can?(:manage, CarnegieMellonIDCard)
       assert ability.can?(:manage, CarnegieMellonPerson)
       assert ability.can?(:manage, Charge)
@@ -49,14 +49,14 @@ class AbilityTest < ActiveSupport::TestCase
 
     # booth_chair tests
     should "booth chair can do some things but not other things" do
-      ability = Ability.new(@booth_chair_user)
+      ability = Ability.new(@alexis_user)
       assert ability.cannot?(:manage, CarnegieMellonIDCard)
       assert ability.cannot?(:manage, CarnegieMellonPerson)
 
       assert ability.cannot?(:create, Charge)
       assert ability.cannot?(:update, Charge)
       assert ability.cannot?(:destroy, Charge)
-      assert ability.can?(:read, Charge.new(:organization => @booth_chair_user.participant.organizations.first))
+      assert ability.can?(:read, Charge.new(:organization => @alexis_user.participant.organizations.first))
 
       assert ability.can?(:read, ChargeType)
       assert ability.cannot?(:create, ChargeType)
@@ -116,8 +116,7 @@ class AbilityTest < ActiveSupport::TestCase
       assert ability.cannot?(:create, Shift)
       assert ability.cannot?(:update, Shift)
       assert ability.cannot?(:destroy, Shift)
-      assert ability.can?(:read, Shift.new(:organization => @booth_chair_user.participant.organizations.first))
-
+      assert ability.can?(:read, Shift.new(:organization => @alexis_user.participant.organizations.first))
       assert ability.cannot?(:create, ShiftParticipant)
       assert ability.cannot?(:update, ShiftParticipant)
       assert ability.cannot?(:destroy, ShiftParticipant)

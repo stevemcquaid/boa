@@ -13,7 +13,7 @@ module FeatureHelpers
   #   user.password_confirmation = "testtest"
   #   user.name = "Test User"
   #   user.add_role :admin
-  #   user.save!
+  #   user.save
 
   #   # Only required if using the confirmable module
   # 	# user.confirmed_at = Time.now
