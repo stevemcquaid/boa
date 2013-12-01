@@ -58,22 +58,6 @@ class ActiveSupport::TestCase
     @shift2 = FactoryGirl.create(:shift, :ends_at => Time.local(2000,1,1,15,0,0), :required_number_of_participants => 3, :starts_at => Time.local(2000,1,1,13,4,0), :organization => @sdc)
     @shift3 = FactoryGirl.create(:shift, :ends_at => Time.local(2000,1,1,15,0,0), :required_number_of_participants => 3, :starts_at => Time.local(2000,1,1,14,10,0), :organization => @theta)
 
-    # Create 5 users
-    @member_user = FactoryGirl.create(:user)
-    @member_user.add_role(:member)
-
-    @booth_chair_user = FactoryGirl.create(:user, :name => "Booth Chair User", :email => "booth_chair@boa.com")
-    @booth_chair_user.add_role(:booth_chair)
-
-    @scc_user = FactoryGirl.create(:user, :name => "SCC User", :email => "scc@boa.com")
-    @scc_user.add_role(:scc)
-
-    @admin_user = FactoryGirl.create(:user, :name => "Admin User", :email => "admin@boa.com")
-    @admin_user.add_role(:admin)
-
-    @jonathan_user = FactoryGirl.create(:user, :name => "Jonathan User", :email => "jc@boa.com")
-    @jonathan_user.add_role(:member)
-
     # Create 6 participants
     @rachel = FactoryGirl.create(:participant, :andrewid => "rcrown", :phone_number => 6178617669)
     @shannon = FactoryGirl.create(:participant, :andrewid => "shannon1", :phone_number => 4124124124)
@@ -82,11 +66,27 @@ class ActiveSupport::TestCase
     @member = FactoryGirl.create(:participant, :andrewid => "member", :user => @member_user)
     @jonathan = FactoryGirl.create(:participant, :andrewid => "juc", :phone_number => 4128675309, :user => @jonathan_user)
 
+    # Create 5 users
+    @member_user = FactoryGirl.create(:user, )
+    @member_user.add_role(:member)
+
+    @booth_chair_user = FactoryGirl.create(:user, :name => "Booth Chair User", :email => "booth_chair@boa.com", :participant => @rachel)
+    @booth_chair_user.add_role(:booth_chair)
+
+    @scc_user = FactoryGirl.create(:user, :name => "SCC User", :email => "scc@boa.com", :participant => @shannon)
+    @scc_user.add_role(:scc)
+
+    @admin_user = FactoryGirl.create(:user, :name => "Admin User", :email => "admin@boa.com", :participant => @dylan)
+    @admin_user.add_role(:admin)
+
+    @jonathan_user = FactoryGirl.create(:user, :name => "Jonathan User", :email => "jc@boa.com", :participant => @jonathan)
+    @jonathan_user.add_role(:member)
+
     # Create 4 Shift Participants
-    @sp1 = FactoryGirl.create(:shift_participant, :participant => @rachel, :clocked_in_at => Date.new, :shift => @shift1)
-    @sp2 = FactoryGirl.create(:shift_participant, :participant => @shannon, :clocked_in_at => Date.new, :shift => @shift2)
-    @sp3 = FactoryGirl.create(:shift_participant, :participant => @alexis, :clocked_in_at => Date.new, :shift => @shift3)
-    @sp4 = FactoryGirl.create(:shift_participant, :participant => @dylan, :clocked_in_at => Date.new, :shift => @shift3)
+    @sp1 = FactoryGirl.create(:shift_participant, :participant => @rachel, :clocked_in_at => Time.now, :shift => @shift1)
+    @sp2 = FactoryGirl.create(:shift_participant, :participant => @shannon, :clocked_in_at => Time.now, :shift => @shift2)
+    @sp3 = FactoryGirl.create(:shift_participant, :participant => @alexis, :clocked_in_at => Time.now, :shift => @shift3)
+    @sp4 = FactoryGirl.create(:shift_participant, :participant => @dylan, :clocked_in_at => Time.now, :shift => @shift3)
 
     # Create 2 memberships
     @member_rachel = FactoryGirl.create(:membership, :participant => @rachel, :organization => @scc)
@@ -122,7 +122,7 @@ class ActiveSupport::TestCase
     @hard_hat = FactoryGirl.create(:tool, :barcode => 1280812, :description => "HARD HAT", :name => "Hard Hat")
 
     # Create 4 checkouts
-    @hammer_checkout1 = FactoryGirl.create(:checkout, :checked_in_at => Date.new, :tool => @hammer)
+    @hammer_checkout1 = FactoryGirl.create(:checkout, :checked_in_at => Time.now + 2.days, :tool => @hammer)
     @hammer_checkout2 = FactoryGirl.create(:checkout, :tool => @hammer, :organization => @sdc)
     @saw_checkout = FactoryGirl.create(:checkout, :tool => @saw, :organization => @theta, :participant => @shannon)
     @hard_hat_checkout = FactoryGirl.create(:checkout, :tool => @hard_hat, :organization => @theta)

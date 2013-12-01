@@ -21,7 +21,7 @@ FactoryGirl.define do
 
   # checkout
   factory :checkout do
-    checked_out_at Date.new
+    checked_out_at Time.now
     checked_in_at nil
 
     association :tool
