@@ -1,6 +1,10 @@
 test: &test
-  adapter: sqlite3
-  database: db/test.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  database: boatest
+  username: boauser
+  password: Prof_H_No_Sn00p1ng
   pool: 5
   timeout: 5000
 

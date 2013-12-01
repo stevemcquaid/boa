@@ -37,3 +37,4 @@ Gemfile.lock
 *.swp
 .floo
 .flooignore
+test/reports/*.xml
