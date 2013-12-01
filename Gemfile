@@ -58,7 +58,7 @@ group :development, :test do
   gem 'database_cleaner', '1.0.1'
   gem 'launchy'
   gem 'capybara'
-  
+
   # for Travis and CI
   gem 'simplecov', :require => false #code coverage
   gem 'simplecov-rcov', :require => false #code coverage
@@ -116,4 +116,5 @@ end
 group :production do
   gem 'better_errors'
   gem 'passenger'
+  gem 'quiet_assets'
 end
