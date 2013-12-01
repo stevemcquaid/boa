@@ -46,8 +46,10 @@ gem 'will_paginate'
 group :test, :development, :staging, :production do
   gem 'pg'
 
+  gem 'ci_reporter'
+  
   # *** Start SQL Gems ***
-  gem 'sqlite3'
+  #gem 'sqlite3'
   gem 'activerecord-postgresql-adapter'
   # *** End SQL Gems ***
 end
@@ -62,7 +64,6 @@ group :development, :test do
   # for Travis and CI
   gem 'simplecov', :require => false #code coverage
   gem 'simplecov-rcov', :require => false #code coverage
-  gem 'ci_reporter'
 end
 
 group :test do
@@ -109,13 +110,10 @@ group :staging do
   gem 'passenger'
   
   gem 'quiet_assets'
-
-  gem 'ci_reporter'
 end 
 
 group :production do
   gem 'better_errors'
   gem 'passenger'
   gem 'quiet_assets'
-  gem 'ci_reporter'
 end
