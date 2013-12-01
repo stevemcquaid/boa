@@ -9,8 +9,8 @@ group :assets do
   gem 'therubyracer', :platform => :ruby
   gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 end
-gem 'jquery-rails'
 
+gem 'jquery-rails'
 
 # ldap
 #Flip the two gems below this when trying to generate...
