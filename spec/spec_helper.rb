@@ -4,6 +4,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'email_spec'
+require 'capybara/rspec'
 require 'capybara/rails'
 # require Devise::TestHelpers
 
