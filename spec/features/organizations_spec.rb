@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Organizations" do
+describe "Organizations", :type => :feature do
   before :each do
     #Mocking
     @user = User.new

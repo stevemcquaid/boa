@@ -17,12 +17,6 @@ RSpec.configure do |config|
   config.include(EmailSpec::Matchers)
   config.include Capybara::DSL
 
-  #LOAD SEEDS FILE INTO TEST DB! This does not work
-  # config.before(:suite) do
-  #   require "#{Rails.root}/db/seeds.rb"
-  # end
-
-
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:

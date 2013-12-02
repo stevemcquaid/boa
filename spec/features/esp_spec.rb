@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "The Page: Emergency Shutdown Procedures " do
+describe "The Page: Emergency Shutdown Procedures ", :type => :feature do
   describe "GET /esp" do
     it "shows basic content" do
       # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
