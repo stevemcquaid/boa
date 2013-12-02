@@ -52,7 +52,6 @@ class Ability
         o.participants.include? (user.participant)
       end
 
-      can :create, Checkout
       cannot :update, Checkout
       
       cannot :update, User
