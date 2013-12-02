@@ -19,6 +19,7 @@ describe "The Page: FAQs", :type => :feature do
       # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
       visit '/faqs'
       
+      #DEBUG: 
       #save_and_open_page
       
       expect(page).to have_content 'FAQs'
