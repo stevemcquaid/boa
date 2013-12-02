@@ -38,3 +38,4 @@ Gemfile.lock
 .floo
 .flooignore
 test/reports/*.xml
+spec/reports/*.xml
