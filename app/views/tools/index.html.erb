@@ -6,6 +6,8 @@
 
   <% if can?(:create, Tool) %>
     <%= link_to raw("<i class='icon-plus icon-white'></i> Add a New Tool"), new_tool_path, :class => 'btn btn-primary' %>
+  <% end %>
+  <% if can?(:create, Checkout) %>
     <%= link_to raw("<i class='icon-plus icon-white'></i> Checkout Tool"), new_tool_checkout_path, :class => 'btn btn-primary' %>
   <% end %>
 

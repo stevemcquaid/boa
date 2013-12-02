@@ -7,7 +7,13 @@ include Warden::Test::Helpers
 module MockHelpers
   def create_mocks
     # Webmock
-    #stub_request(:any, /.*merichar-dev\.eberly\.cmu\.edu.*/).to_return(:body => '{ "andrewid": "juc", "expiration": "2013-11-29T00:00:00+00:00" }', :status => 200, :headers => { 'Content-Length' => 17 })
+    stub_request(:any, "http://merichar-dev.eberly.cmu.edu/cgi-bin/card-lookup?card_id=#{1234}").to_return(:body => '{ "andrewid": "member_FG", "expiration": "2013-11-29T00:00:00+00:00" }', :status => 200, :headers => { 'Content-Length' => 17 })
+    stub_request(:any, "http://merichar-dev.eberly.cmu.edu/cgi-bin/card-lookup?card_id=#{2345}").to_return(:body => '{ "andrewid": "rcrown_FG", "expiration": "2013-11-29T00:00:00+00:00" }', :status => 200, :headers => { 'Content-Length' => 17 })
+    stub_request(:any, "http://merichar-dev.eberly.cmu.edu/cgi-bin/card-lookup?card_id=#{3456}").to_return(:body => '{ "andrewid": "shannon1_FG", "expiration": "2013-11-29T00:00:00+00:00" }', :status => 200, :headers => { 'Content-Length' => 17 })
+    stub_request(:any, "http://merichar-dev.eberly.cmu.edu/cgi-bin/card-lookup?card_id=#{4567}").to_return(:body => '{ "andrewid": "dcorwin_FG", "expiration": "2013-11-29T00:00:00+00:00" }', :status => 200, :headers => { 'Content-Length' => 17 })
+    stub_request(:any, "http://merichar-dev.eberly.cmu.edu/cgi-bin/card-lookup?card_id=#{4567}").to_return(:body => '{ "andrewid": "asteger_FG", "expiration": "2013-11-29T00:00:00+00:00" }', :status => 200, :headers => { 'Content-Length' => 17 })
+    stub_request(:any, "http://merichar-dev.eberly.cmu.edu/cgi-bin/card-lookup?card_id=#{5678}").to_return(:body => '{ "andrewid": "juc_FG", "expiration": "2013-11-29T00:00:00+00:00" }', :status => 200, :headers => { 'Content-Length' => 17 })
+
 
     # Create 4 organization categories
     @blitz = FactoryGirl.create(:organization_category, :name => "Blitz")
@@ -43,7 +49,7 @@ module MockHelpers
     @shannon_participant = FactoryGirl.create(:participant, :andrewid => "shannon1_FG", :phone_number => 4124124124, :user => @shannon_user)
     @dylan_participant = FactoryGirl.create(:participant, :andrewid => "dcorwin_FG", :phone_number => 4121235555, :user => @dylan_user)
     @alexis_participant = FactoryGirl.create(:participant, :andrewid => "asteger_FG", :phone_number => 5391234124, :user => @alexis_user)
-    @jonathan_participant = FactoryGirl.create(:participant, :andrewid => "juc", :phone_number => 4128675309, :user => @jonathan_user)
+    @jonathan_participant = FactoryGirl.create(:participant, :andrewid => "juc_FG", :phone_number => 4128675309, :user => @jonathan_user)
 
     # Create 5 users
     @member_user = FactoryGirl.create(:user, :participant => @member_participant)
@@ -105,9 +111,11 @@ module MockHelpers
 
     # Create 4 checkouts
     @hammer_checkout1 = FactoryGirl.create(:checkout, :checked_in_at => Time.now + 2.days, :tool => @hammer)
+    @hammer_checkout2 = FactoryGirl.create(:checkout, :checked_in_at => Time.now + 3.days, :tool => @hammer, :organization => @sdc)
+    @saw_checkout = FactoryGirl.create(:checkout, :checked_in_at => Time.now + 2.days, :tool => @saw, :organization => @theta, :participant => @shannon_participant)
+    @hard_hat_checkout = FactoryGirl.create(:checkout, :checked_in_at => Time.now + 2.days, :tool => @hard_hat, :organization => @theta)
+    #still checked out
     @hammer_checkout2 = FactoryGirl.create(:checkout, :tool => @hammer, :organization => @sdc)
-    @saw_checkout = FactoryGirl.create(:checkout, :tool => @saw, :organization => @theta, :participant => @shannon_participant)
-    @hard_hat_checkout = FactoryGirl.create(:checkout, :tool => @hard_hat, :organization => @theta)
     
     @Faqs = [
       FactoryGirl.create(:faq, :question => "What is Booth?", :answer => "Booth is one of the biggest showpieces of Spring Carnival. Student organizations build multi-story structures around our annual theme (2014: Best of the Best), hosting interactive games and elaborate decorations. The booths will be placed on Midway, which is located in the Morewood Gardens Parking Lot."), 

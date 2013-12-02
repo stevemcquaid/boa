@@ -129,7 +129,7 @@ FactoryGirl.define do
 
   # user
   factory :user do
-    name "Test User"
+    name "Default Factory User"
     email "default_factory_andrew_id@andrew.cmu.edu"
     password "testtest"
     password_confirmation "testtest"

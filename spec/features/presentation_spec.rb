@@ -13,11 +13,32 @@ describe "Presentation", :type => :feature do
 
   describe "Tool Checkout" do
     it "can checkout existing tool with set id card swipe" do
-      login_as @rachel_user, scope: :user
+      login_as @member_user, scope: :user
       # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      visit '/organizations'
-      expect(page).to have_content 'Organizations'
-      false
+      visit '/tools'
+
+      expect(page).to have_content 'Checkout Tool'
+
+      #DEBUG: 
+      save_and_open_page
+      click_link 'Checkout Tool'
+
+      #save_and_open_page
+      within("#new_checkout") do
+        fill_in 'checkout_tool_id', :with => '1239043'
+        fill_in 'checkout_card_number', :with => '1234'
+      end
+
+      click_button 'Check Tool Out'
+
+      expect(page).to have_content 'Checkout was successfully created.'
+      expect(page).to have_content 'Tool'
+      expect(page).to have_content 'Name: Saw'
+      expect(page).to have_content 'Barcode: 1239043'
+      expect(page).to have_content 'Description: SAW'
+      expect(page).to have_content 'Is checked out: Yes'
+      expect(page).to have_content 'Checked out by: Default Factory User'
+ 
     end
 
     it "checkout non-existing tool with id card swipe" do

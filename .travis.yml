@@ -5,5 +5,5 @@ rvm:
 
 bundler_args: --without development assets
 before_script:
-  - psql -c "CREATE USER boauser WITH PASSWORD 'Prof_H_No_Sn00p1ng';ALTER USER boauser WITH SUPERUSER;CREATE DATABASE boauser OWNER boauser;CREATE DATABASE boatest OWNER boauser;CREATE DATABASE boadev OWNER boauser;CREATE DATABASE boastage OWNER boauser;CREATE DATABASE boaprod OWNER boauser;"
+  - psql -c "CREATE USER boauser WITH PASSWORD 'Prof_H_No_Sn00p1ng';ALTER USER boauser WITH SUPERUSER;CREATE DATABASE boauser OWNER boauser;CREATE DATABASE boatest OWNER boauser;CREATE DATABASE boadev OWNER boauser;CREATE DATABASE boastage OWNER boauser;CREATE DATABASE boaprod OWNER boauser;" -U postgres
   - rake db:migrate

@@ -73,7 +73,7 @@ class CheckoutsController < ApplicationController
       @checkout.checked_out_at = Time.now
       @checkout.tool_id = @tool.id
       @checkout.participant_id = @participant.id
-      @checkout.organization_id = @participant.organizations.first.id
+      @checkout.organization_id = @participant.organizations.first.id unless @participant.organizations.nil? or @participant.organizations.first.nil?
 
       respond_to do |format|
         if @checkout.save

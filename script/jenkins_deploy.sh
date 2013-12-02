@@ -16,7 +16,8 @@ ls
 rake db:reset
 
 #Jenkins CI Testing
-rake test:prepare
+rake db:test:prepare
+rake db:test:load
 echo '**** Running Unit & Integration Tests *****'
 rake ci:setup:minitest test
 echo '**** Running Rspec/Capybara/Request/View Feature Tests *****'
