@@ -13,9 +13,10 @@ require 'capybara/rails'
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
-  config.include(EmailSpec::Helpers)
-  config.include(EmailSpec::Matchers)
+  config.include EmailSpec::Helpers
+  config.include EmailSpec::Matchers
   config.include Capybara::DSL
+  config.include MockHelpers
 
   # ## Mock Framework
   #

@@ -2,37 +2,18 @@ require 'spec_helper'
 
 describe "Presentation", :type => :feature do
   before :each do
-    #Mocking User and Participants Objects for tests
-
-    #Mocks for SEC Admin
-    @admin = User.new
-    @admin.email = "organization@boa.com"
-    @admin.password = "testtest"
-    @admin.password_confirmation = "testtest"
-    @admin.name = "Test User"
-    @admin.add_role :admin
-    @admin.save
-
-    #Mocks for Booth Chair
-
-
-    #Mocks for Member of Student Org
-
-    #Mocks for FAQs
-
-
-    #let(:authed_user) { create_logged_in_user }
-
+    create_mocks
   end
 
   after :each do
-    @admin.destroy
+    destroy_mocks
+
     Warden.test_reset! 
   end
 
   describe "Tool Checkout" do
     it "can checkout existing tool with set id card swipe" do
-      login_as @admin, scope: :user
+      login_as @rachel_user, scope: :user
       # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
       visit '/organizations'
       expect(page).to have_content 'Organizations'

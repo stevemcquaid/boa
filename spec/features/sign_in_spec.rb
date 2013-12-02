@@ -4,7 +4,9 @@ describe "The signin process", :type => :feature do
   
   #These before and after should be in the helper. but linking is not working
   before :each do
-    #Mock User in DB
+    create_mocks
+
+    #Mock User for sanitization
     @user = User.new
     @user.email = "signin@boa.com"
     @user.password = "testtest"
@@ -13,11 +15,12 @@ describe "The signin process", :type => :feature do
     @user.add_role :admin
     @user.save
 
-    #let(:authed_user) { create_logged_in_user }
   end
 
   after :each do
+    destroy_mocks
     @user.destroy
+
     Warden.test_reset! 
   end
 
@@ -43,9 +46,9 @@ describe "The signin process", :type => :feature do
 
   describe "sets session data" do
     it "should allow access" do
-      login_as @user, scope: :user
+      login_as @member_user, scope: :user
 
-      visit user_path(@user)
+      visit user_path(@member_user)
       #should be good
     end
   end
