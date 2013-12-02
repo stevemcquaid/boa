@@ -92,6 +92,7 @@ class AbilityTest < ActiveSupport::TestCase
       assert ability.cannot?(:update, Organization)
       assert ability.cannot?(:destroy, Organization)
       assert ability.can?(:read, Organization)
+      assert ability.cannot?(:read, @sdc)
 
       assert ability.cannot?(:create, OrganizationAlias)
       assert ability.cannot?(:update, OrganizationAlias)
@@ -176,6 +177,7 @@ class AbilityTest < ActiveSupport::TestCase
       assert ability.cannot?(:update, Organization)
       assert ability.cannot?(:destroy, Organization)
       assert ability.can?(:read, Organization)
+      assert ability.cannot?(:read, @theta)
 
       assert ability.cannot?(:create, OrganizationAlias)
       assert ability.cannot?(:update, OrganizationAlias)

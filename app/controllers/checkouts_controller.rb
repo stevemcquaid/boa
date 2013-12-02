@@ -125,8 +125,12 @@ class CheckoutsController < ApplicationController
 
     raise ToolAlreadyCheckedIn unless @tool.is_checked_out?
 
-    @checkout = Checkout.find_all_by_tool_id(@tool.id).last
+    puts "HI"
+
+    @checkout = Checkout.current.find_by_tool_id(@tool.id)
     @checkout.checked_in_at = Time.now
+
+    puts @checkout.checked_in_at
 
     respond_to do |format|
       if @checkout.save!
