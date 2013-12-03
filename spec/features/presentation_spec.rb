@@ -13,7 +13,7 @@ describe "Presentation", :type => :feature do
 
   describe "Tool Checkout" do
     it "can checkout existing tool with set id card swipe" do
-      login_as @member_user, scope: :user
+      login_as @rachel_user, scope: :user
       # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
       visit '/tools'
 
