@@ -6,8 +6,8 @@
 	<p><%= link_to 'Emergency Shutdown Procedures', esp_path, :class => "btn btn-lg btn-primary" %></p>
 
 	<%= form_tag(search_path) do %>
-		<%= text_field_tag('query', '', :size => 12) %>
-		<%= submit_tag('Search') %>
+		<%= text_field_tag('query', '', :size => 10) %>
+		<%= submit_tag('Search', :class => 'btn btn-default') %>
 	<% end %>
 
 
