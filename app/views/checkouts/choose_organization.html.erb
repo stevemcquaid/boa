@@ -2,13 +2,11 @@
   <h3>Select Organization for Checkout (<%= @tool.name %>
     for
     <%= @participant.name %>)</h3>
-  <ul>
-    <% @participant.organizations.each do |organization| %>
-      <li>
-        <%= link_to(organization.name, create_tool_checkout_organization_selected_path(:participant => @participant, :tool => @tool, :organization => organization)) %>
-      </li>
+  <% @participant.organizations.each do |organization| %>
+    <%= link_to t(organization.name, :default => t("helpers.links." << organization.name)),
+                create_tool_checkout_organization_selected_path(:participant => @participant, :tool => @tool, :organization => organization), :class => 'btn' %>
+    <br><br>
     <% end %>
-  </ul>
-<% else %>
-  <h3>Not Authorized!</h3>
-<% end %>
+  <% else %>
+    <h3>Not Authorized!</h3>
+  <% end %>

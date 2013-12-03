@@ -29,10 +29,10 @@
               tools_path, :class => 'btn'  %>
     <% if(@tool.is_checked_out?) %>
       <%= link_to t('.checkin', :default => t("helpers.links.checkin")),
-                      new_tool_checkin_given_tool_path(@tool), :class => 'btn btn-mini' %>
+                      new_tool_checkin_given_tool_path(@tool), :class => 'btn' %>
     <% else %>
       <%= link_to t('.checkout', :default => t("helpers.links.checkout")),
-                      new_tool_checkout_given_tool_path(@tool), :class => 'btn btn-mini' %>
+                      new_tool_checkout_given_tool_path(@tool), :class => 'btn' %>
     <% end %>
     <% if can?(:update, @tool) %>
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
